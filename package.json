@@ -1,0 +1,27 @@
+{
+  "name": "ymu-ext-widgets",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "2.5.0",
+    "stylus": ">= 0.0.1",
+    "jade": ">= 0.0.1"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=0.6.0"
+  },
+  "author": "",
+  "description": "Yamaha Motor University ExtJS Widgets Library",
+  "homepage": "https://github.com/lramos85/ldstudio-ymu",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/lramos85/ldstudio-ymu.git"
+  },
+  "dependencies": {
+    "express": ">=2.5.0 < 3.0.0",
+    "coffee-script": ">=1.1.3 < 2.0.0",
+    "jade": "*",
+    "stylus": "*"
+  }
+}

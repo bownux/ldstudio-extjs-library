@@ -1,0 +1,19 @@
+!!! 5
+html
+  head
+    title= title
+    //TODO: Move scripts and styles to individual templates in views
+    block styles
+      link(rel='stylesheet', href='/stylesheets/ext-all-gray.css')
+      link(rel='stylesheet', href='/stylesheets/style.css')
+    //production: script(type='text/javascript', src='http://cdn.sencha.io/ext-4.0.7-gpl/ext-all.js')
+    block scripts
+      script(type='text/javascript', src='/ext/bootstrap.js')
+      script(src='/javascripts/tab/Tab.js')
+      script(src='/javascripts/data-tabs.js')
+
+  body!=body
+    block content
+    block foot
+      #footer
+        p copyright 2011

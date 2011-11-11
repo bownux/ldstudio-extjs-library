@@ -1,0 +1,6 @@
+./*.coffee
+./public/*
+./views/*
+./.git/*
+./README.md
+./LICENSE
