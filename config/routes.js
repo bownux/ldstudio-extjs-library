@@ -18,6 +18,11 @@
           title: 'YMU ExtJS Widget View',
           name: widgetName
         });
+      case "player-panel":
+        return res.render('player-panel', {
+          title: 'YMU ExtJS Widget View',
+          name: widgetName
+        });
       case "default":
         return res.render('widget', {
           title: 'widget',

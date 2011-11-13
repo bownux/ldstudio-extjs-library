@@ -1,9 +1,15 @@
-//TODO: Use extends
-h1= title
-h1= name
-p Welcome to #{name} view
+extends layout
 
-#data-tabs
+block scripts
+    script(src='/javascripts/DataTabs/data-tabs.js')
 
-p 
-  a(href="/") back
+block content
+    h1= title
+    h1= name
+    p Welcome to #{name} view
+
+    #data-tabs
+
+block foot
+    p 
+        a(href="/") back

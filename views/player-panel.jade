@@ -1,0 +1,19 @@
+extends layout
+
+block scripts
+    script(src='/javascripts/Players/YoutubePlayer.js')
+    script(src='/javascripts/Players/player-panel.js')
+
+block content
+    h1= title
+    h1= name
+    p Welcome to #{name} view
+
+    a(onclick="changePlayerVideo('1OMlepC6hCU')", href="javascript:void(0);") video1
+    &nbsp;
+    a(onclick="changePlayerVideo('D3ybnmNX91I')", href="javascript:void(0);") video2
+    #player-panel
+
+block foot
+    p 
+        a(href="/") back
