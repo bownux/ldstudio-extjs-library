@@ -1,6 +1,9 @@
-YMU ExtJS Widgets
+# YMU ExtJS Widgets
 
-dev:
+## Description
+    # ExtJS Widgets used on YMU project showcase
+
+## dev:
     # Install Deps
     npm install
 
@@ -12,5 +15,35 @@ dev:
     # To simply start:
     or node app.js
 
-port: 
+## port: 
 4000
+
+## Structure:
+##      Client Side:
+            - javascripts/
+                  - Containers: Container Types 
+                        + (HContainer): Extendable Resizable Horizontal Panel
+                  - DataTabs: Data-Driven Tabs 
+                        + (YoutubeStore): Storage and Model for Youtube Feed
+                        + (YoutubeVideoTabs): TabPanels using YoutubeStore
+                  - Players: Video Players
+                        + (YoutubePlayer): Panel Component that plays videos from Youtube
+
+        ## Creating Components Example:
+           # Get Youtube Feed
+           store = Ext.create 'DataTabs.YoutubeStore' 
+           store.load
+
+           # Create a Youtube Video Player
+           player = Ext.create 'Players.YoutubePlayer'
+        
+        ## Including Required Classes:
+           Ext.require 'Players.YoutubePlayer'
+           Ext.require 'Containers.HContainer'
+
+           Ext.Loader.setConfig({
+                   enabled : true
+                   paths: 
+                       Players: 'javascripts/Players'
+                       Containers: 'javascripts/Containers'
+            })
