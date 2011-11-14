@@ -13,20 +13,19 @@
   Ext.Loader.setPath('DataTabs', 'javascripts/DataTabs');
 
   Ext.onReady(function() {
-    var aggregatedStore, store, tpl;
-    tpl = new Ext.XTemplate('<p>', '<tpl for=".">', '<tpl for="media">', '<p>img{#}: {thumbnailSmall1}</p>', '<p><img src="{thumbnailSmall1}" style="padding-right:2px" /></p>', '</tpl>', '<tpl for="title">', '<p>title{#}: {[this.getValueFromRaw(values)]}</p>', '</tpl>', '<tpl for="content">', '<p>description{#}: {[this.getValueFromRaw(values)]}</p>', '</tpl>', '<br />', '</tpl>', '</p>', {
-      config: {
-        disableFormats: false
-      },
-      getValueFromRaw: function(value) {
-        return value.$t;
-      }
-    });
+    var store;
+    window.changePlayerVideo = function(value, title) {
+      var msg;
+      if (title == null) title = 'YMU';
+      console.log('changing video: ' + value);
+      msg = 'Video Player not Present id: ' + value;
+      return alert(msg);
+    };
     store = Ext.create('DataTabs.YoutubeStore');
     store.load();
-    aggregatedStore = new Array();
     return store.on('load', function() {
-      var newsUpdates, tabs2;
+      var aggregatedStore, newsUpdates, tabs2;
+      aggregatedStore = new Array();
       store.data.each(function(item, index, totalItems) {
         console.log(item.data['encoding']);
         console.log(item.data['feed'].entry);
@@ -38,26 +37,10 @@
           }));
         });
       });
-      newsUpdates = tpl.applyTemplate(aggregatedStore);
-      return tabs2 = Ext.createWidget('tabpanel', {
-        renderTo: 'data-tabs',
-        activeTab: 0,
-        width: 300,
-        height: 250,
-        plain: true,
-        defaults: {
-          autoScroll: true,
-          bodyPadding: 10
-        },
-        items: [
-          {
-            title: 'NEWS & UPDATES',
-            html: newsUpdates
-          }, {
-            title: 'TRAINING',
-            html: tpl.applyTemplate(store.data.items[0].data)
-          }
-        ]
+      newsUpdates = videoListTpl.applyTemplate(aggregatedStore);
+      tabs2 = Ext.create('DataTabs.YoutubeVideoTabs', {
+        renderTo: 'data-tabs'
       });
+      return tabs2.applyNews(newsUpdates);
     });
   });
