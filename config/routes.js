@@ -23,6 +23,11 @@
           title: 'YMU ExtJS Widget View',
           name: widgetName
         });
+      case "video-container":
+        return res.render('video-container', {
+          title: 'YMU ExtJS Widget View',
+          name: widgetName
+        });
       case "default":
         return res.render('widget', {
           title: 'widget',

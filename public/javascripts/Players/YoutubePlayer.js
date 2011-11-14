@@ -1,11 +1,18 @@
 
+  window.changePlayerVideo = function(value, title) {
+    if (title == null) title = 'YMU';
+    console.log('changing video: ' + value);
+    console.log(Ext.getCmp('YoutubePlayer'));
+    return Ext.getCmp('YoutubePlayer').changeVideo(value, title);
+  };
+
   Ext.define('Players.YoutubePlayer', {
     extend: 'Ext.panel.Panel',
     id: 'YoutubePlayer',
     title: 'YMU Video',
     width: 562,
     height: 342,
-    html: '<div><iframe width="560" height="315" src="http://www.youtube.com/embed/D3ybnmNX91I" frameborder="0" allowfullscreen></iframe></div>',
+    html: '<div><iframe width="560" height="315" src="http://www.youtube.com/embed/1OMlepC6hCU" frameborder="0" allowfullscreen></iframe></div>',
     setTitle: function(newTitle) {
       var me, oldTitle;
       me = this;

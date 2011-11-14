@@ -10,6 +10,7 @@ exports.widget = (req, res) ->
     switch widgetName
         when "data-tabs" then res.render 'data-tabs', { title: 'YMU ExtJS Widget View', name: widgetName }
         when "player-panel" then res.render 'player-panel', { title: 'YMU ExtJS Widget View', name: widgetName }
+        when "video-container" then res.render 'video-container', { title: 'YMU ExtJS Widget View', name:widgetName }
         when "default"
             res.render 'widget', { title: 'widget', name: widgetName }
         else

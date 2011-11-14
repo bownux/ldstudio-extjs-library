@@ -1,0 +1,18 @@
+extends layout
+
+block scripts
+    script(src='/javascripts/DataTabs/YoutubeVideoTabs.js')
+    script(src='/javascripts/Players/YoutubePlayer.js')
+    script(src='/javascripts/Containers/HContainer.js')
+    script(src='/javascripts/Containers/video-container.js') 
+
+block content
+    h1= title
+    h1= name
+    p Welcome to #{name} view
+
+    #video-container
+
+block foot
+    p 
+        a(href="/") back

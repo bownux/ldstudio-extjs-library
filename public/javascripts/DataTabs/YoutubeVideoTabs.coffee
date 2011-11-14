@@ -41,8 +41,9 @@ newsTab = Ext.create 'Ext.Panel'
 Ext.define 'DataTabs.YoutubeVideoTabs'
             extend: 'Ext.TabPanel'
             activeTab: 0
-            width: 300
-            height: 250
+            autoWidth: true
+            autoHeight: true
+            flex: 1
             plain: true
             myNews: ''
             defaults:
