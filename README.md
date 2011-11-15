@@ -47,3 +47,7 @@
                        Players: 'javascripts/Players'
                        Containers: 'javascripts/Containers'
             })
+
+## Deploy to Heroku
+    git remote add heroku git@heroku.com:deep-summer-8725.git
+    git push heroku master
