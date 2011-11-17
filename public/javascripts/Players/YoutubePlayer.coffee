@@ -12,7 +12,7 @@ Ext.define 'Players.YoutubePlayer',
     title: 'YMU Video',
     width: 562,
     height: 342,
-    html: '<div><iframe width="560" height="315" src="http://www.youtube.com/embed/1OMlepC6hCU" frameborder="0" allowfullscreen></iframe></div>',
+    html: '<div><iframe width="560" height="315" src="http://www.youtube.com/embed/1OMlepC6hCU?rel=0" frameborder="0" allowfullscreen></iframe></div>',
     setTitle: (newTitle) ->
         me = this
         oldTitle = this.title
@@ -31,5 +31,5 @@ Ext.define 'Players.YoutubePlayer',
             return "YMU Video: " + title
     changeVideo: (video_id, video_title) ->
         this.setTitle(video_title)
-        this.update("<div><iframe width='560' height='315' src='http://www.youtube.com/embed/" + video_id + "' frameborder='0' allowfullscreen></iframe></div>")
+        this.update("<div><iframe width='560' height='315' src='http://www.youtube.com/embed/" + video_id + "?rel=0' frameborder='0' allowfullscreen></iframe></div>")
 
