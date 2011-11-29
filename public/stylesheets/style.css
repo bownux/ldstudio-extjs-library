@@ -33,3 +33,11 @@ a {
 #footer a:link {
   color: #00529b;
 }
+#content {
+  margin-top: -2px;
+  background-color: #fff;
+  width: 1024px;
+  padding-left: 20px;
+  margin-right: auto;
+  margin-left: auto;
+}
