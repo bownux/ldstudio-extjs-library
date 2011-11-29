@@ -2,7 +2,7 @@
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/ext-all-gray.css')
+    link(rel='stylesheet', href='/resources/css/ymu-ext-theme.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
     block styles
     script(type='text/javascript', src='/ext/bootstrap.js')
@@ -11,7 +11,23 @@ html
     block scripts
 
   body
+    div#header
+        a(href='http://www.yamaha-motor-university.com') 
+            img(src='http://yamaha-motor-university.com/images/Yamaha-Motor-University-logo.jpg')
+        a(href='http://www.yamaha-motor-university.com')
+            img(src='http://yamaha-motor-university.com/images/Yamaha-Motor-University-headline.jpg')
+    
     block content
     block foot
     #footer
-      p copyright 2011
+      div.footer
+        a(href='http://yamaha-motor-university.com') Yamaha Motor University Homepage
+        &emsp;|&emsp;
+        a(href='http://yamaha-motor-university.mobi') YMU Sales Resources
+        &emsp;|&emsp;
+        a(href='http://yamaha-motor.com') Yamaha Motor USA
+        &emsp;|&emsp;
+        a(href='http://yamaha-motor-university.com/RIDE') RIDE
+        br 
+        br
+        &copy;2011 Yamaha Motor Corporation, USA. All rights reserved.

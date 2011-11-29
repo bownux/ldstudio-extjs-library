@@ -1,0 +1,895 @@
+3.1.1 (Brainy Betty)
+1025b65c6451a1eb825acf04c2094a3402178d2a
+o:Sass::Tree::RootNode
+:@template"∑B/**
+  * @class Ext.Panel
+  * Used to create the base structure of an Ext.Panel
+  */
+@mixin extjs-panel {
+    .#{$prefix}panel,
+    .#{$prefix}plain {
+        overflow: hidden;
+        position: relative;
+    }
+    
+     @if $include-ie {
+        // Workaround for disappearing right edge in IE6
+        .#{$prefix}ie {
+            .#{$prefix}panel-header,
+            .#{$prefix}panel-header-tl,
+            .#{$prefix}panel-header-tc,
+            .#{$prefix}panel-header-tr,
+            .#{$prefix}panel-header-ml,
+            .#{$prefix}panel-header-mc,
+            .#{$prefix}panel-header-mr,
+            .#{$prefix}panel-header-bl,
+            .#{$prefix}panel-header-bc,
+            .#{$prefix}panel-header-br {
+                zoom: 1;
+            }
+        }
+        // Fix for IE8 clipping. EXTJSIV-1553
+        .#{$prefix}ie8 {
+            td.#{$prefix}frame-mc {
+                vertical-align: top;
+            }
+        }
+    }
+    
+    //panel header
+    .#{$prefix}panel-header {
+        padding: $panel-header-padding;
+    }
+    
+    .#{$prefix}panel-header-icon,
+    .#{$prefix}window-header-icon {
+        width:16px;
+        height:16px;
+        background-repeat:no-repeat;
+        background-position:0 0;
+        vertical-align:middle;
+        margin-right:4px;
+        margin-top:-1px;
+        margin-bottom:-1px;
+    }
+    
+    .#{$prefix}panel-header-draggable,
+    .#{$prefix}panel-header-draggable .#{$prefix}panel-header-text,
+    .#{$prefix}window-header-draggable,
+    .#{$prefix}window-header-draggable .#{$prefix}window-header-text{
+        cursor: move;
+    }
+
+    // A ghost is just a Panel. The only extra it needs is opacity.
+    // TODO: Make opacity a variable
+    .#{$prefix}panel-ghost, .#{$prefix}window-ghost {
+        @include opacity(0.65);
+        cursor: move;
+    }
+
+    .#{$prefix}panel-header-horizontal, .#{$prefix}window-header-horizontal, .#{$prefix}btn-group-header-horizontal {
+        .#{$prefix}panel-header-body, .#{$prefix}window-header-body, .#{$prefix}btn-group-header-body {
+            width: 100%;
+        }
+    }
+
+    .#{$prefix}panel-header-vertical, .#{$prefix}window-header-vertical, .#{$prefix}btn-group-header-vertical {
+        .#{$prefix}panel-header-body, .#{$prefix}window-header-body, .#{$prefix}btn-group-header-body {
+            height: 100%;
+        }
+    }
+
+    // Vertical headers must be inline blocks so that they acquire width from the content
+    .#{$prefix}panel-header-vertical, .#{$prefix}panel-header-vertical .#{$prefix}panel-header-body,
+    .#{$prefix}btn-group-header-vertical, .#{$prefix}btn-group-header-vertical .#{$prefix}btn-group-header-body,
+    .#{$prefix}window-header-vertical, .#{$prefix}window-header-vertical .#{$prefix}window-header-body {
+        display: -moz-inline-stack;
+        display: inline-block;
+    }
+    
+    .#{$prefix}panel-header-text-container {
+        overflow: hidden;
+        -o-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+    }
+
+    .#{$prefix}panel-header-text {
+        @include no-select;
+        white-space: nowrap;
+    }
+
+    .#{$prefix}panel-header-left,
+    .#{$prefix}panel-header-right {
+        .#{$prefix}vml-base {
+            left: -3px !important;
+        }
+    }
+
+    //panel body
+    .#{$prefix}panel-body {
+        overflow: hidden;
+        position: relative;
+        
+        font-size: $panel-body-font-size;
+    }
+
+    .#{$prefix}panel-header-vertical {
+        .#{$prefix}surface {
+            margin-top: 2px;
+        }
+    }
+    
+    .#{$prefix}panel-header-plain-vertical {
+        .#{$prefix}surface {
+            margin-top: 0;
+        }
+    }
+    
+        
+    .#{$prefix}panel-collapsed {
+        .#{$prefix}panel-header-collapsed-border-top {
+            border-bottom-width: $panel-header-border-width !important;
+        }
+        .#{$prefix}panel-header-collapsed-border-right {
+            border-left-width: $panel-header-border-width !important;
+        }
+        .#{$prefix}panel-header-collapsed-border-bottom {
+            border-top-width: $panel-header-border-width !important;
+        }
+        .#{$prefix}panel-header-collapsed-border-left {
+            border-right-width: $panel-header-border-width !important;
+        }
+    }
+
+    @if not $supports-gradients or $compile-all {
+        .#{$prefix}nlg .#{$prefix}panel-header-vertical {
+            .#{$prefix}frame-mc {
+                background-repeat: repeat-y;
+            }
+        }
+    }
+
+    @if $include-panel-uis == true {
+        @include extjs-panel-ui(
+            'default',
+
+            $ui-base-color: $panel-base-color,
+            $ui-border-width: $panel-border-width,
+            $ui-border-color: $panel-border-color,
+            $ui-border-radius: $panel-border-radius,
+            
+            $ui-header-color: $panel-header-color,
+            $ui-header-font-size: $panel-header-font-size,
+            $ui-header-font-weight: $panel-header-font-weight,
+            $ui-header-border-color: $panel-header-border-color,
+            $ui-header-background-color: $panel-header-background-color,
+            $ui-header-background-gradient: $panel-header-background-gradient,
+
+            $ui-body-color: $panel-body-color,
+            $ui-body-border-color: $panel-body-border-color,
+            $ui-body-border-width: 1px,
+            $ui-body-background-color: $panel-body-background-color
+        );
+        
+        @include extjs-panel-ui(
+            'default-framed',
+
+            $ui-base-color: $panel-base-color,
+            $ui-border-width: $panel-frame-border-width,
+            $ui-border-color: $panel-frame-border-color,
+            $ui-border-radius: $panel-frame-border-radius,
+
+            $ui-header-color: $panel-header-color,
+            $ui-header-font-size: $panel-header-font-size,
+            $ui-header-font-weight: $panel-header-font-weight,
+            $ui-header-border-color: $panel-frame-border-color,
+            $ui-header-background-color: $panel-header-background-color,
+            $ui-header-background-gradient: $panel-header-background-gradient,
+
+            $ui-body-color: $panel-body-color,
+            $ui-body-border-color: $panel-body-border-color,
+            $ui-body-border-width: 0,
+            $ui-body-background-color: $panel-frame-background-color
+        );
+    }
+
+    .x-panel-header-plain,
+    .x-panel-body-plain {
+        border: 0;
+        padding: 0;
+    }
+}
+
+/**
+  * @class Ext.Panel
+  * Used to create a visual theme for an Ext.Panel
+  */
+@mixin extjs-panel-ui(
+    $ui-label,
+
+    $ui-base-color: null,
+
+    $ui-border-color: null,
+    $ui-border-radius: null,
+    $ui-border-width: 0,
+
+    $ui-header-color: null,
+    $ui-header-font-family: $panel-header-font-family,
+    $ui-header-font-size: $panel-header-font-size,
+    $ui-header-font-weight: $panel-header-font-weight,
+    $ui-header-border-color: $ui-border-color,
+    $ui-header-background-color: null,
+    $ui-header-background-gradient: matte,
+    $ui-header-inner-border-color: null,
+
+    $ui-body-color: null,
+    $ui-body-border-color: null,
+    $ui-body-border-width: null,
+    $ui-body-border-style: solid,
+    $ui-body-background-color: null,
+    $ui-body-font-size: null,
+    $ui-body-font-weight: null
+){
+    @if $ui-base-color != null {
+        @if $ui-border-color == null { $ui-border-color: $ui-base-color; }
+
+        @if $ui-header-color == null { $ui-header-color: #fff; }
+        @if $ui-header-background-color == null { $ui-header-background-color: lighten($ui-base-color, 15); }
+    }
+    
+    @if $ui-header-inner-border-color == null and $ui-header-background-color != null {
+        $ui-header-inner-border-color: lighten($ui-header-background-color, 10);
+    }
+
+    .#{$prefix}panel-#{$ui-label} {
+        @if $ui-border-color != null { border-color: $ui-border-color; }
+    }
+
+    // header
+    .#{$prefix}panel-header-#{$ui-label} {
+        @if $ui-header-font-size != null { font-size: $ui-header-font-size; }
+        line-height: $panel-header-line-height;
+
+        @if $ui-header-border-color != null {
+            border-color: $ui-header-border-color;
+            border-width: $panel-header-border-width;
+            border-style: $panel-header-border-style;
+        }
+
+        @if $supports-gradients or $compile-all {
+            @if $ui-header-background-color != null { @include background-gradient($ui-header-background-color, $ui-header-background-gradient); }
+
+            @if $panel-header-inner-border and $ui-header-inner-border-color != null {
+                @include inner-border(
+                    $width: $panel-header-inner-border-width,
+                    $color: $ui-header-inner-border-color
+                );
+            }
+        }
+    }
+    
+    // header background images
+    @if $ui-header-background-color != null and $ui-header-background-gradient != null {
+        @if not $supports-gradients or $compile-all {
+            .#{$prefix}nlg .#{$prefix}panel-header-#{$ui-label}-top {
+                background-image: theme-background-image($theme-name, 'panel-header/panel-header-#{$ui-label}-top-bg.gif');
+            }
+            
+            .#{$prefix}nlg .#{$prefix}panel-header-#{$ui-label}-bottom {
+                background-image: theme-background-image($theme-name, 'panel-header/panel-header-#{$ui-label}-bottom-bg.gif');
+            }
+
+            .#{$prefix}nlg .#{$prefix}panel-header-#{$ui-label}-left {
+                background-image: theme-background-image($theme-name, 'panel-header/panel-header-#{$ui-label}-left-bg.gif');
+            }
+
+            .#{$prefix}nlg .#{$prefix}panel-header-#{$ui-label}-right {
+                background-image: theme-background-image($theme-name, 'panel-header/panel-header-#{$ui-label}-right-bg.gif');
+            }
+        }
+    }
+    
+    // header text
+    .#{$prefix}panel-header-text-#{$ui-label} {
+        @if $ui-header-color != null { color: $ui-header-color; }
+
+        @if $ui-header-font-size != null {   font-size: $ui-header-font-size; }
+        @if $ui-header-font-weight != null { font-weight: $ui-header-font-weight; }
+        @if $ui-header-font-family != null { font-family: $ui-header-font-family; }
+    }
+
+    // body
+    .#{$prefix}panel-body-#{$ui-label} {
+        @if $ui-body-background-color != null { background: $ui-body-background-color; }
+        @if $ui-body-border-color != null {     border-color: $ui-body-border-color; }
+        @if $ui-body-color != null {            color: $ui-body-color; }
+        @if $ui-body-font-size != null {        font-size: $ui-body-font-size; }
+        @if $ui-body-font-weight != null {      font-size: $ui-body-font-weight; }
+        
+        @if $ui-body-border-width != null {
+            border-width: $ui-body-border-width;
+            @if $ui-body-border-style != null { border-style: $ui-body-border-style; }
+        }
+    }
+    
+    .#{$prefix}panel-collapsed {
+        .#{$prefix}window-header-#{$ui-label},
+        .#{$prefix}panel-header-#{$ui-label} {
+            @if $ui-body-border-color != null { border-color: $ui-body-border-color; }
+        }
+    }
+
+    .#{$prefix}panel-header-#{$ui-label}-vertical {
+        @if $ui-body-border-color != null { border-color: $ui-body-border-color; }
+    }
+
+    @if $ui-base-color != null {
+        @if $supports-gradients or $compile-all {
+            .#{$prefix}panel-header-#{$ui-label}-left,
+            .#{$prefix}panel-header-#{$ui-label}-right {
+                @include background-gradient($ui-header-background-color, $ui-header-background-gradient, right);
+            }
+        }
+    }
+
+    @if $ui-border-radius != null {
+        @include x-frame(
+            'panel',
+            $ui: '#{$ui-label}',
+
+            /* Radius, width, padding and background-color */
+            $border-radius   : $ui-border-radius,
+            $border-width    : $ui-border-width,
+            $padding         : $panel-frame-padding,
+            $background-color: $ui-body-background-color
+        );
+
+
+        @include x-frame('panel-header', '#{$ui-label}-top',    top($ui-border-radius) right($ui-border-radius) 0 0,    $ui-border-width, 4px 5px 4px 5px, $ui-header-background-color, $ui-header-background-gradient);
+        @include x-frame('panel-header', '#{$ui-label}-right',  0 right($ui-border-radius) bottom($ui-border-radius) 0, $ui-border-width, 4px 5px 4px 5px, $ui-header-background-color, $ui-header-background-gradient, false, right);
+        @include x-frame('panel-header', '#{$ui-label}-bottom', 0 0 bottom($ui-border-radius) left($ui-border-radius),  $ui-border-width, 4px 5px 4px 5px, $ui-header-background-color, $ui-header-background-gradient);
+        @include x-frame('panel-header', '#{$ui-label}-left',   top($ui-border-radius) 0 0 left($ui-border-radius),     $ui-border-width, 4px 5px 4px 5px, $ui-header-background-color, $ui-header-background-gradient, false, right);
+        
+        .#{$prefix}panel-header-#{$ui-label}-top {
+            @include inner-border(1px 1px 0 1px, $ui-header-inner-border-color);
+        }
+
+        .#{$prefix}panel-header-#{$ui-label}-right {
+            @include inner-border(1px 1px 1px 0, $ui-header-inner-border-color);
+        }
+
+        .#{$prefix}panel-header-#{$ui-label}-bottom {
+            @include inner-border(0 1px 1px 1px, $ui-header-inner-border-color);
+        }
+
+        .#{$prefix}panel-header-#{$ui-label}-left {
+            @include inner-border(1px 0 1px 1px, $ui-header-inner-border-color);
+        }
+    } @else {
+        .#{$prefix}panel-collapsed {
+            .#{$prefix}panel-header-#{$ui-label}-top {
+                @include border-bottom-radius($ui-border-radius);
+            }
+
+            .#{$prefix}panel-header-#{$ui-label}-right {
+                @include border-left-radius($ui-border-radius);
+            }
+
+            .#{$prefix}panel-header-#{$ui-label}-bottom {
+                @include border-top-radius($ui-border-radius);
+            }
+
+            .#{$prefix}panel-header-#{$ui-label}-left {
+                @include border-right-radius($ui-border-radius);
+            }
+        }
+        
+        .#{$prefix}nlg .#{$prefix}panel-header-#{$ui-label}-right {
+            background-position: top right;
+        }
+        
+        .#{$prefix}panel-header-#{$ui-label}-top {
+            @include inner-border(1px 0 0 0, $ui-header-inner-border-color);
+        }
+
+        .#{$prefix}panel-header-#{$ui-label}-right {
+            @include inner-border(0 1px 0 0, $ui-header-inner-border-color);
+        }
+
+        .#{$prefix}panel-header-#{$ui-label}-bottom {
+            @include inner-border(0 0 1px, $ui-header-inner-border-color);
+        }
+
+        .#{$prefix}panel-header-#{$ui-label}-left {
+            @include inner-border(0 0 0 1px, $ui-header-inner-border-color);
+        }
+    }
+    
+    .#{$prefix}nlg .#{$prefix}panel-header-#{$ui-label}-bottom {
+        background-position: bottom left;
+    }
+    
+    @if $ui-border-radius != null {
+        .#{$prefix}panel .#{$prefix}panel-header-#{$ui-label}-top {
+            border-bottom-width: 1px !important;
+        }
+
+        .#{$prefix}panel .#{$prefix}panel-header-#{$ui-label}-right {
+            border-left-width: 1px !important;
+        }
+
+        .#{$prefix}panel .#{$prefix}panel-header-#{$ui-label}-bottom {
+            border-top-width: 1px !important;
+        }
+
+        .#{$prefix}panel .#{$prefix}panel-header-#{$ui-label}-left {
+            border-right-width: 1px !important;
+        }
+        
+        .#{$prefix}panel-header-#{$ui-label}-collapsed {
+            @include border-radius($ui-border-radius);
+        }
+        
+        @include x-frame('panel-header', '#{$ui-label}-collapsed-top',    top($ui-border-radius) right($ui-border-radius) bottom($ui-border-radius) left($ui-border-radius), $ui-border-width, 4px 5px 4px 5px, $ui-header-background-color, $ui-header-background-gradient);
+        @include x-frame('panel-header', '#{$ui-label}-collapsed-right',  top($ui-border-radius) right($ui-border-radius) bottom($ui-border-radius) left($ui-border-radius), $ui-border-width, 4px 5px 4px 5px, $ui-header-background-color, $ui-header-background-gradient, false, right);
+        @include x-frame('panel-header', '#{$ui-label}-collapsed-bottom', top($ui-border-radius) right($ui-border-radius) bottom($ui-border-radius) left($ui-border-radius), $ui-border-width, 4px 5px 4px 5px, $ui-header-background-color, $ui-header-background-gradient);
+        @include x-frame('panel-header', '#{$ui-label}-collapsed-left',   top($ui-border-radius) right($ui-border-radius) bottom($ui-border-radius) left($ui-border-radius), $ui-border-width, 4px 5px 4px 5px, $ui-header-background-color, $ui-header-background-gradient, false, right);
+    }
+    
+    //background positioning of images
+    .#{$prefix}panel-header-#{$ui-label}-right-tc,
+    .#{$prefix}panel-header-#{$ui-label}-right-mc,
+    .#{$prefix}panel-header-#{$ui-label}-right-bc {
+        background-position: right 0;
+    }
+    
+    .#{$prefix}panel-header-#{$ui-label}-bottom-tc,
+    .#{$prefix}panel-header-#{$ui-label}-bottom-mc,
+    .#{$prefix}panel-header-#{$ui-label}-bottom-bc {
+        background-position: 0 bottom;
+    }
+}:@options{:importero: Sass::Importers::Filesystem:
+@root"é/Users/larry_rivera/Documents/Yamaha Motor University/repo/ldstudio-extjs-library/public/resources/sass/../../ext/resources/themes/stylesheets:
+@linei:@has_childrenT:@children[	o:Sass::Tree::CommentNode:@lines[ :
+@loud0:@value"X/**
+  * @class Ext.Panel
+  * Used to create the base structure of an Ext.Panel
+  */;@;i;[ :@silent0o:Sass::Tree::MixinDefNode;@;i
+:
+@name"extjs-panel:
+@args[ ;T;[o:Sass::Tree::RuleNode;@;i;T;[o:Sass::Tree::PropNode;o:Sass::Script::String;"hidden:
+@type:identifier;@;i;["overflow;[ :@prop_syntax:new:
+@tabsi o;;o;;"relative;;;@;i;["position;[ ;;;i ;i :
+@rule[
+".o:Sass::Script::Variable	:@underscored_name"prefix;{ ;i;"prefix"panel,
+    .o;	; "prefix;{ ;i;"prefix"
+plainu:Sass::Tree::IfNode4[o:Sass::Script::Variable	:@underscored_name"include_ie:@options{ :
+@linei:
+@name"include-ie0[	o:Sass::Tree::CommentNode:@lines[ :
+@loud0:@value"8/* Workaround for disappearing right edge in IE6 */;{:importero: Sass::Importers::Filesystem:
+@root"é/Users/larry_rivera/Documents/Yamaha Motor University/repo/ldstudio-extjs-library/public/resources/sass/../../ext/resources/themes/stylesheets;i:@children[ :@silenti o:Sass::Tree::RuleNode;@;i:@has_childrenT;[o;;@;i;T;[o:Sass::Tree::PropNode;o:Sass::Script::String;"1:
+@type:identifier;@;i;	["	zoom;[ :@prop_syntax:new:
+@tabsi ;i :
+@rule[".o; 	;"prefix;{ ;i;	"prefix" panel-header,
+            .o; 	;"prefix;{ ;i;	"prefix"#panel-header-tl,
+            .o; 	;"prefix;{ ;i;	"prefix"#panel-header-tc,
+            .o; 	;"prefix;{ ;i;	"prefix"#panel-header-tr,
+            .o; 	;"prefix;{ ;i;	"prefix"#panel-header-ml,
+            .o; 	;"prefix;{ ;i;	"prefix"#panel-header-mc,
+            .o; 	;"prefix;{ ;i;	"prefix"#panel-header-mr,
+            .o; 	;"prefix;{ ;i;	"prefix"#panel-header-bl,
+            .o; 	;"prefix;{ ;i;	"prefix"#panel-header-bc,
+            .o; 	;"prefix;{ ;i;	"prefix"panel-header-br;i ;[".o; 	;"prefix;{ ;i;	"prefix"ieo;
+;[ ;0;"-/* Fix for IE8 clipping. EXTJSIV-1553 */;@;i!;[ ;i o;;@;i";T;[o;;@;i#;T;[o;;o;;"top;;;@;i$;	["vertical-align;[ ;;;i ;i ;["td.o; 	;"prefix;{ ;i#;	"prefix"frame-mc;i ;[".o; 	;"prefix;{ ;i";	"prefix"ie8o;;[ ;0;"/*panel header */;@;i);[ ;i o;;@;i*;T;[o;;o;	; "panel_header_padding;{ ;i+;"panel-header-padding;@;i+;["padding;[ ;;;i ;i ;[".o;	; "prefix;{ ;i*;"prefix"panel-headero;;@;i/;T;[o;;o;;"	16px;;;@;i0;["
+width;[ ;;;i o;;o;;"	16px;;;@;i1;["height;[ ;;;i o;;o;;"no-repeat;;;@;i2;["background-repeat;[ ;;;i o;;o;;"0 0;;;@;i3;["background-position;[ ;;;i o;;o;;"middle;;;@;i4;["vertical-align;[ ;;;i o;;o;;"4px;;;@;i5;["margin-right;[ ;;;i o;;o:Sass::Script::Number:@numerator_units["px;i˙;{ ;i6:@original"	-1px:@denominator_units[ ;@;i6;["margin-top;[ ;;;i o;;o;";#["px;i˙;{ ;i7;$"	-1px;%[ ;@;i7;["margin-bottom;[ ;;;i ;i ;[
+".o;	; "prefix;{ ;i.;"prefix"panel-header-icon,
+    .o;	; "prefix;{ ;i/;"prefix"window-header-icono;;@;i=;T;[o;;o;;"	move;;;@;i>;["cursor;[ ;;;i ;i ;[".o;	; "prefix;{ ;i:;"prefix""panel-header-draggable,
+    .o;	; "prefix;{ ;i;;"prefix"panel-header-draggable .o;	; "prefix;{ ;i;;"prefix"panel-header-text,
+    .o;	; "prefix;{ ;i<;"prefix"#window-header-draggable,
+    .o;	; "prefix;{ ;i=;"prefix"window-header-draggable .o;	; "prefix;{ ;i=;"prefix"window-header-texto;;[ ;0;"h/* A ghost is just a Panel. The only extra it needs is opacity.
+ * TODO: Make opacity a variable */;@;iA;[ ;i o;;@;iC;T;[o:Sass::Tree::MixinNode;@;iD:@keywords{ ;"opacity;[o;";#[ ;f0.65000000000000002 ÃÕ;{ ;iD;$"	0.65;%[ ;[ o;;o;;"	move;;;@;iE;["cursor;[ ;;;i ;i ;[
+".o;	; "prefix;{ ;iC;"prefix"panel-ghost, .o;	; "prefix;{ ;iC;"prefix"window-ghosto;;@;iH;T;[o;;@;iI;T;[o;;o;;"	100%;;;@;iJ;["
+width;[ ;;;i ;i ;[".o;	; "prefix;{ ;iI;"prefix"panel-header-body, .o;	; "prefix;{ ;iI;"prefix"window-header-body, .o;	; "prefix;{ ;iI;"prefix"btn-group-header-body;i ;[".o;	; "prefix;{ ;iH;"prefix"panel-header-horizontal, .o;	; "prefix;{ ;iH;"prefix" window-header-horizontal, .o;	; "prefix;{ ;iH;"prefix" btn-group-header-horizontalo;;@;iN;T;[o;;@;iO;T;[o;;o;;"	100%;;;@;iP;["height;[ ;;;i ;i ;[".o;	; "prefix;{ ;iO;"prefix"panel-header-body, .o;	; "prefix;{ ;iO;"prefix"window-header-body, .o;	; "prefix;{ ;iO;"prefix"btn-group-header-body;i ;[".o;	; "prefix;{ ;iN;"prefix"panel-header-vertical, .o;	; "prefix;{ ;iN;"prefix"window-header-vertical, .o;	; "prefix;{ ;iN;"prefix"btn-group-header-verticalo;;[ ;0;"]/* Vertical headers must be inline blocks so that they acquire width from the content */;@;iT;[ ;i o;;@;iW;T;[o;;o;;"-moz-inline-stack;;;@;iX;["display;[ ;;;i o;;o;;"inline-block;;;@;iY;["display;[ ;;;i ;i ;[".o;	; "prefix;{ ;iU;"prefix"panel-header-vertical, .o;	; "prefix;{ ;iU;"prefix"panel-header-vertical .o;	; "prefix;{ ;iU;"prefix"panel-header-body,
+    .o;	; "prefix;{ ;iV;"prefix"!btn-group-header-vertical, .o;	; "prefix;{ ;iV;"prefix" btn-group-header-vertical .o;	; "prefix;{ ;iV;"prefix"!btn-group-header-body,
+    .o;	; "prefix;{ ;iW;"prefix"window-header-vertical, .o;	; "prefix;{ ;iW;"prefix"window-header-vertical .o;	; "prefix;{ ;iW;"prefix"window-header-bodyo;;@;i\;T;[o;;o;;"hidden;;;@;i];["overflow;[ ;;;i o;;o;;"ellipsis;;;@;i^;["-o-text-overflow;[ ;;;i o;;o;;"ellipsis;;;@;i_;["text-overflow;[ ;;;i ;i ;[".o;	; "prefix;{ ;i\;"prefix" panel-header-text-containero;;@;ib;T;[o;&;@;ic;'{ ;"no-select;[ ;[ o;;o;;"nowrap;;;@;id;["white-space;[ ;;;i ;i ;[".o;	; "prefix;{ ;ib;"prefix"panel-header-texto;;@;ih;T;[o;;@;ii;T;[o;;o:Sass::Script::List	:@separator:
+space;[o;";#["px;i¯;{ ;ij;$"	-3px;%[ o;	;"!important;@°;ij;;;@°;ij;@;ij;["	left;[ ;;;i ;i ;[".o;	; "prefix;{ ;ii;"prefix"vml-base;i ;[
+".o;	; "prefix;{ ;ig;"prefix"panel-header-left,
+    .o;	; "prefix;{ ;ih;"prefix"panel-header-righto;;[ ;0;"/*panel body */;@;in;[ ;i o;;@;io;T;[o;;o;;"hidden;;;@;ip;["overflow;[ ;;;i o;;o;;"relative;;;@;iq;["position;[ ;;;i o;;o;	; "panel_body_font_size;{ ;is;"panel-body-font-size;@;is;["font-size;[ ;;;i ;i ;[".o;	; "prefix;{ ;io;"prefix"panel-bodyo;;@;iv;T;[o;;@;iw;T;[o;;o;;"2px;;;@;ix;["margin-top;[ ;;;i ;i ;[".o;	; "prefix;{ ;iw;"prefix"surface;i ;[".o;	; "prefix;{ ;iv;"prefix"panel-header-verticalo;;@;i|;T;[o;;@;i};T;[o;;o;;"0;;;@;i~;["margin-top;[ ;;;i ;i ;[".o;	; "prefix;{ ;i};"prefix"surface;i ;[".o;	; "prefix;{ ;i|;"prefix" panel-header-plain-verticalo;;@;i~;T;[	o;;@;i;T;[o;;o;(	;);*;[o;	; "panel_header_border_width;{ ;iÄ;"panel-header-border-widtho;	;"!important;@;iÄ;;;@;iÄ;@;iÄ;["border-bottom-width;[ ;;;i ;i ;[".o;	; "prefix;{ ;i;"prefix"&panel-header-collapsed-border-topo;;@;iÇ;T;[o;;o;(	;);*;[o;	; "panel_header_border_width;{ ;iÉ;"panel-header-border-widtho;	;"!important;@+;iÉ;;;@+;iÉ;@;iÉ;["border-left-width;[ ;;;i ;i ;[".o;	; "prefix;{ ;iÇ;"prefix"(panel-header-collapsed-border-righto;;@;iÖ;T;[o;;o;(	;);*;[o;	; "panel_header_border_width;{ ;iÜ;"panel-header-border-widtho;	;"!important;@@;iÜ;;;@@;iÜ;@;iÜ;["border-top-width;[ ;;;i ;i ;[".o;	; "prefix;{ ;iÖ;"prefix")panel-header-collapsed-border-bottomo;;@;ià;T;[o;;o;(	;);*;[o;	; "panel_header_border_width;{ ;iâ;"panel-header-border-widtho;	;"!important;@U;iâ;;;@U;iâ;@;iâ;["border-right-width;[ ;;;i ;i ;[".o;	; "prefix;{ ;ià;"prefix"'panel-header-collapsed-border-left;i ;[".o;	; "prefix;{ ;i~;"prefix"panel-collapsedu;!w[o:Sass::Script::Operation
+:@operator:or:@options{ :
+@lineiç:@operand2o:Sass::Script::Variable	:@underscored_name"compile_all;@;	iç:
+@name"compile-all:@operand1o:!Sass::Script::UnaryOperation	;:not;@;	iç:@operando;	;"supports_gradients;@;	iç;"supports-gradients0[o:Sass::Tree::RuleNode;{:importero: Sass::Importers::Filesystem:
+@root"é/Users/larry_rivera/Documents/Yamaha Motor University/repo/ldstudio-extjs-library/public/resources/sass/../../ext/resources/themes/stylesheets;	ié:@has_childrenT:@children[o;;@;	iè;T;[o:Sass::Tree::PropNode:@valueo:Sass::Script::String;"repeat-y:
+@type:identifier;@;	iê;["background-repeat;[ :@prop_syntax:new:
+@tabsi ;i :
+@rule[".o;	;"prefix;{ ;	iè;"prefix"frame-mc;i ; [
+".o;	;"prefix;{ ;	ié;"prefix"
+nlg .o;	;"prefix;{ ;	ié;"prefix"panel-header-verticalu;![o:Sass::Script::Operation
+:@operator:eq:@options{ :
+@lineiï:@operand2o:Sass::Script::Bool:@valueT;@;	iï:@operand1o:Sass::Script::Variable	:@underscored_name"include_panel_uis;@;	iï:
+@name"include-panel-uis0[o:Sass::Tree::MixinNode;{:importero: Sass::Importers::Filesystem:
+@root"é/Users/larry_rivera/Documents/Yamaha Motor University/repo/ldstudio-extjs-library/public/resources/sass/../../ext/resources/themes/stylesheets;	i©:@keywords{"ui_header_font_sizeo;	;"panel_header_font_size;{ ;	iü;"panel-header-font-size"ui_base_coloro;	;"panel_base_color;@;	iô;"panel-base-color"ui_border_widtho;	;"panel_border_width;@;	iö;"panel-border-width"ui_header_font_weighto;	;"panel_header_font_weight;@;	i†;"panel-header-font-weight"ui_header_border_coloro;	;"panel_header_border_color;@;	i°;"panel-header-border-color"ui_body_border_widtho:Sass::Script::Number:@numerator_units["px;i;@;	iß:@original"1px:@denominator_units[ "ui_header_background_coloro;	;""panel_header_background_color;@;	i¢;""panel-header-background-color"ui_border_radiuso;	;"panel_border_radius;@;	iú;"panel-border-radius""ui_header_background_gradiento;	;"%panel_header_background_gradient;@;	i£;"%panel-header-background-gradient"ui_body_border_coloro;	;"panel_body_border_color;@;	i¶;"panel-body-border-color"ui_body_background_coloro;	;" panel_body_background_color;@;	i®;" panel-body-background-color"ui_body_coloro;	;"panel_body_color;@;	i•;"panel-body-color"ui_border_coloro;	;"panel_border_color;@;	iõ;"panel-border-color"ui_header_coloro;	;"panel_header_color;@;	iû;"panel-header-color;"extjs-panel-ui:
+@args[o:Sass::Script::String	;"default;@;	ió:
+@type:string:@children[ o;;@;	iæ;{"ui_header_font_sizeo;	;"panel_header_font_size;{ ;	i¥;"panel-header-font-size"ui_base_coloro;	;"panel_base_color;@W;	iÆ;"panel-base-color"ui_border_widtho;	;"panel_frame_border_width;@W;	iØ;"panel-frame-border-width"ui_header_font_weighto;	;"panel_header_font_weight;@W;	iµ;"panel-header-font-weight"ui_header_border_coloro;	;"panel_frame_border_color;@W;	i∂;"panel-frame-border-color"ui_body_border_widtho;;[ ;i ;@W;	iº;"0;[ "ui_header_background_coloro;	;""panel_header_background_color;@W;	i∑;""panel-header-background-color"ui_border_radiuso;	;"panel_frame_border_radius;@W;	i±;"panel-frame-border-radius""ui_header_background_gradiento;	;"%panel_header_background_gradient;@W;	i∏;"%panel-header-background-gradient"ui_body_border_coloro;	;"panel_body_border_color;@W;	iª;"panel-body-border-color"ui_body_background_coloro;	;"!panel_frame_background_color;@W;	iΩ;"!panel-frame-background-color"ui_body_coloro;	;"panel_body_color;@W;	i∫;"panel-body-color"ui_border_coloro;	;"panel_frame_border_color;@W;	i∞;"panel-frame-border-color"ui_header_coloro;	;"panel_header_color;@W;	i≥;"panel-header-color;"extjs-panel-ui;[o;	;"default-framed;@W;	i¨;;;[ o;:@parsed_ruleso:"Sass::Selector::CommaSequence:@filename" ;i¬:@members[o:Sass::Selector::Sequence;.[o:#Sass::Selector::SimpleSequence;-@n;i¬;.[o:Sass::Selector::Class;-@n;i¬;["x-panel-header-plaino;/;.["
+o;0;-@n;i¬;.[o;1;-@n;i¬;["x-panel-body-plain;@;i¬;T;[o;;o;;"0;;;@;i√;["border;[ ;;;i o;;o;;"0;;;@;iƒ;["padding;[ ;;;i ;i ;["3.x-panel-header-plain,
+    .x-panel-body-plaino;;[ ;0;"U/**
+  * @class Ext.Panel
+  * Used to create a visual theme for an Ext.Panel
+  */;@;i»;[ ;0o;;@;iÂ;"extjs-panel-ui;[[o;; "ui_label;{ ;"ui-label0[o;; "ui_base_color;@ò;"ui-base-coloro;	;"	null;@ò;iœ;;[o;; "ui_border_color;@ò;"ui-border-coloro;	;"	null;@ò;i—;;[o;; "ui_border_radius;@ò;"ui-border-radiuso;	;"	null;@ò;i“;;[o;; "ui_border_width;@ò;"ui-border-widtho;";#[ ;i ;@ò;i”;$"0;%@ª[o;; "ui_header_color;@ò;"ui-header-coloro;	;"	null;@ò;i’;;[o;; "ui_header_font_family;@ò;"ui-header-font-familyo;	; "panel_header_font_family;@ò;i÷;"panel-header-font-family[o;; "ui_header_font_size;@ò;"ui-header-font-sizeo;	; "panel_header_font_size;@ò;i◊;"panel-header-font-size[o;; "ui_header_font_weight;@ò;"ui-header-font-weighto;	; "panel_header_font_weight;@ò;iÿ;"panel-header-font-weight[o;; "ui_header_border_color;@ò;"ui-header-border-coloro;	; "ui_border_color;@ò;iŸ;"ui-border-color[o;; "ui_header_background_color;@ò;"ui-header-background-coloro;	;"	null;@ò;i⁄;;[o;; ""ui_header_background_gradient;@ò;""ui-header-background-gradiento;	;"
+matte;@ò;i€;;[o;; "!ui_header_inner_border_color;@ò;"!ui-header-inner-border-coloro;	;"	null;@ò;i‹;;[o;; "ui_body_color;@ò;"ui-body-coloro;	;"	null;@ò;iﬁ;;[o;; "ui_body_border_color;@ò;"ui-body-border-coloro;	;"	null;@ò;iﬂ;;[o;; "ui_body_border_width;@ò;"ui-body-border-widtho;	;"	null;@ò;i‡;;[o;; "ui_body_border_style;@ò;"ui-body-border-styleo;	;"
+solid;@ò;i·;;[o;; "ui_body_background_color;@ò;"ui-body-background-coloro;	;"	null;@ò;i‚;;[o;; "ui_body_font_size;@ò;"ui-body-font-sizeo;	;"	null;@ò;i„;;[o;; "ui_body_font_weight;@ò;"ui-body-font-weighto;	;"	null;@ò;i‰;;;T;[u;!“[o:Sass::Script::Operation
+:@operator:neq:@options{ :
+@lineiÊ:@operand2o:Sass::Script::String	:@value"	null;@;	iÊ:
+@type:identifier:@operand1o:Sass::Script::Variable	:@underscored_name"ui_base_color;@;	iÊ:
+@name"ui-base-color0[u:Sass::Tree::IfNodeE[o:Sass::Script::Operation
+:@operator:eq:@options{ :
+@lineiÁ:@operand2o:Sass::Script::String	:@value"	null;@;	iÁ:
+@type:identifier:@operand1o:Sass::Script::Variable	:@underscored_name"ui_border_color;@;	iÁ:
+@name"ui-border-color0[o:Sass::Tree::VariableNode;{:importero: Sass::Importers::Filesystem:
+@root"é/Users/larry_rivera/Documents/Yamaha Motor University/repo/ldstudio-extjs-library/public/resources/sass/../../ext/resources/themes/stylesheets;	iÁ;"ui-border-color:@children[ :@guarded0:
+@expro;	;"ui_base_color;{ ;	iÁ;"ui-base-coloru;g[o:Sass::Script::Operation
+:@operator:eq:@options{ :
+@lineiÈ:@operand2o:Sass::Script::String	:@value"	null;@;	iÈ:
+@type:identifier:@operand1o:Sass::Script::Variable	:@underscored_name"ui_header_color;@;	iÈ:
+@name"ui-header-color0[o:Sass::Tree::VariableNode;{:importero: Sass::Importers::Filesystem:
+@root"é/Users/larry_rivera/Documents/Yamaha Motor University/repo/ldstudio-extjs-library/public/resources/sass/../../ext/resources/themes/stylesheets;	iÈ;"ui-header-color:@children[ :@guarded0:
+@expro:Sass::Script::Color	;0;{ ;	iÈ:@attrs{	:	blueiˇ:rediˇ:
+alphai:
+greeniˇu;[o:Sass::Script::Operation
+:@operator:eq:@options{ :
+@lineiÍ:@operand2o:Sass::Script::String	:@value"	null;@;	iÍ:
+@type:identifier:@operand1o:Sass::Script::Variable	:@underscored_name"ui_header_background_color;@;	iÍ:
+@name"ui-header-background-color0[o:Sass::Tree::VariableNode;{:importero: Sass::Importers::Filesystem:
+@root"é/Users/larry_rivera/Documents/Yamaha Motor University/repo/ldstudio-extjs-library/public/resources/sass/../../ext/resources/themes/stylesheets;	iÍ;"ui-header-background-color:@children[ :@guarded0:
+@expro:Sass::Script::Funcall
+;{ ;	iÍ:@keywords{ ;"lighten:
+@args[o;	;"ui_base_color;@;	iÍ;"ui-base-coloro:Sass::Script::Number:@numerator_units[ ;i;@;	iÍ:@original"15:@denominator_units[ u;!π[o:Sass::Script::Operation
+:@operator:and:@options{ :
+@lineiÌ:@operand2o; 
+;:neq;@;	iÌ;
+o:Sass::Script::String	:@value"	null;@;	iÌ:
+@type:identifier:@operand1o:Sass::Script::Variable	:@underscored_name"ui_header_background_color;@;	iÌ:
+@name"ui-header-background-color;o; 
+;:eq;@;	iÌ;
+o;	;"	null;@;	iÌ;;;o;	;"!ui_header_inner_border_color;@;	iÌ;"!ui-header-inner-border-color0[o:Sass::Tree::VariableNode;{:importero: Sass::Importers::Filesystem:
+@root"é/Users/larry_rivera/Documents/Yamaha Motor University/repo/ldstudio-extjs-library/public/resources/sass/../../ext/resources/themes/stylesheets;	iÓ;"!ui-header-inner-border-color:@children[ :@guarded0:
+@expro:Sass::Script::Funcall
+;{ ;	iÓ:@keywords{ ;"lighten:
+@args[o;	;"ui_header_background_color;@;	iÓ;"ui-header-background-coloro:Sass::Script::Number:@numerator_units[ ;i;@;	iÓ:@original"10:@denominator_units[ o;;@;iÒ;T;[u;!Q[o:Sass::Script::Operation
+:@operator:neq:@options{ :
+@lineiÚ:@operand2o:Sass::Script::String	:@value"	null;@;	iÚ:
+@type:identifier:@operand1o:Sass::Script::Variable	:@underscored_name"ui_border_color;@;	iÚ:
+@name"ui-border-color0[o:Sass::Tree::PropNode;o;	;"ui_border_color;{ ;	iÚ;"ui-border-color;{:importero: Sass::Importers::Filesystem:
+@root"é/Users/larry_rivera/Documents/Yamaha Motor University/repo/ldstudio-extjs-library/public/resources/sass/../../ext/resources/themes/stylesheets;	iÚ;["border-color:@children[ :@prop_syntax:new:
+@tabsi ;i ;[	".o;	; "prefix;{ ;iÒ;"prefix"panel-o;	; "ui_label;{ ;iÒ;"ui-labelo;;[ ;0;"/* header */;@;iı;[ ;i o;;@;iˆ;T;[	u;!^[o:Sass::Script::Operation
+:@operator:neq:@options{ :
+@linei˜:@operand2o:Sass::Script::String	:@value"	null;@;	i˜:
+@type:identifier:@operand1o:Sass::Script::Variable	:@underscored_name"ui_header_font_size;@;	i˜:
+@name"ui-header-font-size0[o:Sass::Tree::PropNode;o;	;"ui_header_font_size;{ ;	i˜;"ui-header-font-size;{:importero: Sass::Importers::Filesystem:
+@root"é/Users/larry_rivera/Documents/Yamaha Motor University/repo/ldstudio-extjs-library/public/resources/sass/../../ext/resources/themes/stylesheets;	i˜;["font-size:@children[ :@prop_syntax:new:
+@tabsi o;;o;	; "panel_header_line_height;{ ;i¯;"panel-header-line-height;@;i¯;["line-height;[ ;;;i u;!U[o:Sass::Script::Operation
+:@operator:neq:@options{ :
+@linei˙:@operand2o:Sass::Script::String	:@value"	null;@;	i˙:
+@type:identifier:@operand1o:Sass::Script::Variable	:@underscored_name"ui_header_border_color;@;	i˙:
+@name"ui-header-border-color0[o:Sass::Tree::PropNode;o;	;"ui_header_border_color;{ ;	i˚;"ui-header-border-color;{:importero: Sass::Importers::Filesystem:
+@root"é/Users/larry_rivera/Documents/Yamaha Motor University/repo/ldstudio-extjs-library/public/resources/sass/../../ext/resources/themes/stylesheets;	i˚;["border-color:@children[ :@prop_syntax:new:
+@tabsi o;;o;	;"panel_header_border_width;{ ;	i¸;"panel-header-border-width;@;	i¸;["border-width;[ ;;;i o;;o;	;"panel_header_border_style;{ ;	i˝;"panel-header-border-style;@;	i˝;["border-style;[ ;;;i u;!"[o:Sass::Script::Operation
+:@operator:or:@options{ :
+@linei :@operand2o:Sass::Script::Variable	:@underscored_name"compile_all;@;	i :
+@name"compile-all:@operand1o;	;"supports_gradients;@;	i ;"supports-gradients0[u:Sass::Tree::IfNode–[o:Sass::Script::Operation
+:@operator:neq:@options{ :
+@linei:@operand2o:Sass::Script::String	:@value"	null;@;	i:
+@type:identifier:@operand1o:Sass::Script::Variable	:@underscored_name"ui_header_background_color;@;	i:
+@name"ui-header-background-color0[o:Sass::Tree::MixinNode;{:importero: Sass::Importers::Filesystem:
+@root"é/Users/larry_rivera/Documents/Yamaha Motor University/repo/ldstudio-extjs-library/public/resources/sass/../../ext/resources/themes/stylesheets;	i:@keywords{ ;"background-gradient:
+@args[o;	;"ui_header_background_color;{ ;	i;"ui-header-background-coloro;	;""ui_header_background_gradient;@;	i;""ui-header-background-gradient:@children[ u;D[o:Sass::Script::Operation
+:@operator:and:@options{ :
+@linei:@operand2o; 
+;:neq;@;	i;
+o:Sass::Script::String	:@value"	null;@;	i:
+@type:identifier:@operand1o:Sass::Script::Variable	:@underscored_name"!ui_header_inner_border_color;@;	i:
+@name"!ui-header-inner-border-color;o;	;"panel_header_inner_border;@;	i;"panel-header-inner-border0[o:Sass::Tree::MixinNode;{:importero: Sass::Importers::Filesystem:
+@root"é/Users/larry_rivera/Documents/Yamaha Motor University/repo/ldstudio-extjs-library/public/resources/sass/../../ext/resources/themes/stylesheets;	i:@keywords{"
+coloro;	;"!ui_header_inner_border_color;{ ;	i;"!ui-header-inner-border-color"
+widtho;	;"$panel_header_inner_border_width;@;	i;"$panel-header-inner-border-width;"inner-border:
+@args[ :@children[ ;i ;[	".o;	; "prefix;{ ;iˆ;"prefix"panel-header-o;	; "ui_label;{ ;iˆ;"ui-labelo;;[ ;0;"#/* header background images */;@;i;[ ;i u;!ã[o:Sass::Script::Operation
+:@operator:and:@options{ :
+@linei:@operand2o; 
+;:neq;@;	i;
+o:Sass::Script::String	:@value"	null;@;	i:
+@type:identifier:@operand1o:Sass::Script::Variable	:@underscored_name""ui_header_background_gradient;@;	i:
+@name""ui-header-background-gradient;o; 
+;;;@;	i;
+o;	;"	null;@;	i;;;o;	;"ui_header_background_color;@;	i;"ui-header-background-color0[u:Sass::Tree::IfNode¬	[o:Sass::Script::Operation
+:@operator:or:@options{ :
+@linei:@operand2o:Sass::Script::Variable	:@underscored_name"compile_all;@;	i:
+@name"compile-all:@operand1o:!Sass::Script::UnaryOperation	;:not;@;	i:@operando;	;"supports_gradients;@;	i;"supports-gradients0[	o:Sass::Tree::RuleNode;{:importero: Sass::Importers::Filesystem:
+@root"é/Users/larry_rivera/Documents/Yamaha Motor University/repo/ldstudio-extjs-library/public/resources/sass/../../ext/resources/themes/stylesheets;	i:@has_childrenT:@children[o:Sass::Tree::PropNode:@valueo:Sass::Script::Funcall
+;{ ;	i:@keywords{ ;"theme-background-image:
+@args[o;	;"theme_name;@;	i;"theme-nameo:&Sass::Script::StringInterpolation
+:@aftero:Sass::Script::String	;"-top-bg.gif;@;	i:
+@type:string:	@mido;	;"ui_label;@;	i;"ui-label;@;	i:@beforeo;	;"panel-header/panel-header-;@;	i; ;!;@;	i;["background-image;[ :@prop_syntax:new:
+@tabsi ;&i :
+@rule[".o;	;"prefix;{ ;	i;"prefix"
+nlg .o;	;"prefix;{ ;	i;"prefix"panel-header-o;	;"ui_label;{ ;	i;"ui-label"	-topo;;@;	i;T;[o;;o;
+;{ ;	i;{ ;"theme-background-image;[o;	;"theme_name;@>;	i;"theme-nameo;
+;o;	;"-bottom-bg.gif;@>;	i; ;!;"o;	;"ui_label;@>;	i;"ui-label;@>;	i;#o;	;"panel-header/panel-header-;@>;	i; ;!;@;	i;["background-image;[ ;$;%;&i ;&i ;'[".o;	;"prefix;{ ;	i;"prefix"
+nlg .o;	;"prefix;{ ;	i;"prefix"panel-header-o;	;"ui_label;{ ;	i;"ui-label"-bottomo;;@;	i;T;[o;;o;
+;{ ;	i;{ ;"theme-background-image;[o;	;"theme_name;@e;	i;"theme-nameo;
+;o;	;"-left-bg.gif;@e;	i; ;!;"o;	;"ui_label;@e;	i;"ui-label;@e;	i;#o;	;"panel-header/panel-header-;@e;	i; ;!;@;	i;["background-image;[ ;$;%;&i ;&i ;'[".o;	;"prefix;{ ;	i;"prefix"
+nlg .o;	;"prefix;{ ;	i;"prefix"panel-header-o;	;"ui_label;{ ;	i;"ui-label"
+-lefto;;@;	i;T;[o;;o;
+;{ ;	i;{ ;"theme-background-image;[o;	;"theme_name;@á;	i;"theme-nameo;
+;o;	;"-right-bg.gif;@á;	i; ;!;"o;	;"ui_label;@á;	i;"ui-label;@á;	i;#o;	;"panel-header/panel-header-;@á;	i; ;!;@;	i;["background-image;[ ;$;%;&i ;&i ;'[".o;	;"prefix;{ ;	i;"prefix"
+nlg .o;	;"prefix;{ ;	i;"prefix"panel-header-o;	;"ui_label;{ ;	i;"ui-label"-righto;;[ ;0;"/* header text */;@;i!;[ ;i o;;@;i";T;[	u;!O[o:Sass::Script::Operation
+:@operator:neq:@options{ :
+@linei#:@operand2o:Sass::Script::String	:@value"	null;@;	i#:
+@type:identifier:@operand1o:Sass::Script::Variable	:@underscored_name"ui_header_color;@;	i#:
+@name"ui-header-color0[o:Sass::Tree::PropNode;o;	;"ui_header_color;{ ;	i#;"ui-header-color;{:importero: Sass::Importers::Filesystem:
+@root"é/Users/larry_rivera/Documents/Yamaha Motor University/repo/ldstudio-extjs-library/public/resources/sass/../../ext/resources/themes/stylesheets;	i#;["
+color:@children[ :@prop_syntax:new:
+@tabsi u;!c[o:Sass::Script::Operation
+:@operator:neq:@options{ :
+@linei%:@operand2o:Sass::Script::String	:@value"	null;@;	i%:
+@type:identifier:@operand1o:Sass::Script::Variable	:@underscored_name"ui_header_font_size;@;	i%:
+@name"ui-header-font-size0[o:Sass::Tree::PropNode;o;	;"ui_header_font_size;{ ;	i%;"ui-header-font-size;{:importero: Sass::Importers::Filesystem:
+@root"é/Users/larry_rivera/Documents/Yamaha Motor University/repo/ldstudio-extjs-library/public/resources/sass/../../ext/resources/themes/stylesheets;	i%;["font-size:@children[ :@prop_syntax:new:
+@tabsi u;!m[o:Sass::Script::Operation
+:@operator:neq:@options{ :
+@linei&:@operand2o:Sass::Script::String	:@value"	null;@;	i&:
+@type:identifier:@operand1o:Sass::Script::Variable	:@underscored_name"ui_header_font_weight;@;	i&:
+@name"ui-header-font-weight0[o:Sass::Tree::PropNode;o;	;"ui_header_font_weight;{ ;	i&;"ui-header-font-weight;{:importero: Sass::Importers::Filesystem:
+@root"é/Users/larry_rivera/Documents/Yamaha Motor University/repo/ldstudio-extjs-library/public/resources/sass/../../ext/resources/themes/stylesheets;	i&;["font-weight:@children[ :@prop_syntax:new:
+@tabsi u;!m[o:Sass::Script::Operation
+:@operator:neq:@options{ :
+@linei':@operand2o:Sass::Script::String	:@value"	null;@;	i':
+@type:identifier:@operand1o:Sass::Script::Variable	:@underscored_name"ui_header_font_family;@;	i':
+@name"ui-header-font-family0[o:Sass::Tree::PropNode;o;	;"ui_header_font_family;{ ;	i';"ui-header-font-family;{:importero: Sass::Importers::Filesystem:
+@root"é/Users/larry_rivera/Documents/Yamaha Motor University/repo/ldstudio-extjs-library/public/resources/sass/../../ext/resources/themes/stylesheets;	i';["font-family:@children[ :@prop_syntax:new:
+@tabsi ;i ;[	".o;	; "prefix;{ ;i";"prefix"panel-header-text-o;	; "ui_label;{ ;i";"ui-labelo;;[ ;0;"/* body */;@;i*;[ ;i o;;@;i+;T;[u;!x[o:Sass::Script::Operation
+:@operator:neq:@options{ :
+@linei,:@operand2o:Sass::Script::String	:@value"	null;@;	i,:
+@type:identifier:@operand1o:Sass::Script::Variable	:@underscored_name"ui_body_background_color;@;	i,:
+@name"ui-body-background-color0[o:Sass::Tree::PropNode;o;	;"ui_body_background_color;{ ;	i,;"ui-body-background-color;{:importero: Sass::Importers::Filesystem:
+@root"é/Users/larry_rivera/Documents/Yamaha Motor University/repo/ldstudio-extjs-library/public/resources/sass/../../ext/resources/themes/stylesheets;	i,;["background:@children[ :@prop_syntax:new:
+@tabsi u;!j[o:Sass::Script::Operation
+:@operator:neq:@options{ :
+@linei-:@operand2o:Sass::Script::String	:@value"	null;@;	i-:
+@type:identifier:@operand1o:Sass::Script::Variable	:@underscored_name"ui_body_border_color;@;	i-:
+@name"ui-body-border-color0[o:Sass::Tree::PropNode;o;	;"ui_body_border_color;{ ;	i-;"ui-body-border-color;{:importero: Sass::Importers::Filesystem:
+@root"é/Users/larry_rivera/Documents/Yamaha Motor University/repo/ldstudio-extjs-library/public/resources/sass/../../ext/resources/themes/stylesheets;	i-;["border-color:@children[ :@prop_syntax:new:
+@tabsi u;!G[o:Sass::Script::Operation
+:@operator:neq:@options{ :
+@linei.:@operand2o:Sass::Script::String	:@value"	null;@;	i.:
+@type:identifier:@operand1o:Sass::Script::Variable	:@underscored_name"ui_body_color;@;	i.:
+@name"ui-body-color0[o:Sass::Tree::PropNode;o;	;"ui_body_color;{ ;	i.;"ui-body-color;{:importero: Sass::Importers::Filesystem:
+@root"é/Users/larry_rivera/Documents/Yamaha Motor University/repo/ldstudio-extjs-library/public/resources/sass/../../ext/resources/themes/stylesheets;	i.;["
+color:@children[ :@prop_syntax:new:
+@tabsi u;![[o:Sass::Script::Operation
+:@operator:neq:@options{ :
+@linei/:@operand2o:Sass::Script::String	:@value"	null;@;	i/:
+@type:identifier:@operand1o:Sass::Script::Variable	:@underscored_name"ui_body_font_size;@;	i/:
+@name"ui-body-font-size0[o:Sass::Tree::PropNode;o;	;"ui_body_font_size;{ ;	i/;"ui-body-font-size;{:importero: Sass::Importers::Filesystem:
+@root"é/Users/larry_rivera/Documents/Yamaha Motor University/repo/ldstudio-extjs-library/public/resources/sass/../../ext/resources/themes/stylesheets;	i/;["font-size:@children[ :@prop_syntax:new:
+@tabsi u;!c[o:Sass::Script::Operation
+:@operator:neq:@options{ :
+@linei0:@operand2o:Sass::Script::String	:@value"	null;@;	i0:
+@type:identifier:@operand1o:Sass::Script::Variable	:@underscored_name"ui_body_font_weight;@;	i0:
+@name"ui-body-font-weight0[o:Sass::Tree::PropNode;o;	;"ui_body_font_weight;{ ;	i0;"ui-body-font-weight;{:importero: Sass::Importers::Filesystem:
+@root"é/Users/larry_rivera/Documents/Yamaha Motor University/repo/ldstudio-extjs-library/public/resources/sass/../../ext/resources/themes/stylesheets;	i0;["font-size:@children[ :@prop_syntax:new:
+@tabsi u;!Ï[o:Sass::Script::Operation
+:@operator:neq:@options{ :
+@linei2:@operand2o:Sass::Script::String	:@value"	null;@;	i2:
+@type:identifier:@operand1o:Sass::Script::Variable	:@underscored_name"ui_body_border_width;@;	i2:
+@name"ui-body-border-width0[o:Sass::Tree::PropNode;o;	;"ui_body_border_width;{ ;	i3;"ui-body-border-width;{:importero: Sass::Importers::Filesystem:
+@root"é/Users/larry_rivera/Documents/Yamaha Motor University/repo/ldstudio-extjs-library/public/resources/sass/../../ext/resources/themes/stylesheets;	i3;["border-width:@children[ :@prop_syntax:new:
+@tabsi u:Sass::Tree::IfNodej[o:Sass::Script::Operation
+:@operator:neq:@options{ :
+@linei4:@operand2o:Sass::Script::String	:@value"	null;@;	i4:
+@type:identifier:@operand1o:Sass::Script::Variable	:@underscored_name"ui_body_border_style;@;	i4:
+@name"ui-body-border-style0[o:Sass::Tree::PropNode;o;	;"ui_body_border_style;{ ;	i4;"ui-body-border-style;{:importero: Sass::Importers::Filesystem:
+@root"é/Users/larry_rivera/Documents/Yamaha Motor University/repo/ldstudio-extjs-library/public/resources/sass/../../ext/resources/themes/stylesheets;	i4;["border-style:@children[ :@prop_syntax:new:
+@tabsi ;i ;[	".o;	; "prefix;{ ;i+;"prefix"panel-body-o;	; "ui_label;{ ;i+;"ui-labelo;;@;i8;T;[o;;@;i:;T;[u;!j[o:Sass::Script::Operation
+:@operator:neq:@options{ :
+@linei;:@operand2o:Sass::Script::String	:@value"	null;@;	i;:
+@type:identifier:@operand1o:Sass::Script::Variable	:@underscored_name"ui_body_border_color;@;	i;:
+@name"ui-body-border-color0[o:Sass::Tree::PropNode;o;	;"ui_body_border_color;{ ;	i;;"ui-body-border-color;{:importero: Sass::Importers::Filesystem:
+@root"é/Users/larry_rivera/Documents/Yamaha Motor University/repo/ldstudio-extjs-library/public/resources/sass/../../ext/resources/themes/stylesheets;	i;;["border-color:@children[ :@prop_syntax:new:
+@tabsi ;i ;[".o;	; "prefix;{ ;i9;"prefix"window-header-o;	; "ui_label;{ ;i9;"ui-label",
+        .o;	; "prefix;{ ;i:;"prefix"panel-header-o;	; "ui_label;{ ;i:;"ui-label;i ;[".o;	; "prefix;{ ;i8;"prefix"panel-collapsedo;;@;i?;T;[u;!j[o:Sass::Script::Operation
+:@operator:neq:@options{ :
+@linei@:@operand2o:Sass::Script::String	:@value"	null;@;	i@:
+@type:identifier:@operand1o:Sass::Script::Variable	:@underscored_name"ui_body_border_color;@;	i@:
+@name"ui-body-border-color0[o:Sass::Tree::PropNode;o;	;"ui_body_border_color;{ ;	i@;"ui-body-border-color;{:importero: Sass::Importers::Filesystem:
+@root"é/Users/larry_rivera/Documents/Yamaha Motor University/repo/ldstudio-extjs-library/public/resources/sass/../../ext/resources/themes/stylesheets;	i@;["border-color:@children[ :@prop_syntax:new:
+@tabsi ;i ;[
+".o;	; "prefix;{ ;i?;"prefix"panel-header-o;	; "ui_label;{ ;i?;"ui-label"-verticalu;![o:Sass::Script::Operation
+:@operator:neq:@options{ :
+@lineiC:@operand2o:Sass::Script::String	:@value"	null;@;	iC:
+@type:identifier:@operand1o:Sass::Script::Variable	:@underscored_name"ui_base_color;@;	iC:
+@name"ui-base-color0[u:Sass::Tree::IfNode[o:Sass::Script::Operation
+:@operator:or:@options{ :
+@lineiD:@operand2o:Sass::Script::Variable	:@underscored_name"compile_all;@;	iD:
+@name"compile-all:@operand1o;	;"supports_gradients;@;	iD;"supports-gradients0[o:Sass::Tree::RuleNode;{:importero: Sass::Importers::Filesystem:
+@root"é/Users/larry_rivera/Documents/Yamaha Motor University/repo/ldstudio-extjs-library/public/resources/sass/../../ext/resources/themes/stylesheets;	iF:@has_childrenT:@children[o:Sass::Tree::MixinNode;@;	iG:@keywords{ ;"background-gradient:
+@args[o;	;"ui_header_background_color;{ ;	iG;"ui-header-background-coloro;	;""ui_header_background_gradient;@;	iG;""ui-header-background-gradiento:Sass::Script::String	:@value"
+right;@;	iG:
+@type:identifier;[ :
+@tabsi :
+@rule[".o;	;"prefix;{ ;	iE;"prefix"panel-header-o;	;"ui_label;{ ;	iE;"ui-label"-left,
+            .o;	;"prefix;{ ;	iF;"prefix"panel-header-o;	;"ui_label;{ ;	iF;"ui-label"-rightu;!†%[o:Sass::Script::Operation
+:@operator:neq:@options{ :
+@lineiL:@operand2o:Sass::Script::String	:@value"	null;@;	iL:
+@type:identifier:@operand1o:Sass::Script::Variable	:@underscored_name"ui_border_radius;@;	iL:
+@name"ui-border-radiusu:Sass::Tree::IfNode[00[o:Sass::Tree::RuleNode:@options{:importero: Sass::Importers::Filesystem:
+@root"é/Users/larry_rivera/Documents/Yamaha Motor University/repo/ldstudio-extjs-library/public/resources/sass/../../ext/resources/themes/stylesheets:
+@linein:@has_childrenT:@children[	o; ;@;
+io;T;[o:Sass::Tree::MixinNode;@;
+ip:@keywords{ :
+@name"border-bottom-radius:
+@args[o:Sass::Script::Variable	:@underscored_name"ui_border_radius;{ ;
+ip;"ui-border-radius;[ :
+@tabsi :
+@rule[
+".o;	;"prefix;{ ;
+io;"prefix"panel-header-o;	;"ui_label;{ ;
+io;"ui-label"	-topo; ;@;
+is;T;[o;;@;
+it;{ ;"border-left-radius;[o;	;"ui_border_radius;{ ;
+it;"ui-border-radius;[ ;i ;[
+".o;	;"prefix;{ ;
+is;"prefix"panel-header-o;	;"ui_label;{ ;
+is;"ui-label"-righto; ;@;
+iw;T;[o;;@;
+ix;{ ;"border-top-radius;[o;	;"ui_border_radius;{ ;
+ix;"ui-border-radius;[ ;i ;[
+".o;	;"prefix;{ ;
+iw;"prefix"panel-header-o;	;"ui_label;{ ;
+iw;"ui-label"-bottomo; ;@;
+i{;T;[o;;@;
+i|;{ ;"border-right-radius;[o;	;"ui_border_radius;{ ;
+i|;"ui-border-radius;[ ;i ;[
+".o;	;"prefix;{ ;
+i{;"prefix"panel-header-o;	;"ui_label;{ ;
+i{;"ui-label"
+-left;i ;[".o;	;"prefix;{ ;
+in;"prefix"panel-collapsedo; ;@;
+iÄ;T;[o:Sass::Tree::PropNode:@valueo:Sass::Script::String;"top right:
+@type:identifier;@;
+iÅ;["background-position;[ :@prop_syntax:new;i ;i ;[".o;	;"prefix;{ ;
+iÄ;"prefix"
+nlg .o;	;"prefix;{ ;
+iÄ;"prefix"panel-header-o;	;"ui_label;{ ;
+iÄ;"ui-label"-righto; ;@;
+iÑ;T;[o;;@;
+iÖ;{ ;"inner-border;[o:Sass::Script::List	:@separator:
+space;[	o:Sass::Script::Number:@numerator_units["px;i;{ ;
+iÖ:@original"1px:@denominator_units[ o;; [ ;i ;@é;
+iÖ;!"0;"[ o;; [ ;i ;@é;
+iÖ;!"0;"@îo;; [ ;i ;@é;
+iÖ;!"0;"@î;@é;
+iÖo;	;"!ui_header_inner_border_color;@é;
+iÖ;"!ui-header-inner-border-color;[ ;i ;[
+".o;	;"prefix;{ ;
+iÑ;"prefix"panel-header-o;	;"ui_label;{ ;
+iÑ;"ui-label"	-topo; ;@;
+ià;T;[o;;@;
+iâ;{ ;"inner-border;[o;	;;;[	o;; [ ;i ;{ ;
+iâ;!"0;"@îo;; ["px;i;@µ;
+iâ;!"1px;"[ o;; [ ;i ;@µ;
+iâ;!"0;"@îo;; [ ;i ;@µ;
+iâ;!"0;"@î;@µ;
+iâo;	;"!ui_header_inner_border_color;@µ;
+iâ;"!ui-header-inner-border-color;[ ;i ;[
+".o;	;"prefix;{ ;
+ià;"prefix"panel-header-o;	;"ui_label;{ ;
+ià;"ui-label"-righto; ;@;
+iå;T;[o;;@;
+iç;{ ;"inner-border;[o;	;;;[o;; [ ;i ;{ ;
+iç;!"0;"@îo;; [ ;i ;@‹;
+iç;!"0;"@îo;; ["px;i;@‹;
+iç;!"1px;"[ ;@‹;
+iço;	;"!ui_header_inner_border_color;@‹;
+iç;"!ui-header-inner-border-color;[ ;i ;[
+".o;	;"prefix;{ ;
+iå;"prefix"panel-header-o;	;"ui_label;{ ;
+iå;"ui-label"-bottomo; ;@;
+iê;T;[o;;@;
+ië;{ ;"inner-border;[o;	;;;[	o;; [ ;i ;{ ;
+ië;!"0;"@îo;; [ ;i ;@ ;
+ië;!"0;"@îo;; [ ;i ;@ ;
+ië;!"0;"@îo;; ["px;i;@ ;
+ië;!"1px;"[ ;@ ;
+iëo;	;"!ui_header_inner_border_color;@ ;
+ië;"!ui-header-inner-border-color;[ ;i ;[
+".o;	;"prefix;{ ;
+iê;"prefix"panel-header-o;	;"ui_label;{ ;
+iê;"ui-label"
+-left[o:Sass::Tree::MixinNode;{:importero: Sass::Importers::Filesystem:
+@root"é/Users/larry_rivera/Documents/Yamaha Motor University/repo/ldstudio-extjs-library/public/resources/sass/../../ext/resources/themes/stylesheets;	iV:@keywords{
+"paddingo;	;"panel_frame_padding;{ ;	iT;"panel-frame-padding"border_radiuso;	;"ui_border_radius;@;	iR;"ui-border-radius"background_coloro;	;"ui_body_background_color;@;	iU;"ui-body-background-color"uio:&Sass::Script::StringInterpolation
+:@aftero;	;" ;@;	iO;:string:	@mido;	;"ui_label;@;	iO;"ui-label;@;	iO:@beforeo;	;" ;@;	iO;;"border_widtho;	;"ui_border_width;@;	iS;"ui-border-width;"x-frame:
+@args[o;	;"
+panel;@;	iN;;:@children[ o;;@;	iY;{ ;"x-frame;[o;	;"panel-header;{ ;	iY;;o;
+;o;	;"	-top;@9;	iY;;;o;	;"ui_label;@9;	iY;"ui-label;@9;	iY;o;	;" ;@9;	iY;;o:Sass::Script::List	:@separator:
+space;[	o:Sass::Script::Funcall
+;@9;	iY;{ ;"top;[o;	;"ui_border_radius;@9;	iY;"ui-border-radiuso;#
+;@9;	iY;{ ;"
+right;[o;	;"ui_border_radius;@9;	iY;"ui-border-radiuso:Sass::Script::Number:@numerator_units[ ;i ;@9;	iY:@original"0:@denominator_units[ o;$;%[ ;i ;@9;	iY;&"0;'@U;@9;	iYo;	;"ui_border_width;@9;	iY;"ui-border-widtho; 	;!;";[	o;$;%["px;i	;@9;	iY;&"4px;'[ o;$;%["px;i
+;@9;	iY;&"5px;'[ o;$;%["px;i	;@9;	iY;&"4px;'[ o;$;%["px;i
+;@9;	iY;&"5px;'[ ;@9;	iYo;	;"ui_header_background_color;@9;	iY;"ui-header-background-coloro;	;""ui_header_background_gradient;@9;	iY;""ui-header-background-gradient;[ o;;@;	iZ;{ ;"x-frame;[o;	;"panel-header;{ ;	iZ;;o;
+;o;	;"-right;@;	iZ;;;o;	;"ui_label;@;	iZ;"ui-label;@;	iZ;o;	;" ;@;	iZ;;o; 	;!;";[	o;$;%[ ;i ;@;	iZ;&"0;'@Uo;#
+;@;	iZ;{ ;"
+right;[o;	;"ui_border_radius;@;	iZ;"ui-border-radiuso;#
+;@;	iZ;{ ;"bottom;[o;	;"ui_border_radius;@;	iZ;"ui-border-radiuso;$;%[ ;i ;@;	iZ;&"0;'@U;@;	iZo;	;"ui_border_width;@;	iZ;"ui-border-widtho; 	;!;";[	o;$;%["px;i	;@;	iZ;&"4px;'[ o;$;%["px;i
+;@;	iZ;&"5px;'[ o;$;%["px;i	;@;	iZ;&"4px;'[ o;$;%["px;i
+;@;	iZ;&"5px;'[ ;@;	iZo;	;"ui_header_background_color;@;	iZ;"ui-header-background-coloro;	;""ui_header_background_gradient;@;	iZ;""ui-header-background-gradiento:Sass::Script::Bool;F;@;	iZo;	;"
+right;@;	iZ;;;[ o;;@;	i[;{ ;"x-frame;[o;	;"panel-header;{ ;	i[;;o;
+;o;	;"-bottom;@¬;	i[;;;o;	;"ui_label;@¬;	i[;"ui-label;@¬;	i[;o;	;" ;@¬;	i[;;o; 	;!;";[	o;$;%[ ;i ;@¬;	i[;&"0;'@Uo;$;%[ ;i ;@¬;	i[;&"0;'@Uo;#
+;@¬;	i[;{ ;"bottom;[o;	;"ui_border_radius;@¬;	i[;"ui-border-radiuso;#
+;@¬;	i[;{ ;"	left;[o;	;"ui_border_radius;@¬;	i[;"ui-border-radius;@¬;	i[o;	;"ui_border_width;@¬;	i[;"ui-border-widtho; 	;!;";[	o;$;%["px;i	;@¬;	i[;&"4px;'[ o;$;%["px;i
+;@¬;	i[;&"5px;'[ o;$;%["px;i	;@¬;	i[;&"4px;'[ o;$;%["px;i
+;@¬;	i[;&"5px;'[ ;@¬;	i[o;	;"ui_header_background_color;@¬;	i[;"ui-header-background-coloro;	;""ui_header_background_gradient;@¬;	i[;""ui-header-background-gradient;[ o;;@;	i\;{ ;"x-frame;[o;	;"panel-header;{ ;	i\;;o;
+;o;	;"
+-left;@;	i\;;;o;	;"ui_label;@;	i\;"ui-label;@;	i\;o;	;" ;@;	i\;;o; 	;!;";[	o;#
+;@;	i\;{ ;"top;[o;	;"ui_border_radius;@;	i\;"ui-border-radiuso;$;%[ ;i ;@;	i\;&"0;'@Uo;$;%[ ;i ;@;	i\;&"0;'@Uo;#
+;@;	i\;{ ;"	left;[o;	;"ui_border_radius;@;	i\;"ui-border-radius;@;	i\o;	;"ui_border_width;@;	i\;"ui-border-widtho; 	;!;";[	o;$;%["px;i	;@;	i\;&"4px;'[ o;$;%["px;i
+;@;	i\;&"5px;'[ o;$;%["px;i	;@;	i\;&"4px;'[ o;$;%["px;i
+;@;	i\;&"5px;'[ ;@;	i\o;	;"ui_header_background_color;@;	i\;"ui-header-background-coloro;	;""ui_header_background_gradient;@;	i\;""ui-header-background-gradiento;(;F;@;	i\o;	;"
+right;@;	i\;;;[ o:Sass::Tree::RuleNode;@;	i^:@has_childrenT;[o;;@;	i_;{ ;"inner-border;[o; 	;!;";[	o;$;%["px;i;{ ;	i_;&"1px;'[ o;$;%["px;i;@T;	i_;&"1px;'[ o;$;%[ ;i ;@T;	i_;&"0;'@Uo;$;%["px;i;@T;	i_;&"1px;'[ ;@T;	i_o;	;"!ui_header_inner_border_color;@T;	i_;"!ui-header-inner-border-color;[ :
+@tabsi :
+@rule[
+".o;	;"prefix;{ ;	i^;"prefix"panel-header-o;	;"ui_label;{ ;	i^;"ui-label"	-topo;);@;	ib;*T;[o;;@;	ic;{ ;"inner-border;[o; 	;!;";[	o;$;%["px;i;{ ;	ic;&"1px;'[ o;$;%["px;i;@;	ic;&"1px;'[ o;$;%["px;i;@;	ic;&"1px;'[ o;$;%[ ;i ;@;	ic;&"0;'@U;@;	ico;	;"!ui_header_inner_border_color;@;	ic;"!ui-header-inner-border-color;[ ;+i ;,[
+".o;	;"prefix;{ ;	ib;"prefix"panel-header-o;	;"ui_label;{ ;	ib;"ui-label"-righto;);@;	if;*T;[o;;@;	ig;{ ;"inner-border;[o; 	;!;";[	o;$;%[ ;i ;{ ;	ig;&"0;'@Uo;$;%["px;i;@©;	ig;&"1px;'[ o;$;%["px;i;@©;	ig;&"1px;'[ o;$;%["px;i;@©;	ig;&"1px;'[ ;@©;	igo;	;"!ui_header_inner_border_color;@©;	ig;"!ui-header-inner-border-color;[ ;+i ;,[
+".o;	;"prefix;{ ;	if;"prefix"panel-header-o;	;"ui_label;{ ;	if;"ui-label"-bottomo;);@;	ij;*T;[o;;@;	ik;{ ;"inner-border;[o; 	;!;";[	o;$;%["px;i;{ ;	ik;&"1px;'[ o;$;%[ ;i ;@’;	ik;&"0;'@Uo;$;%["px;i;@’;	ik;&"1px;'[ o;$;%["px;i;@’;	ik;&"1px;'[ ;@’;	iko;	;"!ui_header_inner_border_color;@’;	ik;"!ui-header-inner-border-color;[ ;+i ;,[
+".o;	;"prefix;{ ;	ij;"prefix"panel-header-o;	;"ui_label;{ ;	ij;"ui-label"
+-lefto;;@;iï;T;[o;;o;;"bottom left;;;@;iñ;["background-position;[ ;;;i ;i ;[".o;	; "prefix;{ ;iï;"prefix"
+nlg .o;	; "prefix;{ ;iï;"prefix"panel-header-o;	; "ui_label;{ ;iï;"ui-label"-bottomu;![o:Sass::Script::Operation
+:@operator:neq:@options{ :
+@lineiô:@operand2o:Sass::Script::String	:@value"	null;@;	iô:
+@type:identifier:@operand1o:Sass::Script::Variable	:@underscored_name"ui_border_radius;@;	iô:
+@name"ui-border-radius0[o:Sass::Tree::RuleNode;{:importero: Sass::Importers::Filesystem:
+@root"é/Users/larry_rivera/Documents/Yamaha Motor University/repo/ldstudio-extjs-library/public/resources/sass/../../ext/resources/themes/stylesheets;	iö:@has_childrenT:@children[o:Sass::Tree::PropNode;o;;"1px !important;;;@;	iõ;["border-bottom-width;[ :@prop_syntax:new:
+@tabsi ;i :
+@rule[".o;	;"prefix;{ ;	iö;"prefix"panel .o;	;"prefix;{ ;	iö;"prefix"panel-header-o;	;"ui_label;{ ;	iö;"ui-label"	-topo;;@;	iû;T;[o;;o;;"1px !important;;;@;	iü;["border-left-width;[ ;;;i ;i ;[".o;	;"prefix;{ ;	iû;"prefix"panel .o;	;"prefix;{ ;	iû;"prefix"panel-header-o;	;"ui_label;{ ;	iû;"ui-label"-righto;;@;	i¢;T;[o;;o;;"1px !important;;;@;	i£;["border-top-width;[ ;;;i ;i ;[".o;	;"prefix;{ ;	i¢;"prefix"panel .o;	;"prefix;{ ;	i¢;"prefix"panel-header-o;	;"ui_label;{ ;	i¢;"ui-label"-bottomo;;@;	i¶;T;[o;;o;;"1px !important;;;@;	iß;["border-right-width;[ ;;;i ;i ;[".o;	;"prefix;{ ;	i¶;"prefix"panel .o;	;"prefix;{ ;	i¶;"prefix"panel-header-o;	;"ui_label;{ ;	i¶;"ui-label"
+-lefto;;@;	i™;T;[o:Sass::Tree::MixinNode;@;	i´:@keywords{ ;"border-radius:
+@args[o;	;"ui_border_radius;{ ;	i´;"ui-border-radius;[ ;i ;[
+".o;	;"prefix;{ ;	i™;"prefix"panel-header-o;	;"ui_label;{ ;	i™;"ui-label"-collapsedo;;@;	iÆ;{ ;"x-frame; [o;	;"panel-header;{ ;	iÆ;:stringo:&Sass::Script::StringInterpolation
+:@aftero;	;"-collapsed-top;@ç;	iÆ;;!:	@mido;	;"ui_label;@ç;	iÆ;"ui-label;@ç;	iÆ:@beforeo;	;" ;@ç;	iÆ;;!o:Sass::Script::List	:@separator:
+space;[	o:Sass::Script::Funcall
+;@ç;	iÆ;{ ;"top; [o;	;"ui_border_radius;@ç;	iÆ;"ui-border-radiuso;)
+;@ç;	iÆ;{ ;"
+right; [o;	;"ui_border_radius;@ç;	iÆ;"ui-border-radiuso;)
+;@ç;	iÆ;{ ;"bottom; [o;	;"ui_border_radius;@ç;	iÆ;"ui-border-radiuso;)
+;@ç;	iÆ;{ ;"	left; [o;	;"ui_border_radius;@ç;	iÆ;"ui-border-radius;@ç;	iÆo;	;"ui_border_width;@ç;	iÆ;"ui-border-widtho;&	;';(;[	o:Sass::Script::Number:@numerator_units["px;i	;@ç;	iÆ:@original"4px:@denominator_units[ o;*;+["px;i
+;@ç;	iÆ;,"5px;-[ o;*;+["px;i	;@ç;	iÆ;,"4px;-[ o;*;+["px;i
+;@ç;	iÆ;,"5px;-[ ;@ç;	iÆo;	;"ui_header_background_color;@ç;	iÆ;"ui-header-background-coloro;	;""ui_header_background_gradient;@ç;	iÆ;""ui-header-background-gradient;[ o;;@;	iØ;{ ;"x-frame; [o;	;"panel-header;{ ;	iØ;;!o;"
+;#o;	;"-collapsed-right;@⁄;	iØ;;!;$o;	;"ui_label;@⁄;	iØ;"ui-label;@⁄;	iØ;%o;	;" ;@⁄;	iØ;;!o;&	;';(;[	o;)
+;@⁄;	iØ;{ ;"top; [o;	;"ui_border_radius;@⁄;	iØ;"ui-border-radiuso;)
+;@⁄;	iØ;{ ;"
+right; [o;	;"ui_border_radius;@⁄;	iØ;"ui-border-radiuso;)
+;@⁄;	iØ;{ ;"bottom; [o;	;"ui_border_radius;@⁄;	iØ;"ui-border-radiuso;)
+;@⁄;	iØ;{ ;"	left; [o;	;"ui_border_radius;@⁄;	iØ;"ui-border-radius;@⁄;	iØo;	;"ui_border_width;@⁄;	iØ;"ui-border-widtho;&	;';(;[	o;*;+["px;i	;@⁄;	iØ;,"4px;-[ o;*;+["px;i
+;@⁄;	iØ;,"5px;-[ o;*;+["px;i	;@⁄;	iØ;,"4px;-[ o;*;+["px;i
+;@⁄;	iØ;,"5px;-[ ;@⁄;	iØo;	;"ui_header_background_color;@⁄;	iØ;"ui-header-background-coloro;	;""ui_header_background_gradient;@⁄;	iØ;""ui-header-background-gradiento:Sass::Script::Bool;F;@⁄;	iØo;	;"
+right;@⁄;	iØ;;;[ o;;@;	i∞;{ ;"x-frame; [o;	;"panel-header;{ ;	i∞;;!o;"
+;#o;	;"-collapsed-bottom;@*;	i∞;;!;$o;	;"ui_label;@*;	i∞;"ui-label;@*;	i∞;%o;	;" ;@*;	i∞;;!o;&	;';(;[	o;)
+;@*;	i∞;{ ;"top; [o;	;"ui_border_radius;@*;	i∞;"ui-border-radiuso;)
+;@*;	i∞;{ ;"
+right; [o;	;"ui_border_radius;@*;	i∞;"ui-border-radiuso;)
+;@*;	i∞;{ ;"bottom; [o;	;"ui_border_radius;@*;	i∞;"ui-border-radiuso;)
+;@*;	i∞;{ ;"	left; [o;	;"ui_border_radius;@*;	i∞;"ui-border-radius;@*;	i∞o;	;"ui_border_width;@*;	i∞;"ui-border-widtho;&	;';(;[	o;*;+["px;i	;@*;	i∞;,"4px;-[ o;*;+["px;i
+;@*;	i∞;,"5px;-[ o;*;+["px;i	;@*;	i∞;,"4px;-[ o;*;+["px;i
+;@*;	i∞;,"5px;-[ ;@*;	i∞o;	;"ui_header_background_color;@*;	i∞;"ui-header-background-coloro;	;""ui_header_background_gradient;@*;	i∞;""ui-header-background-gradient;[ o;;@;	i±;{ ;"x-frame; [o;	;"panel-header;{ ;	i±;;!o;"
+;#o;	;"-collapsed-left;@w;	i±;;!;$o;	;"ui_label;@w;	i±;"ui-label;@w;	i±;%o;	;" ;@w;	i±;;!o;&	;';(;[	o;)
+;@w;	i±;{ ;"top; [o;	;"ui_border_radius;@w;	i±;"ui-border-radiuso;)
+;@w;	i±;{ ;"
+right; [o;	;"ui_border_radius;@w;	i±;"ui-border-radiuso;)
+;@w;	i±;{ ;"bottom; [o;	;"ui_border_radius;@w;	i±;"ui-border-radiuso;)
+;@w;	i±;{ ;"	left; [o;	;"ui_border_radius;@w;	i±;"ui-border-radius;@w;	i±o;	;"ui_border_width;@w;	i±;"ui-border-widtho;&	;';(;[	o;*;+["px;i	;@w;	i±;,"4px;-[ o;*;+["px;i
+;@w;	i±;,"5px;-[ o;*;+["px;i	;@w;	i±;,"4px;-[ o;*;+["px;i
+;@w;	i±;,"5px;-[ ;@w;	i±o;	;"ui_header_background_color;@w;	i±;"ui-header-background-coloro;	;""ui_header_background_gradient;@w;	i±;""ui-header-background-gradiento;.;F;@w;	i±o;	;"
+right;@w;	i±;;;[ o;;[ ;0;"*/*background positioning of images */;@;i¥;[ ;i o;;@;i∑;T;[o;;o;;"right 0;;;@;i∏;["background-position;[ ;;;i ;i ;[".o;	; "prefix;{ ;iµ;"prefix"panel-header-o;	; "ui_label;{ ;iµ;"ui-label"-right-tc,
+    .o;	; "prefix;{ ;i∂;"prefix"panel-header-o;	; "ui_label;{ ;i∂;"ui-label"-right-mc,
+    .o;	; "prefix;{ ;i∑;"prefix"panel-header-o;	; "ui_label;{ ;i∑;"ui-label"-right-bco;;@;iΩ;T;[o;;o;;"0 bottom;;;@;iæ;["background-position;[ ;;;i ;i ;[".o;	; "prefix;{ ;iª;"prefix"panel-header-o;	; "ui_label;{ ;iª;"ui-label"-bottom-tc,
+    .o;	; "prefix;{ ;iº;"prefix"panel-header-o;	; "ui_label;{ ;iº;"ui-label"-bottom-mc,
+    .o;	; "prefix;{ ;iΩ;"prefix"panel-header-o;	; "ui_label;{ ;iΩ;"ui-label"-bottom-bc
