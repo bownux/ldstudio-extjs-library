@@ -1,8 +1,6 @@
 (function() {
   var newsTab;
-
   Ext.require(['Ext.tab.*', '*']);
-
   window.videoListTpl = new Ext.XTemplate('<div>', '<p>', '<tpl for=".">', '<tpl for="media">', '<p><a onclick="changePlayerVideo(\'{[this.getVideoID(values)]}\')", href="javascript:void(0);"><img src="{thumbnailSmall1}" style="padding-right:2px" /></a></p>', '</tpl>', '<tpl for="title">', '<p>title{#}: {[this.getValueFromRaw(values)]}</p>', '</tpl>', '<tpl for="content">', '<p>description{#}: {[this.getValueFromRaw(values)]}</p>', '</tpl>', '<br />', '</tpl>', '</p>', '</div>', {
     config: {
       disableFormats: false
@@ -23,13 +21,11 @@
       }
     }
   });
-
   newsTab = Ext.create('Ext.Panel', {
     id: 'news',
     title: 'NEWS & UPDATES',
     html: '<p>NEWS TAB</p>'
   });
-
   Ext.define('DataTabs.YoutubeVideoTabs', {
     extend: 'Ext.TabPanel',
     activeTab: 0,
@@ -53,5 +49,4 @@
       return newsTab.update(content);
     }
   });
-
 }).call(this);

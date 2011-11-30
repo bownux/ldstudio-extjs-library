@@ -1,22 +1,20 @@
-
+(function() {
   Ext.require(['Ext.tab.*', '*']);
-
   Ext.require('DataTabs.YoutubeStore');
-
   Ext.Loader.setConfig({
     enabled: true,
     paths: {
       DataTabs: 'javascripts/DataTabs'
     }
   });
-
   Ext.Loader.setPath('DataTabs', 'javascripts/DataTabs');
-
   Ext.onReady(function() {
     var store;
     window.changePlayerVideo = function(value, title) {
       var msg;
-      if (title == null) title = 'YMU';
+      if (title == null) {
+        title = 'YMU';
+      }
       console.log('changing video: ' + value);
       msg = 'Video Player not Present id: ' + value;
       return alert(msg);
@@ -44,3 +42,4 @@
       return tabs2.applyNews(newsUpdates);
     });
   });
+}).call(this);

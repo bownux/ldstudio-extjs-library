@@ -1,11 +1,9 @@
-
+(function() {
   Ext.require(['*']);
-
   Ext.define('DataTabs.YoutubeModel', {
     extend: 'Ext.data.Model',
     fields: ['version', 'encoding', 'feed']
   });
-
   Ext.define('DataTabs.YoutubeStore', {
     extend: 'Ext.data.Store',
     requires: ['DataTabs.YoutubeModel'],
@@ -15,9 +13,7 @@
       type: 'jsonp',
       url: 'https://gdata.youtube.com/feeds/api/users/YMUniversityUSA/uploads?alt=json-in-script'
     },
-    success: function(result, request) {
-      return console.log(result);
-    },
+    success: function(result, request) {},
     listeners: {
       load: function(store, records) {
         return Ext.each(records, function(rec) {
@@ -26,3 +22,4 @@
       }
     }
   });
+}).call(this);

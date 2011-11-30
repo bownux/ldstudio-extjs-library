@@ -18,7 +18,7 @@ Ext.define 'DataTabs.YoutubeStore',
         type: 'jsonp'
         url: 'https://gdata.youtube.com/feeds/api/users/YMUniversityUSA/uploads?alt=json-in-script'
     success: (result,request) ->
-        console.log result
+        #console.log result
     listeners:
         load: (store, records) ->
             Ext.each(records, (rec) ->
