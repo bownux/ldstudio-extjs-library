@@ -1,10 +1,11 @@
-
+(function() {
   Ext.define('Containers.HContainer', {
     extend: 'Ext.panel.Panel',
     id: 'hContainer',
     border: false,
     height: 342,
-    autoWidth: true,
+    width: 1024,
+    autoWidth: false,
     monitorResize: true,
     layout: {
       type: 'hbox',
@@ -12,3 +13,4 @@
       align: 'stretch'
     }
   });
+}).call(this);

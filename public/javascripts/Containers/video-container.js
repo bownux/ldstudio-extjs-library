@@ -1,10 +1,7 @@
-
+(function() {
   Ext.require(['Ext.layout.*', '*']);
-
   Ext.require('Players.YoutubePlayer');
-
   Ext.require('Containers.HContainer');
-
   Ext.Loader.setConfig({
     enabled: true,
     paths: {
@@ -12,11 +9,8 @@
       Containers: 'javascripts/Containers'
     }
   });
-
   Ext.Loader.setPath('Players', 'javascripts/Players');
-
   Ext.Loader.setPath('Containers', 'javascripts/Containers');
-
   Ext.onReady(function() {
     var store;
     Ext.EventManager.onWindowResize((function(w, h) {
@@ -48,3 +42,4 @@
       });
     });
   });
+}).call(this);

@@ -5,9 +5,10 @@ block scripts
     script(src='/javascripts/Players/player-panel.js')
 
 block content
-    h1= title
-    h1= name
-    p Welcome to #{name} view
+    div#info
+        h1= title
+        h1= name
+        p Welcome to #{name} view
 
     a(onclick="changePlayerVideo('1OMlepC6hCU')", href="javascript:void(0);") video1
     &nbsp;

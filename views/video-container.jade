@@ -7,12 +7,14 @@ block scripts
     script(src='/javascripts/Containers/video-container.js') 
 
 block content
-    h1= title
-    h1= name
-    p Welcome to #{name} view
+    div#content
+        div#info
+            h1= title
+            h1= name
+            p Welcome to #{name} view
 
-    #video-container
+        #video-container
 
 block foot
-    p 
+    p.lower-nav 
         a(href="/") back

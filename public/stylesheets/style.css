@@ -8,8 +8,8 @@ a {
 }
 #header {
   padding-top: 0px;
-  margin-bottom: 0px;
-  margin: 0px auto;
+  margin-bottom: -2px;
+  margin: 0px auto -2px auto;
   width: 1024px;
 }
 #footer {
@@ -26,6 +26,7 @@ a {
   position: relative;
   clear: both;
   color: #666;
+  padding-top: 10px;
 }
 #footer a {
   color: #00529b;
@@ -37,7 +38,14 @@ a {
   margin-top: -2px;
   background-color: #fff;
   width: 1024px;
-  padding-left: 20px;
-  margin-right: auto;
-  margin-left: auto;
+  margin: 0 auto;
+}
+#info {
+  padding: 20px 0px 20px 20px;
+}
+.lower-nav {
+  padding: 10px 0px 10px 20px;
+  background-color: #fff;
+  width: 1024px;
+  margin: 0px auto;
 }
