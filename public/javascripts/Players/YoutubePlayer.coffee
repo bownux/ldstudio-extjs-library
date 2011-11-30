@@ -9,9 +9,11 @@ window.changePlayerVideo = (value,title = 'YMU') ->
 Ext.define 'Players.YoutubePlayer',
     extend: 'Ext.panel.Panel',
     id: 'YoutubePlayer'
-    title: 'YMU Video',
+    #title: 'YMU Video',
     width: 562,
     height: 342,
+    header:false,
+    headerAsText : false,
     html: '<div><iframe width="560" height="315" src="http://www.youtube.com/embed/1OMlepC6hCU?rel=0" frameborder="0" allowfullscreen></iframe></div>',
     setTitle: (newTitle) ->
         me = this
