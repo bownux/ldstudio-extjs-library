@@ -2,8 +2,8 @@
 # TODO: make video attributes configurable through templates
 # TODO: verify videos played are from ymu author or read id from YoutubeStore
 window.changePlayerVideo = (value,title = 'YMU') ->
-    console.log 'changing video: ' + value
-    console.log Ext.getCmp('YoutubePlayer')
+    #console.log 'changing video: ' + value
+    #console.log Ext.getCmp('YoutubePlayer')
     Ext.getCmp('YoutubePlayer').changeVideo value, title
 
 Ext.define 'Players.YoutubePlayer',

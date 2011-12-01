@@ -11,7 +11,7 @@ Ext.Loader.setPath 'DataTabs', 'javascripts/DataTabs'
 Ext.onReady ->
     # Dummy Video Changer
     window.changePlayerVideo = (value,title = 'YMU') ->
-        console.log 'changing video: ' + value
+        #console.log 'changing video: ' + value
         msg='Video Player not Present id: ' + value
         alert(msg)
 
@@ -23,9 +23,9 @@ Ext.onReady ->
         aggregatedStore = new Array()
         store.data.each(
             (item, index, totalItems) ->
-                console.log item.data['encoding']
+                #console.log item.data['encoding']
                 #console.log item.data['feed']
-                console.log item.data['feed'].entry
+                #console.log item.data['feed'].entry
                 #console.log item.data['feed'].entry[1].media$group.media$thumbnail[1].url
                 Ext.each(item.data['feed'].entry, (rec) ->
                     #console.log 'rec: ' + rec.media$group.media$thumbnail[1].url

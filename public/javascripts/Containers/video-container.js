@@ -20,8 +20,6 @@
       var aggregatedStore, containers, newsUpdates, player, tabsList;
       aggregatedStore = new Array();
       store.data.each(function(item, index, totalItems) {
-        console.log(item.data['encoding']);
-        console.log(item.data['feed'].entry);
         return Ext.each(item.data['feed'].entry, function(rec) {
           return aggregatedStore.push(Ext.apply(rec, {
             media: {

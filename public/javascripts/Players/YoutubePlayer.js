@@ -3,8 +3,6 @@
     if (title == null) {
       title = 'YMU';
     }
-    console.log('changing video: ' + value);
-    console.log(Ext.getCmp('YoutubePlayer'));
     return Ext.getCmp('YoutubePlayer').changeVideo(value, title);
   };
   Ext.define('Players.YoutubePlayer', {

@@ -26,7 +26,7 @@ window.videoListTpl = new Ext.XTemplate(
             reID=/\S+\/vi\/(\S+)\//
             res=str.match(reID)
             if res
-                console.log res[1]
+                #console.log res[1]
                 return res[1]
             else
                 return 'D3ybnmNX91I'

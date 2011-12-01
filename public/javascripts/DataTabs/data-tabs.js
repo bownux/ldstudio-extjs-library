@@ -15,7 +15,6 @@
       if (title == null) {
         title = 'YMU';
       }
-      console.log('changing video: ' + value);
       msg = 'Video Player not Present id: ' + value;
       return alert(msg);
     };
@@ -25,8 +24,6 @@
       var aggregatedStore, newsUpdates, tabs2;
       aggregatedStore = new Array();
       store.data.each(function(item, index, totalItems) {
-        console.log(item.data['encoding']);
-        console.log(item.data['feed'].entry);
         return Ext.each(item.data['feed'].entry, function(rec) {
           return aggregatedStore.push(Ext.apply(rec, {
             media: {
