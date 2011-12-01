@@ -22,6 +22,6 @@ Ext.define 'DataTabs.YoutubeStore',
     listeners:
         load: (store, records) ->
             Ext.each(records, (rec) ->
-                console.log rec.get('version')
+               #console.log rec.get('version')
             )
             

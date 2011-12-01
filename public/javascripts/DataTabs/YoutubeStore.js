@@ -16,9 +16,7 @@
     success: function(result, request) {},
     listeners: {
       load: function(store, records) {
-        return Ext.each(records, function(rec) {
-          return console.log(rec.get('version'));
-        });
+        return Ext.each(records, function(rec) {});
       }
     }
   });
