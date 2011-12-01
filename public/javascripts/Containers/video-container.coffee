@@ -15,7 +15,7 @@ Ext.onReady ->
     # Container Resizing Event
     Ext.EventManager.onWindowResize (
         (w, h) ->
-            Ext.getCmp("hContainer").setWidth(w-100)
+            #Ext.getCmp("hContainer").setWidth(w-100)
     )
 
     # Data Store wait on Load

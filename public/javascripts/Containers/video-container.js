@@ -13,9 +13,7 @@
   Ext.Loader.setPath('Containers', 'javascripts/Containers');
   Ext.onReady(function() {
     var store;
-    Ext.EventManager.onWindowResize((function(w, h) {
-      return Ext.getCmp("hContainer").setWidth(w - 100);
-    }));
+    Ext.EventManager.onWindowResize((function(w, h) {}));
     store = Ext.create('DataTabs.YoutubeStore');
     store.load();
     return store.on('load', function() {
