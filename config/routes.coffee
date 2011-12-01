@@ -11,6 +11,7 @@ exports.widget = (req, res) ->
         when "data-tabs" then res.render 'data-tabs', { title: 'YMU ExtJS Widget View', name: widgetName }
         when "player-panel" then res.render 'player-panel', { title: 'YMU ExtJS Widget View', name: widgetName }
         when "video-container" then res.render 'video-container', { title: 'YMU ExtJS Widget View', name:widgetName }
+        when "signup" then res.render 'signup', { title: 'YMU ExtJS Signup Form View', name:widgetName }
         when "default"
             res.render 'widget', { title: 'widget', name: widgetName }
         else

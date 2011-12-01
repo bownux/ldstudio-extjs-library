@@ -1,14 +1,11 @@
-
+(function() {
   /*
   GET home page.
-  */
-
-  exports.index = function(req, res) {
+  */  exports.index = function(req, res) {
     return res.render('index', {
       title: 'YMU ExtJS Widgets Libray'
     });
   };
-
   exports.widget = function(req, res) {
     var widgetName;
     widgetName = req.query.name ? req.query.name : 'default';
@@ -28,6 +25,11 @@
           title: 'YMU ExtJS Widget View',
           name: widgetName
         });
+      case "signup":
+        return res.render('signup', {
+          title: 'YMU ExtJS Signup Form View',
+          name: widgetName
+        });
       case "default":
         return res.render('widget', {
           title: 'widget',
@@ -40,3 +42,4 @@
         });
     }
   };
+}).call(this);

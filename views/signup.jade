@@ -1,0 +1,18 @@
+extends layout
+
+block scripts
+    script(src='/ext/bootstrap.js')
+    script(src='/javascripts/Containers/Signup.ui.js')
+
+block content
+    div#content
+        div#info
+            h1= title
+            h1= name
+            p Welcome to #{name} view
+
+        #sign-up
+
+block foot
+    p.lower-nav 
+        a(href="/") back
