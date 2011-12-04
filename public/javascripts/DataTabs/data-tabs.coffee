@@ -1,5 +1,6 @@
 Ext.require ['Ext.tab.*','*']
 Ext.require 'DataTabs.YoutubeStore'
+Ext.require 'DataTabs.YoutubeVideoTabs'
 
 Ext.Loader.setConfig({
         enabled : true
@@ -32,9 +33,9 @@ Ext.onReady ->
                     aggregatedStore.push Ext.apply(rec,media:{thumbnailSmall1:rec.media$group.media$thumbnail[1].url})
                 )
         )
-        newsUpdates = videoListTpl.applyTemplate(aggregatedStore)
+        #newsUpdates = videoListTpl.applyTemplate(aggregatedStore)
         tabs2 = Ext.create 'DataTabs.YoutubeVideoTabs',
-            { renderTo: 'data-tabs' }
-        tabs2.applyNews(newsUpdates)
+            { layout: 'fit',height:142, renderTo: 'data-tabs' }
+        #tabs2.applyNews(newsUpdates)
     )
 

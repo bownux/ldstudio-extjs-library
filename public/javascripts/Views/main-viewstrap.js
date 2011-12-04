@@ -3,6 +3,8 @@
 
   Ext.require('Players.YoutubePlayer');
 
+  Ext.require('Containers.VContainer');
+
   Ext.require('Containers.HContainer');
 
   Ext.Loader.setConfig({
@@ -23,7 +25,7 @@
     store = Ext.create('DataTabs.YoutubeStore');
     store.load();
     return store.on('load', function() {
-      var aggregatedStore, containers, newsUpdates, player, tabsList;
+      var aggregatedStore, containers, footerContainer, newsUpdates, player, tabsList, videoContainer;
       aggregatedStore = new Array();
       store.data.each(function(item, index, totalItems) {
         return Ext.each(item.data['feed'].entry, function(rec) {
@@ -40,10 +42,49 @@
       });
       tabsList.applyNews(newsUpdates);
       player = Ext.create('Players.YoutubePlayer');
-      return containers = Ext.create('Containers.HContainer', {
-        height: 342,
-        items: [player, tabsList],
-        renderTo: 'video-container'
+      videoContainer = Ext.create('Containers.HContainer', {
+        id: 'videoContainer',
+        items: [player, tabsList]
+      });
+      footerContainer = Ext.create('Containers.HContainer', {
+        id: 'footerContainer',
+        padding: '5 0 0 0',
+        defaults: {
+          bodyPadding: 10,
+          style: {
+            "text-align": 'center'
+          }
+        },
+        layoutConfig: {
+          pack: 'center',
+          align: 'middle'
+        },
+        items: [
+          {
+            html: 'col 1',
+            flex: 2
+          }, {
+            html: 'col 2',
+            flex: 2
+          }, {
+            html: 'col 3',
+            flex: 2
+          }, {
+            html: 'col 4',
+            flex: 2
+          }
+        ]
+      });
+      return containers = Ext.create('Containers.VContainer', {
+        id: 'mainContainer',
+        items: [
+          {
+            html: 'panel 1',
+            flex: 1,
+            padding: '0 0 5 0'
+          }, videoContainer, footerContainer
+        ],
+        renderTo: 'view-container'
       });
     });
   });

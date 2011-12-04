@@ -1,5 +1,6 @@
 Ext.require ['Ext.layout.*','*']
 Ext.require 'Players.YoutubePlayer'
+Ext.require 'Containers.VContainer'
 Ext.require 'Containers.HContainer'
 
 Ext.Loader.setConfig({
@@ -25,9 +26,6 @@ Ext.onReady ->
         aggregatedStore = new Array()
         store.data.each(
             (item, index, totalItems) ->
-                #console.log item.data['encoding']
-                #console.log item.data['feed']
-                #console.log item.data['feed'].entry
                 #console.log item.data['feed'].entry[1].media$group.media$thumbnail[1].url
                 Ext.each(item.data['feed'].entry, (rec) ->
                     #console.log 'rec: ' + rec.media$group.media$thumbnail[1].url
@@ -35,20 +33,55 @@ Ext.onReady ->
                 )
         )
         newsUpdates = videoListTpl.applyTemplate(aggregatedStore)
-        tabsList = Ext.create 'DataTabs.YoutubeVideoTabs', {height: 342}
+        tabsList = Ext.create 'DataTabs.YoutubeVideoTabs', {height:342}
         tabsList.applyNews(newsUpdates)
     
         # Player
         player = Ext.create 'Players.YoutubePlayer'
 
-        # Container
-        containers = Ext.create 'Containers.HContainer',
+        #
+        # Container Elements
+        #
+        
+        # Video Container
+        videoContainer = Ext.create 'Containers.HContainer',
         { 
-              height: 342
+              id: 'videoContainer',
               items: [
                   player,
                   tabsList
               ],
-              renderTo: 'video-container' 
+        }
+
+        # Footer Container
+        footerContainer = Ext.create 'Containers.HContainer',
+        { 
+              id: 'footerContainer'
+              padding:'5 0 0 0'
+              defaults:
+                  bodyPadding: 10
+                  style:
+                    "text-align": 'center'
+              layoutConfig:
+                  pack: 'center'
+                  align: 'middle'
+              items: [
+                  {html:'col 1', flex:2},
+                  {html:'col 2', flex:2},
+                  {html:'col 3', flex:2},
+                  {html:'col 4', flex:2}
+              ],
+        }
+
+        # Main Viewstrap Container
+        containers = Ext.create 'Containers.VContainer',
+        { 
+              id: 'mainContainer',
+              items: [
+                  {html:'panel 1', flex:1, padding:'0 0 5 0'},
+                  videoContainer,
+                  footerContainer
+              ],
+              renderTo: 'view-container' 
         }
     )

@@ -1,27 +1,31 @@
-(function() {
+
   Ext.require(['Ext.tab.*', '*']);
+
   Ext.require('DataTabs.YoutubeStore');
+
+  Ext.require('DataTabs.YoutubeVideoTabs');
+
   Ext.Loader.setConfig({
     enabled: true,
     paths: {
       DataTabs: 'javascripts/DataTabs'
     }
   });
+
   Ext.Loader.setPath('DataTabs', 'javascripts/DataTabs');
+
   Ext.onReady(function() {
     var store;
     window.changePlayerVideo = function(value, title) {
       var msg;
-      if (title == null) {
-        title = 'YMU';
-      }
+      if (title == null) title = 'YMU';
       msg = 'Video Player not Present id: ' + value;
       return alert(msg);
     };
     store = Ext.create('DataTabs.YoutubeStore');
     store.load();
     return store.on('load', function() {
-      var aggregatedStore, newsUpdates, tabs2;
+      var aggregatedStore, tabs2;
       aggregatedStore = new Array();
       store.data.each(function(item, index, totalItems) {
         return Ext.each(item.data['feed'].entry, function(rec) {
@@ -32,11 +36,10 @@
           }));
         });
       });
-      newsUpdates = videoListTpl.applyTemplate(aggregatedStore);
-      tabs2 = Ext.create('DataTabs.YoutubeVideoTabs', {
+      return tabs2 = Ext.create('DataTabs.YoutubeVideoTabs', {
+        layout: 'fit',
+        height: 142,
         renderTo: 'data-tabs'
       });
-      return tabs2.applyNews(newsUpdates);
     });
   });
-}).call(this);

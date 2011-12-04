@@ -46,6 +46,8 @@
 
   app.get('/widget', routes.widget);
 
+  app.get('/view', routes.view);
+
   port = process.env.PORT || 3000;
 
   if (!module.parent) {

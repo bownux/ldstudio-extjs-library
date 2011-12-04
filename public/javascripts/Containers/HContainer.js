@@ -1,16 +1,20 @@
-(function() {
+
   Ext.define('Containers.HContainer', {
     extend: 'Ext.panel.Panel',
     id: 'hContainer',
     border: false,
-    height: 342,
     width: 1024,
     autoWidth: false,
+    autoHeight: true,
     monitorResize: true,
+    defaults: {
+      flex: 1
+    },
+    layoutConfig: {
+      align: 'stretch'
+    },
     layout: {
       type: 'hbox',
-      pack: 'start',
-      align: 'stretch'
+      pack: 'start'
     }
   });
-}).call(this);

@@ -17,3 +17,6 @@ exports.widget = (req, res) ->
         else
              res.render 'widget', { title: 'widget', name: widgetName }
     
+exports.view = (req, res) ->
+    viewName = if req.query.name then req.query.name else 'main'
+    res.render 'view', { title: 'YMU ExtJS View '+viewName, name: viewName }

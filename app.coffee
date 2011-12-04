@@ -33,6 +33,7 @@ app.configure 'production', ->
 
 app.get '/', routes.index
 app.get '/widget', routes.widget
+app.get '/view', routes.view
 
 
 

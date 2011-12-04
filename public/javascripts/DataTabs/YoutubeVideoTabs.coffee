@@ -43,16 +43,16 @@ Ext.define 'DataTabs.YoutubeVideoTabs'
             activeTab: 0
             autoWidth: true
             autoHeight: true
-            flex: 1
             plain: true
             myNews: ''
+            layout: 'fit'
             defaults:
                 autoScroll: true
                 bodyPadding: 10
             items: [
                 newsTab,
                 {
-                    itemId: 'training'
+                    id: 'training'
                     title: 'TRAINING'
                     html: '<p>TRAINING TAB</p>'
                 }

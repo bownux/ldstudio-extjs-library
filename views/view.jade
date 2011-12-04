@@ -1,0 +1,21 @@
+extends layout
+
+block scripts
+    script(src='/javascripts/DataTabs/YoutubeVideoTabs.js')
+    script(src='/javascripts/Players/YoutubePlayer.js')
+    script(src='/javascripts/Containers/VContainer.js')
+    script(src='/javascripts/Containers/HContainer.js')
+    script(src='/javascripts/Views/#{name}-viewstrap.js')
+
+block content
+    div#content
+        div#info
+            h1= title
+            h1= name
+            p Welcome to #{name} viewstrap
+
+        #view-container
+
+block foot
+    p.lower-nav 
+        a(href="/") back

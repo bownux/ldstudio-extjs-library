@@ -2,19 +2,23 @@ extends layout
 
 block content
     div#content
-        h1= title
-        p Welcome to #{title}
-        br
-        #widgets
-            ul widgets:
-                li 
-                    a(href="/widget?name=data-tabs") data-tabs
-                li
-                    a(href="/widget?name=player-panel") player-panel
-                li
-                    a(href="/widget?name=video-container") video-container
-                li
-                    a(href="/widget?name=signup") signup-form
+        div#info
+            h1= title
+            p Welcome to #{title}
+            br
+            #widgets
+                ul wired frame viewstraps:
+                    li
+                        a(href="/view?name=main") main-view
+                ul widgets:
+                    li 
+                        a(href="/widget?name=data-tabs") data-tabs
+                    li
+                        a(href="/widget?name=player-panel") player-panel
+                    li
+                        a(href="/widget?name=video-container") video-container
+                    li
+                        a(href="/widget?name=signup") signup-form
         br
 
 block foot

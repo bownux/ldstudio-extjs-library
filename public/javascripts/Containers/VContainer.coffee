@@ -1,19 +1,16 @@
-# Generic YMU Horizontal Container
-Ext.define 'Containers.HContainer',
+# Generic YMU Vertical Container
+Ext.define 'Containers.VContainer',
     extend: 'Ext.panel.Panel',
-    id: 'hContainer',
+    id: 'vContainer',
     border: false,
     width: 1024,
     autoWidth: false,
     autoHeight: true,
     monitorResize: true,
-    defaults: 
-        flex: 1,
-    layoutConfig:
-        align: 'stretch',
     layout: 
-        type: 'hbox',
+        type: 'fit',
         pack: 'start',
+        align: 'stretch'
     #listeners: 
     #    'resize': ->
     #        console.log this.items.items

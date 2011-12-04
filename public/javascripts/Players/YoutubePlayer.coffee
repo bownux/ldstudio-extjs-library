@@ -9,7 +9,7 @@ window.changePlayerVideo = (value,title = 'YMU') ->
 Ext.define 'Players.YoutubePlayer',
     extend: 'Ext.panel.Panel',
     id: 'YoutubePlayer'
-    #title: 'YMU Video',
+    title: 'YMU Video',
     width: 562,
     height: 342,
     header:false,
