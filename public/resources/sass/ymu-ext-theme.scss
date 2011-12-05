@@ -46,3 +46,17 @@ $tab-base-color: white;
 // The value can either be true, in which case the image path will be "../images/"
 // or a string, of where the path is
 $relative-image-path-for-uis: true; // defaults to "../images/" when true
+
+$boxheight: 10em;
+
+#footerContainer {
+    @include border-radius($boxheight/4);
+    background-color:orange;
+}
+#footerContainer{
+    border:none;
+}
+#footerContainer div{
+    padding-top:0px;
+    
+}
