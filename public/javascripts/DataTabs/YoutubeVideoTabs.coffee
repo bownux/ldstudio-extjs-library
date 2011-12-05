@@ -8,10 +8,10 @@ window.videoListTpl = new Ext.XTemplate(
                 '<div class =\'video-img\'><a onclick="changePlayerVideo(\'{[this.getVideoID(values)]}\')", href="javascript:void(0);"><img src="{thumbnailSmall1}" style="padding-right:2px" /></a></div>',
             '</tpl>',
             '<tpl for="title">', 
-                '<div class=\'video-title\'>title{#}: {[this.getValueFromRaw(values)]}</div>', 
+                '<div class=\'video-title\'>{[this.getValueFromRaw(values)]}</div><div class="x-clear"></div>', 
             '</tpl>',
             '<tpl for="content">',
-                '<div class=\'video-content\'>description{#}: {[this.getValueFromRaw(values)]}</div>'
+                '<div class=\'video-content\'>{[this.getValueFromRaw(values)]}</div>'
             '</tpl>',
             '<br />',
         '</tpl>',

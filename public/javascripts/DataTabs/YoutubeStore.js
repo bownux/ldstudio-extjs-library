@@ -1,11 +1,9 @@
-
+(function() {
   Ext.require(['*']);
-
   Ext.define('DataTabs.YoutubeModel', {
     extend: 'Ext.data.Model',
     fields: ['version', 'encoding', 'feed']
   });
-
   Ext.define('DataTabs.YoutubeStore', {
     extend: 'Ext.data.Store',
     requires: ['DataTabs.YoutubeModel'],
@@ -22,3 +20,4 @@
       }
     }
   });
+}).call(this);
