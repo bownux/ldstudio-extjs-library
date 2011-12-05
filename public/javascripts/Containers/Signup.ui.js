@@ -220,6 +220,22 @@ Ext.define('MyApp.view.ui.MyPanel', {
                             flex: 1
                         }
                     ]
+                },
+                
+                {
+                    xtype: 'container',
+                    margin: '0px auto 0px auto',
+                    width: 138,
+                    items: [
+                        {
+                            xtype: 'button',
+                            text: 'Create Account'
+                        },
+                        {
+                            xtype: 'button',
+                            text: 'Cancel'
+                        }
+                    ]
                 }
             ]
         });
