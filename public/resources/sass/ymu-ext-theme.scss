@@ -56,7 +56,20 @@ $boxheight: 10em;
 #footerContainer{
     border:none;
 }
+#footerContainer-body{
+    margin-top: 10px;
+}
 #footerContainer div{
     padding-top:0px;
+    border:none;
     
+}
+.ymu-footer-col-title{
+    font-size: 1.2em;
+    font-weight: bold;
+    padding-bottom: 5px;
+}
+.ymu-footer-col-desc .image-wrap{
+    margin-top: 10px;
+    text-align:center;
 }

@@ -1,12 +1,8 @@
-
+(function() {
   Ext.require(['Ext.layout.*', '*']);
-
   Ext.require('Players.YoutubePlayer');
-
   Ext.require('Containers.VContainer');
-
   Ext.require('Containers.HContainer');
-
   Ext.Loader.setConfig({
     enabled: true,
     paths: {
@@ -14,11 +10,8 @@
       Containers: 'javascripts/Containers'
     }
   });
-
   Ext.Loader.setPath('Players', 'javascripts/Players');
-
   Ext.Loader.setPath('Containers', 'javascripts/Containers');
-
   Ext.onReady(function() {
     var store;
     Ext.EventManager.onWindowResize((function(w, h) {}));
@@ -64,14 +57,14 @@
         style: {
           "border-right": 'solid 2px darkGray'
         },
-        html: "<div class='ymu-footer-col first'>                    <div class='ymu-footer-col-title'>Sales Resources Go Mobile!</div>                                 <div class='ymu-footer-col-desc'>                        Access the YMU Resource Center from any smart phone, anywhere                        Yamaha takes you. Just open phone's web browser to:                        www.YMUsalesresources.mobi                    </div>                  </div>"
+        html: "<div class='ymu-footer-col first'>                    <div class='ymu-footer-col-title'>Sales Resources Go Mobile!</div>                                 <div class='ymu-footer-col-desc'>                        Access the YMU Resource Center from any smart phone, anywhere                        Yamaha takes you. Just open phone's web browser to:                        www.YMUsalesresources.mobi                        <br/>                        <img src='/images/footer-col1-FPO.png' alt='YMU Sales Resource - Mobile' />                    </div>                  </div>"
       });
       col2 = Ext.create('Ext.Panel', {
         id: 'col2',
         style: {
           "border-right": 'solid 2px darkGray'
         },
-        html: "<div class='ymu-footer-col'>                    <div class='ymu-footer-col-title'>R.I.D.E. Program Launched</div>                                 <div class='ymu-footer-col-desc'>                        Rider Instruction and Development Education program launched                        in April 2011. Visit the <a href='#'>R.I.D.E. webpage</a> and                         also take the <a href='#'>Riders Ed online training course</a>                        to decide which level your delearship will be. The program                        assists riders with finding the training and programs they're                        looking for, which will develop positive relationships, and                        provide opportunities for increased traffic in your delearship!                    </div>                  </div>"
+        html: "<div class='ymu-footer-col'>                    <div class='ymu-footer-col-title'>R.I.D.E. Program Launched</div>                                 <div class='ymu-footer-col-desc'>                        Rider Instruction and Development Education program launched                        in April 2011. Visit the <a href='#'>R.I.D.E. webpage</a> and                         also take the <a href='#'>Riders Ed online training course</a>                        to decide which level your delearship will be. The program                        assists riders with finding the training and programs they're                        looking for, which will develop positive relationships, and                        provide opportunities for increased traffic in your delearship!                        <br/>                        <div class='image-wrap'>                        <img src='/images/footer-col2-FPO.png' alt='R.I.D.E.' />                        </div>                    </div>                  </div>"
       });
       col3 = Ext.create('Ext.Panel', {
         id: 'col3',
@@ -82,7 +75,7 @@
       });
       col4 = Ext.create('Ext.Panel', {
         id: 'col4',
-        html: "<div class='ymu-footer-col last'>                    <div class='ymu-footer-col-title'>NEWS & UPDATES</div>                                 <div class='ymu-footer-col-desc'>                    </div>                  </div>"
+        html: "<div class='ymu-footer-col last'>                    <div class='ymu-footer-col-title'>NEWS & UPDATES</div>                                 <div class='ymu-footer-col-desc'>                        Uploaded the 2011 Grizzly vs. Polaris Walk-Around, go take the course to learn some the comeptive advantages the Grizzly 550 EPS has over Polaris! 12:34 PM April 30th, 2010.<br/><br/>Are you up for a challenge? The 2011 Walk-Around Challenge is going til December 1st, so get your videos in! More info on YMU.com 1:13 PM April 28th, 2010.<br/><br/>Visited YMUSalesResources.mobi lately? 4:53 PM April 26th, 2010.                    </div>                  </div>"
       });
       footerContainer = Ext.create('Containers.HContainer', {
         id: 'footerContainer',
@@ -108,3 +101,4 @@
       });
     });
   });
+}).call(this);

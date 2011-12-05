@@ -85,6 +85,8 @@ Ext.onReady ->
                         Access the YMU Resource Center from any smart phone, anywhere
                         Yamaha takes you. Just open phone's web browser to:
                         www.YMUsalesresources.mobi
+                        <br/>
+                        <img src='/images/footer-col1-FPO.png' alt='YMU Sales Resource - Mobile' />
                     </div>
                   </div>"
         col2 = Ext.create 'Ext.Panel'
@@ -101,6 +103,10 @@ Ext.onReady ->
                         assists riders with finding the training and programs they're
                         looking for, which will develop positive relationships, and
                         provide opportunities for increased traffic in your delearship!
+                        <br/>
+                        <div class='image-wrap'>
+                        <img src='/images/footer-col2-FPO.png' alt='R.I.D.E.' />
+                        </div>
                     </div>
                   </div>"
         col3 = Ext.create 'Ext.Panel'
@@ -121,6 +127,7 @@ Ext.onReady ->
             html: "<div class='ymu-footer-col last'>
                     <div class='ymu-footer-col-title'>NEWS & UPDATES</div>             
                     <div class='ymu-footer-col-desc'>
+                        Uploaded the 2011 Grizzly vs. Polaris Walk-Around, go take the course to learn some the comeptive advantages the Grizzly 550 EPS has over Polaris! 12:34 PM April 30th, 2010.<br/><br/>Are you up for a challenge? The 2011 Walk-Around Challenge is going til December 1st, so get your videos in! More info on YMU.com 1:13 PM April 28th, 2010.<br/><br/>Visited YMUSalesResources.mobi lately? 4:53 PM April 26th, 2010.
                     </div>
                   </div>"
         footerContainer = Ext.create 'Containers.HContainer',
