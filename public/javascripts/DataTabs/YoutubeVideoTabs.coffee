@@ -2,20 +2,20 @@ Ext.require ['Ext.tab.*','*']
 
 window.videoListTpl = new Ext.XTemplate(
         '<div>',
-        '<p>',
+        '<div class=\'video-item\'>',
         '<tpl for=".">', 
             '<tpl for="media">', 
-                '<p><a onclick="changePlayerVideo(\'{[this.getVideoID(values)]}\')", href="javascript:void(0);"><img src="{thumbnailSmall1}" style="padding-right:2px" /></a></p>',
+                '<div class =\'video-img\'><a onclick="changePlayerVideo(\'{[this.getVideoID(values)]}\')", href="javascript:void(0);"><img src="{thumbnailSmall1}" style="padding-right:2px" /></a></div>',
             '</tpl>',
             '<tpl for="title">', 
-                '<p>title{#}: {[this.getValueFromRaw(values)]}</p>', 
+                '<div class=\'video-title\'>title{#}: {[this.getValueFromRaw(values)]}</div>', 
             '</tpl>',
             '<tpl for="content">',
-                '<p>description{#}: {[this.getValueFromRaw(values)]}</p>'
+                '<div class=\'video-content\'>description{#}: {[this.getValueFromRaw(values)]}</div>'
             '</tpl>',
             '<br />',
         '</tpl>',
-        '</p>',
+        '</div>',
         '</div>',
         config:
             disableFormats: false

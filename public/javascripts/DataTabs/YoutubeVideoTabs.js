@@ -3,7 +3,7 @@
 
   Ext.require(['Ext.tab.*', '*']);
 
-  window.videoListTpl = new Ext.XTemplate('<div>', '<p>', '<tpl for=".">', '<tpl for="media">', '<p><a onclick="changePlayerVideo(\'{[this.getVideoID(values)]}\')", href="javascript:void(0);"><img src="{thumbnailSmall1}" style="padding-right:2px" /></a></p>', '</tpl>', '<tpl for="title">', '<p>title{#}: {[this.getValueFromRaw(values)]}</p>', '</tpl>', '<tpl for="content">', '<p>description{#}: {[this.getValueFromRaw(values)]}</p>', '</tpl>', '<br />', '</tpl>', '</p>', '</div>', {
+  window.videoListTpl = new Ext.XTemplate('<div>', '<div class=\'video-item\'>', '<tpl for=".">', '<tpl for="media">', '<div class =\'video-img\'><a onclick="changePlayerVideo(\'{[this.getVideoID(values)]}\')", href="javascript:void(0);"><img src="{thumbnailSmall1}" style="padding-right:2px" /></a></div>', '</tpl>', '<tpl for="title">', '<div class=\'video-title\'>title{#}: {[this.getValueFromRaw(values)]}</div>', '</tpl>', '<tpl for="content">', '<div class=\'video-content\'>description{#}: {[this.getValueFromRaw(values)]}</div>', '</tpl>', '<br />', '</tpl>', '</div>', '</div>', {
     config: {
       disableFormats: false
     },

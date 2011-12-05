@@ -54,22 +54,68 @@ Ext.onReady ->
         }
 
         # Footer Container
+        # TODO: seperate into files or read from JSON/Service and apply to template
+        # TODO: configure height to resize based on the tallest element in the items
+        col1 = Ext.create 'Ext.Panel'
+            id: 'col1'
+            html: "<div class='ymu-footer-col first'>
+                    <div class='ymu-footer-col-title'>Sales Resources Go Mobile!</div>             
+                    <div class='ymu-footer-col-desc'>
+                        Access the YMU Resource Center from any smart phone, anywhere
+                        Yamaha takes you. Just open phone's web browser to:
+                        www.YMUsalesresources.mobi
+                    </div>
+                  </div>"
+        col2 = Ext.create 'Ext.Panel'
+            id: 'col2'
+            html: "<div class='ymu-footer-col'>
+                    <div class='ymu-footer-col-title'>R.I.D.E. Program Launched</div>             
+                    <div class='ymu-footer-col-desc'>
+                        Rider Instruction and Development Education program launched
+                        in April 2011. Visit the <a href='#'>R.I.D.E. webpage</a> and 
+                        also take the <a href='#'>Riders Ed online training course</a>
+                        to decide which level your delearship will be. The program
+                        assists riders with finding the training and programs they're
+                        looking for, which will develop positive relationships, and
+                        provide opportunities for increased traffic in your delearship!
+                    </div>
+                  </div>"
+        col3 = Ext.create 'Ext.Panel'
+            id: 'col3'
+            html: "<div class='ymu-footer-col'>
+                    <div class='ymu-footer-col-title'>Looking To Get Certified?</div>             
+                    <div class='ymu-footer-col-desc'>
+                        Learn about all of our different certification programs, like
+                        the YTA, YPA, and YSA and Pro Yamaha Certification programs by
+                        taking the corresponding <a href='#'>Certification online training
+                        courses</a> and on the <a href='#'>Parts & Services webpage</a>.
+                    </div>
+                  </div>"
+        col4 = Ext.create 'Ext.Panel'
+            id: 'col4'
+            html: "<div class='ymu-footer-col last'>
+                    <div class='ymu-footer-col-title'>NEWS & UPDATES</div>             
+                    <div class='ymu-footer-col-desc'>
+                    </div>
+                  </div>"
         footerContainer = Ext.create 'Containers.HContainer',
         { 
               id: 'footerContainer'
               padding:'5 0 0 0'
               defaults:
-                  bodyPadding: 10
+                  flex: 2
+                  height: 200
+                  bodyPadding: 5
                   style:
-                    "text-align": 'center'
+                    "text-align": 'left'
               layoutConfig:
                   pack: 'center'
                   align: 'middle'
               items: [
-                  {html:'col 1', flex:2},
-                  {html:'col 2', flex:2},
-                  {html:'col 3', flex:2},
-                  {html:'col 4', flex:2}
+                  col1,
+                  col2,
+                  col3,
+                  col4
               ],
         }
 
@@ -78,7 +124,7 @@ Ext.onReady ->
         { 
               id: 'mainContainer',
               items: [
-                  {html:'panel 1', flex:1, padding:'0 0 5 0'},
+                  {title:'Training Dashboard',html:'panel 1', height:250, padding:'0 0 5 0'},
                   videoContainer,
                   footerContainer
               ],

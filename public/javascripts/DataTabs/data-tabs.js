@@ -25,7 +25,7 @@
     store = Ext.create('DataTabs.YoutubeStore');
     store.load();
     return store.on('load', function() {
-      var aggregatedStore, tabs2;
+      var aggregatedStore, newsUpdates, tabs2;
       aggregatedStore = new Array();
       store.data.each(function(item, index, totalItems) {
         return Ext.each(item.data['feed'].entry, function(rec) {
@@ -36,10 +36,12 @@
           }));
         });
       });
-      return tabs2 = Ext.create('DataTabs.YoutubeVideoTabs', {
+      newsUpdates = videoListTpl.applyTemplate(aggregatedStore);
+      tabs2 = Ext.create('DataTabs.YoutubeVideoTabs', {
         layout: 'fit',
         height: 142,
         renderTo: 'data-tabs'
       });
+      return tabs2.applyNews(newsUpdates);
     });
   });
