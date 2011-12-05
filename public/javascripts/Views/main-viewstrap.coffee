@@ -33,11 +33,11 @@ Ext.onReady ->
                 )
         )
         newsUpdates = videoListTpl.applyTemplate(aggregatedStore)
-        tabsList = Ext.create 'DataTabs.YoutubeVideoTabs', {height:342}
+        tabsList = Ext.create 'DataTabs.YoutubeVideoTabs', {height:392}
         tabsList.applyNews(newsUpdates)
     
         # Player
-        player = Ext.create 'Players.YoutubePlayer'
+        player = Ext.create 'Players.YoutubePlayer', {flex:0}
 
         #
         # Container Elements

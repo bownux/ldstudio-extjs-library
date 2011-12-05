@@ -38,10 +38,12 @@
       });
       newsUpdates = videoListTpl.applyTemplate(aggregatedStore);
       tabsList = Ext.create('DataTabs.YoutubeVideoTabs', {
-        height: 342
+        height: 392
       });
       tabsList.applyNews(newsUpdates);
-      player = Ext.create('Players.YoutubePlayer');
+      player = Ext.create('Players.YoutubePlayer', {
+        flex: 0
+      });
       videoContainer = Ext.create('Containers.HContainer', {
         id: 'videoContainer',
         items: [player, tabsList]

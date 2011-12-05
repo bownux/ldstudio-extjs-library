@@ -8,11 +8,11 @@
     extend: 'Ext.panel.Panel',
     id: 'YoutubePlayer',
     title: 'YMU Video',
-    width: 562,
-    height: 342,
+    width: 662,
+    height: 392,
     header: false,
     headerAsText: false,
-    html: '<div><iframe width="560" height="315" src="http://www.youtube.com/embed/1OMlepC6hCU?rel=0" frameborder="0" allowfullscreen></iframe></div>',
+    html: '<div><iframe width="660" height="365" src="http://www.youtube.com/embed/1OMlepC6hCU?rel=0" frameborder="0" allowfullscreen></iframe></div>',
     setTitle: function(newTitle) {
       var me, oldTitle;
       me = this;
@@ -35,6 +35,6 @@
     },
     changeVideo: function(video_id, video_title) {
       this.setTitle(video_title);
-      return this.update("<div><iframe width='560' height='315' src='http://www.youtube.com/embed/" + video_id + "?rel=0' frameborder='0' allowfullscreen></iframe></div>");
+      return this.update("<div><iframe width='660' height='365' src='http://www.youtube.com/embed/" + video_id + "?rel=0' frameborder='0' allowfullscreen></iframe></div>");
     }
   });
