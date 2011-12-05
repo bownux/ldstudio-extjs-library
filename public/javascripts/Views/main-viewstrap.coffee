@@ -42,6 +42,25 @@ Ext.onReady ->
         #
         # Container Elements
         #
+
+        # Dashboard Container
+        loggedIn = Ext.create 'Ext.Panel'
+            id: 'loggedInPanel'
+            title:'Training Dashboard'
+            height:250
+            padding:'0 0 5 0'
+            html:"<div class='ymu-dashbaord'>
+                    <div class='ymu-dashboard-desc'>
+                        TRAINING DASHBOARD
+                    </div>
+                  </div>"
+        dashboardContainer = Ext.create 'Containers.HContainer',
+        { 
+              id: 'dashboardContainer',
+              items: [
+                  loggedIn
+              ],
+        }
         
         # Video Container
         videoContainer = Ext.create 'Containers.HContainer',
@@ -58,6 +77,8 @@ Ext.onReady ->
         # TODO: configure height to resize based on the tallest element in the items
         col1 = Ext.create 'Ext.Panel'
             id: 'col1'
+            style:
+                "border-right": 'solid 2px darkGray'
             html: "<div class='ymu-footer-col first'>
                     <div class='ymu-footer-col-title'>Sales Resources Go Mobile!</div>             
                     <div class='ymu-footer-col-desc'>
@@ -68,6 +89,8 @@ Ext.onReady ->
                   </div>"
         col2 = Ext.create 'Ext.Panel'
             id: 'col2'
+            style:
+                "border-right": 'solid 2px darkGray'
             html: "<div class='ymu-footer-col'>
                     <div class='ymu-footer-col-title'>R.I.D.E. Program Launched</div>             
                     <div class='ymu-footer-col-desc'>
@@ -82,6 +105,8 @@ Ext.onReady ->
                   </div>"
         col3 = Ext.create 'Ext.Panel'
             id: 'col3'
+            style:
+                "border-right": 'solid 2px darkGray'
             html: "<div class='ymu-footer-col'>
                     <div class='ymu-footer-col-title'>Looking To Get Certified?</div>             
                     <div class='ymu-footer-col-desc'>
@@ -104,8 +129,8 @@ Ext.onReady ->
               padding:'5 0 0 0'
               defaults:
                   flex: 2
-                  height: 200
-                  bodyPadding: 5
+                  height: 280
+                  bodyPadding: 10
                   style:
                     "text-align": 'left'
               layoutConfig:
@@ -124,7 +149,7 @@ Ext.onReady ->
         { 
               id: 'mainContainer',
               items: [
-                  {title:'Training Dashboard',html:'panel 1', height:250, padding:'0 0 5 0'},
+                  dashboardContainer,
                   videoContainer,
                   footerContainer
               ],

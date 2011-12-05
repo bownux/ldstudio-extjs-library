@@ -15,6 +15,15 @@ ul {
 div#info {
   padding: 5px;
 }
+#footerContainer {
+  background: url("../images/bg-tmp-1.png") repeat scroll 0 0 transparent;
+}
+#footerContainer .x-panel-body-default {
+  background: none;
+}
+#footerContainer-body .x-panel-body-default {
+  border-style: hidden;
+}
 #header {
   padding-top: 0px;
   margin-bottom: -2px;
