@@ -108,3 +108,7 @@ $boxheight: 10em;
 #dashboardContainer .x-panel-header-text{
     padding-left:20px;
 }
+#dashboardContainer .x-panel-header-default-top{
+    @include border-top-left-radius($boxheight/6);
+    @include border-top-right-radius($boxheight/6);
+}
