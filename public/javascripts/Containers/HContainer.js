@@ -1,4 +1,4 @@
-
+(function() {
   Ext.define('Containers.HContainer', {
     extend: 'Ext.panel.Panel',
     id: 'hContainer',
@@ -18,3 +18,4 @@
       pack: 'start'
     }
   });
+}).call(this);

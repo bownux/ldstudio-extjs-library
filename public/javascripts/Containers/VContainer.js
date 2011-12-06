@@ -1,4 +1,4 @@
-
+(function() {
   Ext.define('Containers.VContainer', {
     extend: 'Ext.panel.Panel',
     id: 'vContainer',
@@ -13,3 +13,4 @@
       align: 'stretch'
     }
   });
+}).call(this);
