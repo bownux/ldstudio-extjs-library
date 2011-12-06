@@ -48,7 +48,6 @@ Ext.onReady ->
             id: 'loggedInPanel'
             title:'Training Dashboard'
             height:250
-            padding:'0 0 5 0'
             html:"<div class='ymu-dashbaord'>
                     <div class='ymu-dashboard-desc'>
                         TRAINING DASHBOARD
@@ -155,6 +154,8 @@ Ext.onReady ->
         containers = Ext.create 'Containers.VContainer',
         { 
               id: 'mainContainer',
+              defaults:
+                  padding:'5 5 5 5'
               items: [
                   dashboardContainer,
                   videoContainer,

@@ -1,8 +1,12 @@
-(function() {
+
   Ext.require(['Ext.layout.*', '*']);
+
   Ext.require('Players.YoutubePlayer');
+
   Ext.require('Containers.VContainer');
+
   Ext.require('Containers.HContainer');
+
   Ext.Loader.setConfig({
     enabled: true,
     paths: {
@@ -10,8 +14,11 @@
       Containers: 'javascripts/Containers'
     }
   });
+
   Ext.Loader.setPath('Players', 'javascripts/Players');
+
   Ext.Loader.setPath('Containers', 'javascripts/Containers');
+
   Ext.onReady(function() {
     var store;
     Ext.EventManager.onWindowResize((function(w, h) {}));
@@ -41,7 +48,6 @@
         id: 'loggedInPanel',
         title: 'Training Dashboard',
         height: 250,
-        padding: '0 0 5 0',
         html: "<div class='ymu-dashbaord'>                    <div class='ymu-dashboard-desc'>                        TRAINING DASHBOARD                    </div>                  </div>"
       });
       dashboardContainer = Ext.create('Containers.HContainer', {
@@ -96,9 +102,11 @@
       });
       return containers = Ext.create('Containers.VContainer', {
         id: 'mainContainer',
+        defaults: {
+          padding: '5 5 5 5'
+        },
         items: [dashboardContainer, videoContainer, footerContainer],
         renderTo: 'view-container'
       });
     });
   });
-}).call(this);

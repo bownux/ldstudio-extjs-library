@@ -47,10 +47,13 @@ $tab-base-color: white;
 // or a string, of where the path is
 $relative-image-path-for-uis: true; // defaults to "../images/" when true
 
+$shadow-color: #333;
 $boxheight: 10em;
 
+// Footer Panel
+
 #footerContainer {
-    @include border-radius($boxheight/4);
+    @include border-radius($boxheight/6);
     background-color:orange;
 }
 #footerContainer{
@@ -75,7 +78,7 @@ $boxheight: 10em;
 }
 
 
-//Video Panel
+// Video Panel
 
 .video-item .video-img{
     width:120px;
@@ -86,4 +89,22 @@ $boxheight: 10em;
     padding-left: 10px;
     font-weight: bold;
     font-size: 1.1em;
+}
+
+// Dashboard Panel
+
+#dashboardContainer .x-panel-body-default {
+    background-color: transparent;
+}
+#dashboardContainer-body {
+    @include border-radius($boxheight/6);
+    @include background-image(linear-gradient(20% 10% , #CCC 0%, rgba(0, 0, 0, 0.1) 100%));
+    @include single-box-shadow($shadow-color,0px,0px,5px,1px);
+}
+#dashboardContainer div{
+    padding-top:0px;
+    border:none;
+}
+#dashboardContainer .x-panel-header-text{
+    padding-left:20px;
 }
