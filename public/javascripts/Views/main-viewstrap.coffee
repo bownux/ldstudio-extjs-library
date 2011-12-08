@@ -139,7 +139,7 @@ Ext.onReady ->
                             <li>2012 YFZ450</li>
                         </ul>
                         <div class='image-wrap'>
-                            <img src='/images/footer-col4-FPO2.png' width='111px' height='78px' style='padding-right: 5px; float:right;' alt='YTA/YSA/YPA' />
+                            <img src='/images/footer-col4-FPO2.png' width='105px' height='78px' style='padding-right: 5px; float:right;' alt='YTA/YSA/YPA' />
                         </div>
                         </div>
                   </div>"
