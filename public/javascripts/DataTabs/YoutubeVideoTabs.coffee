@@ -51,11 +51,6 @@ Ext.define 'DataTabs.YoutubeVideoTabs'
                 bodyPadding: 10
             items: [
                 newsTab,
-                {
-                    id: 'training'
-                    title: 'TRAINING'
-                    html: '<p>TRAINING TAB</p>'
-                }
             ]
             applyNews: (content) ->
                 newsTab.update(content)

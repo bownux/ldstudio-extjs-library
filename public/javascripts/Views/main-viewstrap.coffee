@@ -74,6 +74,7 @@ Ext.onReady ->
         # Footer Container
         # TODO: seperate into files or read from JSON/Service and apply to template
         # TODO: configure height to resize based on the tallest element in the items
+        # TODO: remove all the style hacks and w/h margins/paddings
         col1 = Ext.create 'Ext.Panel'
             id: 'col1'
             style:
@@ -81,11 +82,13 @@ Ext.onReady ->
             html: "<div class='ymu-footer-col first'>
                     <div class='ymu-footer-col-title'>Sales Resources Go Mobile!</div>             
                     <div class='ymu-footer-col-desc'>
-                        Access the YMU Resource Center from any smart phone, anywhere
-                        Yamaha takes you. Just open phone's web browser to:
-                        www.YMUsalesresources.mobi
+                        Access the YMU Sales Resource Center from any device, PC, tablets 
+                        and smart/mobile phones , anytime anywhere Yamaha takes you. Just 
+                        open your device’s browser to: <a href='#'>www.YMUsalesresources.mobi</a>
                         <br/>
-                        <img src='/images/footer-col1-FPO.png' alt='YMU Sales Resource - Mobile' />
+                        <div class='image-wrap'>
+                        <img src='/images/footer-col1-FPO2.png' style='margin-top:-10px;' alt='YMU Sales Resource - Mobile' />
+                        </div>
                     </div>
                   </div>"
         col2 = Ext.create 'Ext.Panel'
@@ -95,16 +98,12 @@ Ext.onReady ->
             html: "<div class='ymu-footer-col'>
                     <div class='ymu-footer-col-title'>R.I.D.E. Program Launched</div>             
                     <div class='ymu-footer-col-desc'>
-                        Rider Instruction and Development Education program launched
-                        in April 2011. Visit the <a href='#'>R.I.D.E. webpage</a> and 
-                        also take the <a href='#'>Riders Ed online training course</a>
-                        to decide which level your delearship will be. The program
-                        assists riders with finding the training and programs they're
-                        looking for, which will develop positive relationships, and
-                        provide opportunities for increased traffic in your delearship!
+                        Rider Instruction, Demo and Events program was launched in September of 
+                        2011. Visit the RIDE webpage  and find out about the RIDE. Take the courses 
+                        and become the  go-to dealer for all things Motorsports in your community
                         <br/>
                         <div class='image-wrap'>
-                        <img src='/images/footer-col2-FPO.png' alt='R.I.D.E.' />
+                        <img src='/images/footer-col2-FPO2.png' alt='R.I.D.E.' />
                         </div>
                     </div>
                   </div>"
@@ -115,10 +114,13 @@ Ext.onReady ->
             html: "<div class='ymu-footer-col'>
                     <div class='ymu-footer-col-title'>Looking To Get Certified?</div>             
                     <div class='ymu-footer-col-desc'>
-                        Learn about all of our different certification programs, like
-                        the YTA, YPA, and YSA and Pro Yamaha Certification programs by
-                        taking the corresponding <a href='#'>Certification online training
-                        courses</a> and on the <a href='#'>Parts & Services webpage</a>.
+                        Learn about all of our different certification programs, like YSA, YPA, 
+                        and YTA programs by logging in. Take the courses and get the recognition 
+                        you and your dealer deserve. 
+                        <br/>
+                        <div class='image-wrap'>
+                        <img src='/images/footer-col3-FPO2.png' alt='YTA/YSA/YPA' />
+                        </div>
                     </div>
                   </div>"
         col4 = Ext.create 'Ext.Panel'
@@ -126,8 +128,20 @@ Ext.onReady ->
             html: "<div class='ymu-footer-col last'>
                     <div class='ymu-footer-col-title'>NEWS & UPDATES</div>             
                     <div class='ymu-footer-col-desc'>
-                        Uploaded the 2011 Grizzly vs. Polaris Walk-Around, go take the course to learn some the comeptive advantages the Grizzly 550 EPS has over Polaris! 12:34 PM April 30th, 2010.<br/><br/>Are you up for a challenge? The 2011 Walk-Around Challenge is going til December 1st, so get your videos in! More info on YMU.com 1:13 PM April 28th, 2010.<br/><br/>Visited YMUSalesResources.mobi lately? 4:53 PM April 26th, 2010.
-                    </div>
+                        Make sure to take the new Walk-Around format Sales Incentives tests 
+                        beginning 1-2-2011:
+                        <br />
+                        <ul class='ymu-footer-col4-list' style='float:left;'>
+                            <li>2012 YFZ-R1</li>
+                            <li>2012 WR450F</li>
+                            <li>2012 Raider SCL</li>
+                            <li>2012 Grizzly 300</li>
+                            <li>2012 YFZ450</li>
+                        </ul>
+                        <div class='image-wrap'>
+                            <img src='/images/footer-col4-FPO2.png' width='111px' height='78px' style='padding-right: 5px; float:right;' alt='YTA/YSA/YPA' />
+                        </div>
+                        </div>
                   </div>"
         footerContainer = Ext.create 'Containers.HContainer',
         { 
@@ -135,7 +149,7 @@ Ext.onReady ->
               padding:'5 0 0 0'
               defaults:
                   flex: 2
-                  height: 280
+                  height: 205
                   bodyPadding: 10
                   style:
                     "text-align": 'left'
