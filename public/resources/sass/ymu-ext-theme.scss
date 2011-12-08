@@ -53,19 +53,37 @@ $boxheight: 10em;
 // Footer Panel
 
 #footerContainer {
-    @include border-radius($boxheight/6);
-    background-color:orange;
+//    @include border-radius($boxheight/6);
+//    background-color:orange;
 }
 #footerContainer{
     border:none;
 }
 #footerContainer-body{
-    margin-top: 10px;
+//    margin-top: 10px;
 }
 #footerContainer div{
     padding-top:0px;
     border:none;
-    
+}
+#footerContainer .x-panel-body-default {
+    background-color: transparent;
+}
+#footerContainer-body {
+    @include border-radius($boxheight/6);
+    @include background-image(linear-gradient(20% 10% , #CCC 0%, rgba(0, 0, 0, 0.1) 100%));
+    @include single-box-shadow($shadow-color,0px,0px,5px,1px);
+}
+#footerContainer div{
+    padding-top:0px;
+    border:none;
+}
+#footerContainer .x-panel-header-text{
+    padding-left:20px;
+}
+#footerContainer .x-panel-header-default-top{
+    @include border-top-left-radius($boxheight/6);
+    @include border-top-right-radius($boxheight/6);
 }
 .ymu-footer-col-title{
     font-size: 1.2em;

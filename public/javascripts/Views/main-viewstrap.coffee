@@ -146,7 +146,7 @@ Ext.onReady ->
         footerContainer = Ext.create 'Containers.HContainer',
         { 
               id: 'footerContainer'
-              padding:'5 0 0 0'
+              padding:'5'
               defaults:
                   flex: 2
                   height: 205
