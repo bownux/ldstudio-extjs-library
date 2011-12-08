@@ -78,7 +78,7 @@ Ext.onReady ->
         col1 = Ext.create 'Ext.Panel'
             id: 'col1'
             style:
-                "border-right": 'solid 2px darkGray'
+                "border-right": 'solid 2px #03529D'
             html: "<div class='ymu-footer-col first'>
                     <div class='ymu-footer-col-title'>Sales Resources Go Mobile!</div>             
                     <div class='ymu-footer-col-desc'>
@@ -94,7 +94,7 @@ Ext.onReady ->
         col2 = Ext.create 'Ext.Panel'
             id: 'col2'
             style:
-                "border-right": 'solid 2px darkGray'
+                "border-right": 'solid 2px #03529D'
             html: "<div class='ymu-footer-col'>
                     <div class='ymu-footer-col-title'>R.I.D.E. Program Launched</div>             
                     <div class='ymu-footer-col-desc'>
@@ -110,7 +110,7 @@ Ext.onReady ->
         col3 = Ext.create 'Ext.Panel'
             id: 'col3'
             style:
-                "border-right": 'solid 2px darkGray'
+                "border-right": 'solid 2px #03529D'
             html: "<div class='ymu-footer-col'>
                     <div class='ymu-footer-col-title'>Looking To Get Certified?</div>             
                     <div class='ymu-footer-col-desc'>

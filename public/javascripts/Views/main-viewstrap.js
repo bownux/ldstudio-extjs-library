@@ -61,21 +61,21 @@
       col1 = Ext.create('Ext.Panel', {
         id: 'col1',
         style: {
-          "border-right": 'solid 2px darkGray'
+          "border-right": 'solid 2px #03529D'
         },
         html: "<div class='ymu-footer-col first'>                    <div class='ymu-footer-col-title'>Sales Resources Go Mobile!</div>                                 <div class='ymu-footer-col-desc'>                        Access the YMU Sales Resource Center from any device, PC, tablets                         and smart/mobile phones , anytime anywhere Yamaha takes you. Just                         open your device’s browser to: <a href='#'>www.YMUsalesresources.mobi</a>                        <br/>                        <div class='image-wrap'>                        <img src='/images/footer-col1-FPO2.png' style='margin-top:-10px;' alt='YMU Sales Resource - Mobile' />                        </div>                    </div>                  </div>"
       });
       col2 = Ext.create('Ext.Panel', {
         id: 'col2',
         style: {
-          "border-right": 'solid 2px darkGray'
+          "border-right": 'solid 2px #03529D'
         },
         html: "<div class='ymu-footer-col'>                    <div class='ymu-footer-col-title'>R.I.D.E. Program Launched</div>                                 <div class='ymu-footer-col-desc'>                        Rider Instruction, Demo and Events program was launched in September of                         2011. Visit the RIDE webpage  and find out about the RIDE. Take the courses                         and become the  go-to dealer for all things Motorsports in your community                        <br/>                        <div class='image-wrap'>                        <img src='/images/footer-col2-FPO2.png' alt='R.I.D.E.' />                        </div>                    </div>                  </div>"
       });
       col3 = Ext.create('Ext.Panel', {
         id: 'col3',
         style: {
-          "border-right": 'solid 2px darkGray'
+          "border-right": 'solid 2px #03529D'
         },
         html: "<div class='ymu-footer-col'>                    <div class='ymu-footer-col-title'>Looking To Get Certified?</div>                                 <div class='ymu-footer-col-desc'>                        Learn about all of our different certification programs, like YSA, YPA,                         and YTA programs by logging in. Take the courses and get the recognition                         you and your dealer deserve.                         <br/>                        <div class='image-wrap'>                        <img src='/images/footer-col3-FPO2.png' alt='YTA/YSA/YPA' />                        </div>                    </div>                  </div>"
       });
