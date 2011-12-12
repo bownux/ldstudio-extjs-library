@@ -4,6 +4,7 @@ $include-default: false;
 
 // Insert your custom variables here.
 $base-color: #03529d;
+$border-color: #0367C5;
 $panel-header-color: white;
 $tab-base-color: white;
 $slider-panel-content-left-width: 360px;
@@ -123,7 +124,6 @@ $boxheight: 10em;
     @include single-box-shadow($shadow-color,0px,0px,5px,1px);
 }
 #dashboardContainer div{
-    padding-top:0px;
     border:none;
 }
 #dashboardContainer .x-panel-header-text{
@@ -224,4 +224,24 @@ div#home-right img{
     -moz-border-radius-bottomright:20px;
     -webkit-border-bottom-right-radius:20px;
     border-radius-bottomright: 20px; 
+
+#dashboardContainer .x-tab-bar-top .x-tab-bar-body-default-plain{
+    left: -2px;
+    padding: 0px;
+    padding-top: 2px;
+}
+#dashboardContainer .x-tab-bar-strip{
+    background-color:$border-color;
+    height: 0px;
+}
+#dashboardSalesGrid{
+    @include border-top-left-radius(0);
+    @include border-bottom-radius($boxheight/6);
+    padding: 5px;
+    background-color: white;
+}
+#authenticatedContainer-body{
+    padding-top:10px;
+    padding-left:15px;
+    padding-right:15px;
 }
