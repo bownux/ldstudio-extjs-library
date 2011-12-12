@@ -42,26 +42,120 @@ Ext.onReady ->
         #
         # Container Elements
         #
+        # TODO: Move containers to separate files.
 
-        # Dashboard Container
+        # ~ Dashboard Container
+        # TODO: Modularize!!
+        # TODO: Add logic for authentication.
+        # TODO: Remove hardcoded layout parameters h/w (x/y).
+        dashboard_y = 300
+        renderAction = (val) ->
+            "<img height=15px align=middle src='images/act_" + val + ".png'>"
         loggedIn = Ext.create 'Ext.Panel'
             id: 'loggedInPanel'
-            title:'Training Dashboard'
+            title:'Your Profile'
             height:250
             html:"<div class='ymu-dashbaord'>
                     <div class='ymu-dashboard-desc'>
-                        TRAINING DASHBOARD
+                        Your Profile
                     </div>
                   </div>"
-        dashboardContainer = Ext.create 'Containers.HContainer',
+        #   Not Authenticated
+        notAuthenticatedContainer = Ext.create 'Containers.HContainer',
         { 
-              id: 'dashboardContainer',
+              id: 'publicContainer',
               items: [
                   loggedIn
               ],
         }
+        #   Authenticated
+        #   Temporary Data Object
+        tmp_sales_incentive_data = [
+            [
+                '2011 Star Walk-Around Challenge',
+                'start', 
+                '',
+                ''
+            ]
+            [
+                '2011 ATV/SXS Walk-Around Challenge',
+                '',
+                'Completed',
+                '11/17/2011'
+            ]
+            [
+                '2011 Motorcycle Walk-Around CHallenge',
+                'start',
+                'In Progress',
+                ''
+            ]
+        ]
+        #   Sales Incentive Data Store
+        #   TODO: Move to separate file and make more adaptive to other data sources.
+        dbSalesStore = Ext.create 'Ext.data.ArrayStore'
+            fields: [
+                {name: 'activity_name'}
+                {name: 'action'}
+                {name: 'status'}
+                {name: 'completion_date', type: 'date'}
+            ]
+        #   Manually Load Data Store
+        dbSalesStore.loadData(tmp_sales_incentive_data)
+        #   Dashboard Grid Item
+        dbSalesGrid = Ext.create 'Ext.grid.GridPanel'
+            id: 'dashboardSalesGrid'
+            title: 'SALES INCENTIVES'
+            store: dbSalesStore,
+            columns: [
+                {header: 'Activity Name', width: 280, sortable: true, dataIndex: 'activity_name'},
+                {header: 'Action', width: 160, sortable: true, dataIndex: 'action', renderer: renderAction }
+                {header: 'Status', width: 150, sortable: true, dataIndex: 'status'},
+                {header: 'Completion Date', width: 100, sortable: true, dataIndex: 'completion_date', renderer: Ext.util.Format.dateRenderer('d/m/Y')},
+            ],
+            autoHeight:true,
+            height: dashboard_y-80,
+            width:640,
+            frame:true
+        #   Dashboard Authenticated Tabs
+        authenticatedTabs = Ext.create 'Ext.TabPanel'
+            activeTab: 0
+            autoWidth: true
+            autoHeight: true
+            plain: true
+            layout: 'fit'
+            left: -2
+            defaults:
+                autoScroll: true
+            items: [
+                dbSalesGrid,
+                {title:'YSA', html:''},
+                {title:'YPA', html:''},
+                {title:'YTA', html:''},
+                {title:'MY COMPLETIONS', html:''},
+                {title:'DEALER REPORT', html:''}
+            ]
+        authenticatedContainer = Ext.create 'Containers.HContainer',
+        { 
+              id: 'authenticatedContainer',
+              title: 'Training Dashboard',
+              height: dashboard_y,
+              flex: 3,
+              items: [
+                  authenticatedTabs
+              ],
+        }
+        #   Dashboard Parent
+        dashboardContainer = Ext.create 'Containers.HContainer',
+        { 
+              id: 'dashboardContainer',
+              height: dashboard_y
+              items: [
+                  authenticatedContainer,
+                  #loggedIn
+              ],
+        }
         
-        # Video Container
+        # ~ Video Container
         videoContainer = Ext.create 'Containers.HContainer',
         { 
               id: 'videoContainer',
@@ -71,7 +165,7 @@ Ext.onReady ->
               ],
         }
 
-        # Footer Container
+        # ~ Footer Container
         # TODO: seperate into files or read from JSON/Service and apply to template
         # TODO: configure height to resize based on the tallest element in the items
         # TODO: remove all the style hacks and w/h margins/paddings

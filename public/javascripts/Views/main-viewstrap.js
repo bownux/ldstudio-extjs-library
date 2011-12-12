@@ -25,7 +25,7 @@
     store = Ext.create('DataTabs.YoutubeStore');
     store.load();
     return store.on('load', function() {
-      var aggregatedStore, col1, col2, col3, col4, containers, dashboardContainer, footerContainer, loggedIn, newsUpdates, player, tabsList, videoContainer;
+      var aggregatedStore, authenticatedContainer, authenticatedTabs, col1, col2, col3, col4, containers, dashboardContainer, dashboard_y, dbSalesGrid, dbSalesStore, footerContainer, loggedIn, newsUpdates, notAuthenticatedContainer, player, renderAction, tabsList, tmp_sales_incentive_data, videoContainer;
       aggregatedStore = new Array();
       store.data.each(function(item, index, totalItems) {
         return Ext.each(item.data['feed'].entry, function(rec) {
@@ -44,15 +44,110 @@
       player = Ext.create('Players.YoutubePlayer', {
         flex: 0
       });
+      dashboard_y = 300;
+      renderAction = function(val) {
+        return "<img height=15px align=middle src='images/act_" + val + ".png'>";
+      };
       loggedIn = Ext.create('Ext.Panel', {
         id: 'loggedInPanel',
-        title: 'Training Dashboard',
+        title: 'Your Profile',
         height: 250,
-        html: "<div class='ymu-dashbaord'>                    <div class='ymu-dashboard-desc'>                        TRAINING DASHBOARD                    </div>                  </div>"
+        html: "<div class='ymu-dashbaord'>                    <div class='ymu-dashboard-desc'>                        Your Profile                    </div>                  </div>"
+      });
+      notAuthenticatedContainer = Ext.create('Containers.HContainer', {
+        id: 'publicContainer',
+        items: [loggedIn]
+      });
+      tmp_sales_incentive_data = [['2011 Star Walk-Around Challenge', 'start', '', ''], ['2011 ATV/SXS Walk-Around Challenge', '', 'Completed', '11/17/2011'], ['2011 Motorcycle Walk-Around CHallenge', 'start', 'In Progress', '']];
+      dbSalesStore = Ext.create('Ext.data.ArrayStore', {
+        fields: [
+          {
+            name: 'activity_name'
+          }, {
+            name: 'action'
+          }, {
+            name: 'status'
+          }, {
+            name: 'completion_date',
+            type: 'date'
+          }
+        ]
+      });
+      dbSalesStore.loadData(tmp_sales_incentive_data);
+      dbSalesGrid = Ext.create('Ext.grid.GridPanel', {
+        id: 'dashboardSalesGrid',
+        title: 'SALES INCENTIVES',
+        store: dbSalesStore,
+        columns: [
+          {
+            header: 'Activity Name',
+            width: 280,
+            sortable: true,
+            dataIndex: 'activity_name'
+          }, {
+            header: 'Action',
+            width: 160,
+            sortable: true,
+            dataIndex: 'action',
+            renderer: renderAction
+          }, {
+            header: 'Status',
+            width: 150,
+            sortable: true,
+            dataIndex: 'status'
+          }, {
+            header: 'Completion Date',
+            width: 100,
+            sortable: true,
+            dataIndex: 'completion_date',
+            renderer: Ext.util.Format.dateRenderer('d/m/Y')
+          }
+        ],
+        autoHeight: true,
+        height: dashboard_y - 80,
+        width: 640,
+        frame: true
+      });
+      authenticatedTabs = Ext.create('Ext.TabPanel', {
+        activeTab: 0,
+        autoWidth: true,
+        autoHeight: true,
+        plain: true,
+        layout: 'fit',
+        left: -2,
+        defaults: {
+          autoScroll: true
+        },
+        items: [
+          dbSalesGrid, {
+            title: 'YSA',
+            html: ''
+          }, {
+            title: 'YPA',
+            html: ''
+          }, {
+            title: 'YTA',
+            html: ''
+          }, {
+            title: 'MY COMPLETIONS',
+            html: ''
+          }, {
+            title: 'DEALER REPORT',
+            html: ''
+          }
+        ]
+      });
+      authenticatedContainer = Ext.create('Containers.HContainer', {
+        id: 'authenticatedContainer',
+        title: 'Training Dashboard',
+        height: dashboard_y,
+        flex: 3,
+        items: [authenticatedTabs]
       });
       dashboardContainer = Ext.create('Containers.HContainer', {
         id: 'dashboardContainer',
-        items: [loggedIn]
+        height: dashboard_y,
+        items: [authenticatedContainer]
       });
       videoContainer = Ext.create('Containers.HContainer', {
         id: 'videoContainer',
