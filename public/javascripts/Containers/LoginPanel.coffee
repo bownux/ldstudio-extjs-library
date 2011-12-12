@@ -1,0 +1,61 @@
+# YMU Login panel for LMS System
+Ext.define 'Containers.LoginPanel',
+    extend: 'Ext.panel.Panel',
+    id: 'login-panel'
+    height: 320,
+    width: 280,
+    border: 'none',
+
+    initComponent: ->
+        me = this;
+
+        Ext.applyIf me, {
+            items: [
+                {
+                    xtype: 'label',
+                    text: 'Login'
+                },
+                {
+                    xtype: 'fieldset',
+                    border: 'none',
+                    height: 320,
+                    width: 280,
+                    items: [
+                        {
+                            xtype: 'textfield',
+                            fieldLabel: 'Username',
+                            anchor: '100%',
+                            border: 'none'
+                        },
+                        {
+                            xtype: 'textfield',
+                            fieldLabel: 'Password',
+                            anchor: '100%'
+                        },
+                        {
+                            xtype: 'container',
+                            anchor: '100%',
+                            items: [
+                                {
+                                    xtype: 'label',
+                                    margin: 10,
+                                    text: 'not registered?'
+                                },
+                                {
+                                    xtype: 'label',
+                                    margin: 5,
+                                    text: 'forgot password?'
+                                }
+                            ]
+                        },
+                        {
+                            xtype: 'button',
+                            text: 'Login',
+                            margin: '20 0 0 210'
+                        }
+                    ]
+                }
+            ]
+        }
+
+        me.callParent arguments;

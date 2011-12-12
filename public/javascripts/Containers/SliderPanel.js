@@ -2,12 +2,14 @@
   Ext.define('Containers.SliderPanel', {
     extend: 'Ext.panel.Panel',
     id: 'slider-panel',
-    html: '<h1>Hello WOrld<h1>',
+    width: 730,
+    html: '<p id="loading">Loading<p>',
     loader: {
       autoLoad: true,
       url: 'slider-content.html',
+      loadMask: true,
       success: function() {
-        return alert('yes!');
+        return console.log('Slider Panel Loaded.');
       }
     }
   });
