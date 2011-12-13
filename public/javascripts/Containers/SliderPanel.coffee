@@ -10,5 +10,6 @@ Ext.define 'Containers.SliderPanel',
         loadMask: true,
         success: ->
             console.log 'Slider Panel Loaded.'
+            console.log Ext.get('.panel-content')
             #Ext.Msg.alert 'Slider Panel Loaded'
         }

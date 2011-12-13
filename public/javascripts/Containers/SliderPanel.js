@@ -9,7 +9,8 @@
       url: 'slider-content.html',
       loadMask: true,
       success: function() {
-        return console.log('Slider Panel Loaded.');
+        console.log('Slider Panel Loaded.');
+        return console.log(Ext.get('.panel-content'));
       }
     }
   });
