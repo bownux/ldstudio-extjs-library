@@ -15,6 +15,9 @@ Ext.define 'Players.YoutubePlayer',
     header:false,
     headerAsText : false,
     html: '<div><iframe width="660" height="365" src="http://www.youtube.com/embed/1OMlepC6hCU?rel=0" frameborder="0" allowfullscreen></iframe></div>',
+    constructor: (config) ->
+        this.initConfig(config)
+        this.callParent(arguments)
     setTitle: (newTitle) ->
         me = this
         oldTitle = this.title

@@ -1,24 +1,34 @@
-(function() {
+
   Ext.require(['Ext.layout.*', '*']);
+
   Ext.require('Players.YoutubePlayer');
+
   Ext.require('Containers.VContainer');
+
   Ext.require('Containers.HContainer');
+
   Ext.Loader.setConfig({
     enabled: true,
     paths: {
       Players: 'javascripts/Players',
-      Containers: 'javascripts/Containers'
+      Containers: 'javascripts/Containers',
+      Views: 'javascripts/Views'
     }
   });
+
   Ext.Loader.setPath('Players', 'javascripts/Players');
+
   Ext.Loader.setPath('Containers', 'javascripts/Containers');
+
+  Ext.Loader.setPath('Views', 'javascripts/Views');
+
   Ext.onReady(function() {
     var store;
     Ext.EventManager.onWindowResize((function(w, h) {}));
     store = Ext.create('DataTabs.YoutubeStore');
     store.load();
     return store.on('load', function() {
-      var aggregatedStore, col1, col2, col3, col4, containers, dashboardContainer, footerContainer, loggedIn, newsUpdates, player, tabsList, videoContainer;
+      var aggregatedStore, col1, col2, col3, col4, containers, dashboardContainer, footerContainer, newsUpdates, player, tabsList, videoContainer;
       aggregatedStore = new Array();
       store.data.each(function(item, index, totalItems) {
         return Ext.each(item.data['feed'].entry, function(rec) {
@@ -37,16 +47,7 @@
       player = Ext.create('Players.YoutubePlayer', {
         flex: 0
       });
-      loggedIn = Ext.create('Ext.Panel', {
-        id: 'loggedInPanel',
-        title: 'Training Dashboard',
-        height: 250,
-        html: "<div class='ymu-dashbaord'>                    <div class='ymu-dashboard-desc'>                        TRAINING DASHBOARD                    </div>                  </div>"
-      });
-      dashboardContainer = Ext.create('Containers.HContainer', {
-        id: 'dashboardContainer',
-        items: [loggedIn]
-      });
+      dashboardContainer = Ext.create('Views.Dashboard');
       videoContainer = Ext.create('Containers.HContainer', {
         id: 'videoContainer',
         items: [player, tabsList]
@@ -103,4 +104,3 @@
       });
     });
   });
-}).call(this);

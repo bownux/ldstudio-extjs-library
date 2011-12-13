@@ -8,9 +8,11 @@ Ext.Loader.setConfig({
         paths: 
             Players: 'javascripts/Players'
             Containers: 'javascripts/Containers'
+            Views: 'javascripts/Views'
     })
 Ext.Loader.setPath 'Players', 'javascripts/Players'
 Ext.Loader.setPath 'Containers', 'javascripts/Containers'
+Ext.Loader.setPath 'Views', 'javascripts/Views'
 
 Ext.onReady ->
     # Container Resizing Event
@@ -42,26 +44,37 @@ Ext.onReady ->
         #
         # Container Elements
         #
+        # TODO: Move containers to separate files.
 
-        # Dashboard Container
-        loggedIn = Ext.create 'Ext.Panel'
-            id: 'loggedInPanel'
-            title:'Training Dashboard'
-            height:250
-            html:"<div class='ymu-dashbaord'>
-                    <div class='ymu-dashboard-desc'>
-                        TRAINING DASHBOARD
-                    </div>
-                  </div>"
-        dashboardContainer = Ext.create 'Containers.HContainer',
-        { 
-              id: 'dashboardContainer',
-              items: [
-                  loggedIn
-              ],
-        }
+        # ~ Dashboard Container
+                        
+        dashboardContainer = Ext.create 'Views.Dashboard'
+        #dashboardContainer = Ext.create 'Containers.HContainer',
+        #{ 
+        #      id: 'dashboardContainer'
+        #      height: dashboard_y
+        #      items: [
+        #          authenticatedContainer
+        #          loggedIn
+        #      ],
+        #      constructor: (config) ->
+        #          console.log("dashboard")
+        #          this.initConfig(config)
+        #          this.callParent(arguments)
+        #      logOut: () ->
+        #          this.removeAll(false)
+        #          this.add(notAuthenticatedContainer)
+        #          this.add(loggedOut)
+        #          this.doLayout()
+        #      logIn: () ->
+        #          this.removeAll(false)
+        #          this.add(authenticatedContainer)
+        #          this.add(loggedIn)
+        #          this.doLayout()
+        #}
+        #dashboardContainer.logOut()
         
-        # Video Container
+        # ~ Video Container
         videoContainer = Ext.create 'Containers.HContainer',
         { 
               id: 'videoContainer',
@@ -71,7 +84,7 @@ Ext.onReady ->
               ],
         }
 
-        # Footer Container
+        # ~ Footer Container
         # TODO: seperate into files or read from JSON/Service and apply to template
         # TODO: configure height to resize based on the tallest element in the items
         # TODO: remove all the style hacks and w/h margins/paddings

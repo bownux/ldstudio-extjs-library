@@ -1,10 +1,9 @@
-(function() {
+
   window.changePlayerVideo = function(value, title) {
-    if (title == null) {
-      title = 'YMU';
-    }
+    if (title == null) title = 'YMU';
     return Ext.getCmp('YoutubePlayer').changeVideo(value, title);
   };
+
   Ext.define('Players.YoutubePlayer', {
     extend: 'Ext.panel.Panel',
     id: 'YoutubePlayer',
@@ -14,6 +13,10 @@
     header: false,
     headerAsText: false,
     html: '<div><iframe width="660" height="365" src="http://www.youtube.com/embed/1OMlepC6hCU?rel=0" frameborder="0" allowfullscreen></iframe></div>',
+    constructor: function(config) {
+      this.initConfig(config);
+      return this.callParent(arguments);
+    },
     setTitle: function(newTitle) {
       var me, oldTitle;
       me = this;
@@ -24,9 +27,7 @@
       } else {
         me.updateHeader();
       }
-      if (me.reExpander) {
-        me.reExpander.setTitle(me.title);
-      }
+      if (me.reExpander) me.reExpander.setTitle(me.title);
       return me.fireEvent('titlechange', me, me.title, oldTitle);
     },
     applyTitle: function(title) {
@@ -41,4 +42,3 @@
       return this.update("<div><iframe width='660' height='365' src='http://www.youtube.com/embed/" + video_id + "?rel=0' frameborder='0' allowfullscreen></iframe></div>");
     }
   });
-}).call(this);
