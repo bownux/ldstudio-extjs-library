@@ -14,8 +14,7 @@
       }
     },
     showIt: __bind(function() {
-      var createIcon, dh, icon, iconIncr, legend, legendIcon, legendIcons, panelContainer, slideCount, sliderContent, _i, _len, _ref;
-      console.log("ShowIT from Slider");
+      var addHandler, createIcon, dh, icon, iconIncr, initial, legend, legendElements, legendIcons, panelContainer, slideCount, sliderContent, _i, _len, _ref;
       legendIcons = [];
       iconIncr = 0;
       createIcon = function(icon) {
@@ -37,11 +36,6 @@
         icon = _ref[_i];
         createIcon(icon);
       }
-      legendIcon = {
-        tag: 'div',
-        cls: 'legend-icon',
-        html: '#'
-      };
       legend = {
         tag: 'div',
         id: 'legend',
@@ -49,7 +43,19 @@
         cn: [legendIcons]
       };
       console.log("Width " + (panelContainer.getWidth()));
-      return dh.append('panel-slider', legend);
+      dh.append('panel-slider', legend);
+      legendElements = Ext.get("legend");
+      initial = legendElements.first();
+      addHandler = function(element) {
+        if (element !== null) {
+          console.log(element);
+          element.addListener('click', function() {
+            return alert("Clicked " + element.dom.innerText);
+          });
+          return addHandler(element.next());
+        }
+      };
+      return addHandler(initial);
     }, this)
   });
 }).call(this);

@@ -13,9 +13,9 @@ Ext.define 'Views.SliderPanel',
             console.log 'Slider Panel Loaded.'
     
     showIt: =>
-        console.log "ShowIT from Slider"
         legendIcons = []
         iconIncr = 0 
+        
         createIcon = (icon) ->
             console.log iconIncr++
             icn =
@@ -23,16 +23,13 @@ Ext.define 'Views.SliderPanel',
                 cls:'legend-icon',
                 html: iconIncr,
             legendIcons.push icn
+            
         panelContainer =  Ext.get 'panel-container'
         sliderContent = panelContainer.dom
         slideCount = sliderContent.childElementCount
+        
         dh = Ext.DomHelper
         createIcon icon for icon in sliderContent.children
-        #for ( x=0; x<slideCount; x++)
-        legendIcon = 
-            tag:'div',
-            cls:'legend-icon',
-            html: '#'
         
         
         legend = 
@@ -42,12 +39,21 @@ Ext.define 'Views.SliderPanel',
             cn: [
                 legendIcons
             ]
-        
 
-        
-
-        
         console.log "Width #{panelContainer.getWidth()}"
+        
+        #Add legend to the Panel Slider Container
         dh.append 'panel-slider', legend
-        #panelContainer.createChild('<h1 style="position:absolute;left:20px">Test</h1>')
 
+        legendElements = Ext.get("legend")
+        initial = legendElements.first();
+
+        addHandler = (element) ->
+            ##If elements are available attache event listeners
+            if element != null
+                console.log element 
+                element.addListener 'click', ->
+                    alert "Clicked #{element.dom.innerText}"
+                addHandler element.next()
+        #Begin attaching event listeners
+        addHandler initial
