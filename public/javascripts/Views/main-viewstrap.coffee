@@ -16,10 +16,10 @@ Ext.Loader.setPath 'Views', 'javascripts/Views'
 
 Ext.onReady ->
     # Container Resizing Event
-    Ext.EventManager.onWindowResize (
-        (w, h) ->
-            #Ext.getCmp("hContainer").setWidth(w-100)
-    )
+    #Ext.EventManager.onWindowResize (
+    #    (w, h) ->
+    #        #Ext.getCmp("hContainer").setWidth(w-100)
+    #)
 
     # Data Store wait on Load
     store = Ext.create 'DataTabs.YoutubeStore'
@@ -190,4 +190,11 @@ Ext.onReady ->
               ],
               renderTo: 'view-container' 
         }
+
+        console.log "END"
+        #console.log Ext.get "panel-container"
+        mysliderPanel =  dashboardContainer.getComponent("publicContainer").getComponent "slider-panel"
+        mysliderPanel.showIt()
+        console.log "END"
+        #console.log dashboardContainer.items.items[0].items.items[0]
     )

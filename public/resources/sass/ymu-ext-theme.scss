@@ -158,12 +158,12 @@ $boxheight: 10em;
 }
 #panel-container{
     height:380px;
-    width: 2920;
+    width: 2920px;
     position:relative;
 }
 
 .panel-content{
-	height: 380px;
+	height: 360px;
 	width: 730px;
 	float:left;
 	position: relative;
@@ -190,9 +190,37 @@ $boxheight: 10em;
     width: $slider-panel-content-left-width;
 }
 
+#legend{
+    position: absolute;
+    top: 265px;
+    right:30px;
+    width: auto;
+}
+
+.legend-icon{
+    width: 20px;
+    height: 20px;
+    color: white;
+    background-color: black;
+    text-align:center;
+    vertical-align:middle;
+    float:left;
+    cursor: pointer;
+    -moz-border-radius: 5px ;
+    border-radius:  5px;
+    margin-left:5px;
+    border: 20px outset blue ;
+    font-weight:bold;
+    padding-top:3px;
+}
+
+.legend-icon:hover{
+        background-color: #fe030e;
+}
+
 #home-right{
 	width: 500px;
-	height: 380px;
+	height: 350px;
 	position:absolute;
 	top: 0px;
 	left:360px;

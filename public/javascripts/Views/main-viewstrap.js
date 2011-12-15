@@ -1,12 +1,8 @@
-
+(function() {
   Ext.require(['Ext.layout.*', '*']);
-
   Ext.require('Players.YoutubePlayer');
-
   Ext.require('Containers.VContainer');
-
   Ext.require('Containers.HContainer');
-
   Ext.Loader.setConfig({
     enabled: true,
     paths: {
@@ -15,20 +11,15 @@
       Views: 'javascripts/Views'
     }
   });
-
   Ext.Loader.setPath('Players', 'javascripts/Players');
-
   Ext.Loader.setPath('Containers', 'javascripts/Containers');
-
   Ext.Loader.setPath('Views', 'javascripts/Views');
-
   Ext.onReady(function() {
     var store;
-    Ext.EventManager.onWindowResize((function(w, h) {}));
     store = Ext.create('DataTabs.YoutubeStore');
     store.load();
     return store.on('load', function() {
-      var aggregatedStore, col1, col2, col3, col4, containers, dashboardContainer, footerContainer, newsUpdates, player, tabsList, videoContainer;
+      var aggregatedStore, col1, col2, col3, col4, containers, dashboardContainer, footerContainer, mysliderPanel, newsUpdates, player, tabsList, videoContainer;
       aggregatedStore = new Array();
       store.data.each(function(item, index, totalItems) {
         return Ext.each(item.data['feed'].entry, function(rec) {
@@ -94,7 +85,7 @@
         },
         items: [col1, col2, col3, col4]
       });
-      return containers = Ext.create('Containers.VContainer', {
+      containers = Ext.create('Containers.VContainer', {
         id: 'mainContainer',
         defaults: {
           padding: '5 5 5 5'
@@ -102,5 +93,10 @@
         items: [dashboardContainer, videoContainer, footerContainer],
         renderTo: 'view-container'
       });
+      console.log("END");
+      mysliderPanel = dashboardContainer.getComponent("publicContainer").getComponent("slider-panel");
+      mysliderPanel.showIt();
+      return console.log("END");
     });
   });
+}).call(this);

@@ -1,4 +1,4 @@
-
+(function() {
   Ext.define('Views.LoginPanel', {
     extend: 'Ext.panel.Panel',
     id: 'login-panel',
@@ -56,3 +56,4 @@
       return me.callParent(arguments);
     }
   });
+}).call(this);
