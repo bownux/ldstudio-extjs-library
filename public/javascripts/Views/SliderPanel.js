@@ -14,7 +14,7 @@
       }
     },
     showIt: __bind(function() {
-      var addHandler, createIcon, dh, icon, iconIncr, initial, legend, legendElements, legendIcons, panelContainer, slideCount, sliderContent, _i, _len, _ref;
+      var addHandler, createIcon, dh, icon, iconIncr, initial, legend, legendElements, legendIcons, panelContainer, pp, slideCount, sliderContent, _i, _len, _ref;
       legendIcons = [];
       iconIncr = 0;
       createIcon = function(icon) {
@@ -46,11 +46,25 @@
       dh.append('panel-slider', legend);
       legendElements = Ext.get("legend");
       initial = legendElements.first();
+      pp = 1;
       addHandler = function(element) {
         if (element !== null) {
           console.log(element);
           element.addListener('click', function() {
-            return alert("Clicked " + element.dom.innerText);
+            var clickedPanel, diff, direction, move;
+            clickedPanel = parseInt(element.dom.innerText);
+            if (clickedPanel > pp) {
+              diff = clickedPanel - pp;
+              move = diff * 730;
+              direction = 'left';
+            } else {
+              diff = pp - clickedPanel;
+              move = diff * 730;
+              direction = 'right';
+            }
+            pp = clickedPanel;
+            console.log("Clicked " + element.dom.innerText);
+            return panelContainer.move(direction, move, true);
           });
           return addHandler(element.next());
         }

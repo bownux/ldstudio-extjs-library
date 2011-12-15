@@ -39,7 +39,7 @@ Ext.define 'Views.SliderPanel',
             cn: [
                 legendIcons
             ]
-
+        
         console.log "Width #{panelContainer.getWidth()}"
         
         #Add legend to the Panel Slider Container
@@ -48,12 +48,27 @@ Ext.define 'Views.SliderPanel',
         legendElements = Ext.get("legend")
         initial = legendElements.first();
 
+        pp = 1
+
         addHandler = (element) ->
             ##If elements are available attache event listeners
             if element != null
                 console.log element 
                 element.addListener 'click', ->
-                    alert "Clicked #{element.dom.innerText}"
+                    clickedPanel = parseInt(element.dom.innerText)
+                    if clickedPanel > pp
+                        diff = clickedPanel - pp
+                        move = diff * 730
+                        direction = 'left'
+                    
+                    else
+                        diff = pp - clickedPanel
+                        move = diff * 730
+                        direction = 'right'
+                    pp = clickedPanel
+                    console.log "Clicked #{element.dom.innerText}"
+                    panelContainer.move direction, move, true
                 addHandler element.next()
         #Begin attaching event listeners
         addHandler initial
+    
