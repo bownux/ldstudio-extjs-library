@@ -49,12 +49,19 @@ Ext.define 'Views.SliderPanel',
         initial = legendElements.first();
 
         pp = 1
-
+        
+        clearClass = (element) ->
+           element.removeCls 'legend-active'
+           if element.next()
+               clearClass element.next() 
+               
         addHandler = (element) ->
             ##If elements are available attache event listeners
             if element != null
                 console.log element 
                 element.addListener 'click', ->
+                    clearClass Ext.get("legend").first() 
+                    element.addCls 'legend-active'
                     clickedPanel = parseInt(element.dom.innerText)
                     if clickedPanel > pp
                         diff = clickedPanel - pp

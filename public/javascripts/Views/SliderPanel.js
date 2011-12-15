@@ -14,7 +14,7 @@
       }
     },
     showIt: __bind(function() {
-      var addHandler, createIcon, dh, icon, iconIncr, initial, legend, legendElements, legendIcons, panelContainer, pp, slideCount, sliderContent, _i, _len, _ref;
+      var addHandler, clearClass, createIcon, dh, icon, iconIncr, initial, legend, legendElements, legendIcons, panelContainer, pp, slideCount, sliderContent, _i, _len, _ref;
       legendIcons = [];
       iconIncr = 0;
       createIcon = function(icon) {
@@ -47,11 +47,19 @@
       legendElements = Ext.get("legend");
       initial = legendElements.first();
       pp = 1;
+      clearClass = function(element) {
+        element.removeCls('legend-active');
+        if (element.next()) {
+          return clearClass(element.next());
+        }
+      };
       addHandler = function(element) {
         if (element !== null) {
           console.log(element);
           element.addListener('click', function() {
             var clickedPanel, diff, direction, move;
+            clearClass(Ext.get("legend").first());
+            element.addCls('legend-active');
             clickedPanel = parseInt(element.dom.innerText);
             if (clickedPanel > pp) {
               diff = clickedPanel - pp;
