@@ -60,13 +60,11 @@ Ext.define 'Views.SliderPanel',
                         diff = clickedPanel - pp
                         move = diff * 730
                         direction = 'left'
-                    
                     else
                         diff = pp - clickedPanel
                         move = diff * 730
                         direction = 'right'
                     pp = clickedPanel
-                    console.log "Clicked #{element.dom.innerText}"
                     panelContainer.move direction, move, true
                 addHandler element.next()
         #Begin attaching event listeners

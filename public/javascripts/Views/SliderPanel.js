@@ -63,7 +63,6 @@
               direction = 'right';
             }
             pp = clickedPanel;
-            console.log("Clicked " + element.dom.innerText);
             return panelContainer.move(direction, move, true);
           });
           return addHandler(element.next());
