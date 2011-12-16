@@ -47,6 +47,7 @@ Ext.define 'Views.SliderPanel',
 
         legendElements = Ext.get("legend")
         initial = legendElements.first();
+        initial.addCls 'legend-active'
 
         pp = 1
         
@@ -63,6 +64,8 @@ Ext.define 'Views.SliderPanel',
                     clearClass Ext.get("legend").first() 
                     element.addCls 'legend-active'
                     clickedPanel = parseInt(element.dom.innerText)
+                    if pp is clickedPanel 
+                        return
                     if clickedPanel > pp
                         diff = clickedPanel - pp
                         move = diff * 730
@@ -76,4 +79,6 @@ Ext.define 'Views.SliderPanel',
                 addHandler element.next()
         #Begin attaching event listeners
         addHandler initial
+
+        #begin autorotate
     

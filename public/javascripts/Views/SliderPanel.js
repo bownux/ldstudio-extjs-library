@@ -46,6 +46,7 @@
       dh.append('panel-slider', legend);
       legendElements = Ext.get("legend");
       initial = legendElements.first();
+      initial.addCls('legend-active');
       pp = 1;
       clearClass = function(element) {
         element.removeCls('legend-active');
@@ -61,6 +62,9 @@
             clearClass(Ext.get("legend").first());
             element.addCls('legend-active');
             clickedPanel = parseInt(element.dom.innerText);
+            if (pp === clickedPanel) {
+              return;
+            }
             if (clickedPanel > pp) {
               diff = clickedPanel - pp;
               move = diff * 730;
