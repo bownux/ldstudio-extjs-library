@@ -44,7 +44,9 @@
       };
       console.log("Width " + (panelContainer.getWidth()));
       panelContainer.addListener('mouseover', function() {
-        return console.log("OVER");
+        console.log("OVER");
+        clearInterval(window.slidePanelTimer);
+        return console.log(Ext.getCmp('slider-panel'));
       });
       panelContainer.addListener('mouseout', function() {
         return console.log("OUT");
@@ -63,7 +65,7 @@
       addHandler = function(element) {
         if (element !== null) {
           element.addListener('click', function() {
-            var clickedPanel, diff, direction, move;
+            var clickedPanel, diff, direction, move, x;
             clearClass(Ext.get("legend").first());
             element.addCls('legend-active');
             clickedPanel = parseInt(element.dom.innerText);
@@ -80,6 +82,7 @@
               direction = 'right';
             }
             pp = clickedPanel;
+            x = pp;
             return panelContainer.move(direction, move, true);
           });
           return addHandler(element.next());
@@ -92,6 +95,7 @@
         clearClass(initial);
         distance = 730;
         direction = "left";
+        pp = x;
         console.log("Incr " + x);
         if (x === 3) {
           distance = panelContainer.getWidth() - 730;
@@ -103,7 +107,7 @@
         return x++;
       };
       console.log('autorotate');
-      return window.slidePanelRotater = setInterval(autoRotate, 3000);
+      return window.slidePanelTimer = setInterval(autoRotate, 3000);
     }, this)
   });
 }).call(this);

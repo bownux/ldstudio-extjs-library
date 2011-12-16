@@ -43,6 +43,8 @@ Ext.define 'Views.SliderPanel',
         console.log "Width #{panelContainer.getWidth()}"
         panelContainer.addListener 'mouseover', ->
             console.log "OVER"
+            clearInterval window.slidePanelTimer
+            console.log  Ext.getCmp('slider-panel')
         panelContainer.addListener 'mouseout', ->
             console.log "OUT"
         #Add legend to the Panel Slider Container
@@ -77,6 +79,7 @@ Ext.define 'Views.SliderPanel',
                         move = diff * 730
                         direction = 'right'
                     pp = clickedPanel
+                    x = pp
                     panelContainer.move direction, move, true
                 addHandler element.next()
         #Begin attaching event listeners
@@ -87,6 +90,7 @@ Ext.define 'Views.SliderPanel',
             clearClass initial
             distance = 730
             direction = "left"
+            pp = x
             console.log "Incr #{x}"
             if x is 3 
                 distance = panelContainer.getWidth() - 730 
@@ -96,7 +100,7 @@ Ext.define 'Views.SliderPanel',
             panelContainer.move direction, distance, true
             x++
         console.log 'autorotate'
-        window.slidePanelRotater = setInterval autoRotate , 3000
+        window.slidePanelTimer = setInterval autoRotate , 3000
 
         #begin autorotate
     

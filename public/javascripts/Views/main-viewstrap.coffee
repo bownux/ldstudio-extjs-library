@@ -97,10 +97,10 @@ Ext.onReady ->
                     <div class='ymu-footer-col-desc'>
                         Access the YMU Sales Resource Center from any device, PC, tablets 
                         and smart/mobile phones , anytime anywhere Yamaha takes you. Just 
-                        open your device’s browser to: <a href='#'>www.YMUsalesresources.mobi</a>
+                        open your device’s browser to: <a href='http://www.YMUsalesresources.mobi' target='_blank' style='color:#00579a'>www.YMUsalesresources.mobi</a>
                         <br/>
                         <div class='image-wrap'>
-                        <img src='/images/footer-col1-FPO2.png' style='margin-top:-10px;' alt='YMU Sales Resource - Mobile' />
+                        <img src='/images/footer-col1-FPO2.png' style='margin-top:-5px;' alt='YMU Sales Resource - Mobile' />
                         </div>
                     </div>
                   </div>"
@@ -162,7 +162,7 @@ Ext.onReady ->
               padding:'5'
               defaults:
                   flex: 2
-                  height: 205
+                  height: 215
                   bodyPadding: 10
                   style:
                     "text-align": 'left'

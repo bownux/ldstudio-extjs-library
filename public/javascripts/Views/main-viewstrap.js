@@ -48,7 +48,7 @@
         style: {
           "border-right": 'solid 2px #03529D'
         },
-        html: "<div class='ymu-footer-col first'>                    <div class='ymu-footer-col-title'>Sales Resources Go Mobile!</div>                                 <div class='ymu-footer-col-desc'>                        Access the YMU Sales Resource Center from any device, PC, tablets                         and smart/mobile phones , anytime anywhere Yamaha takes you. Just                         open your device’s browser to: <a href='#'>www.YMUsalesresources.mobi</a>                        <br/>                        <div class='image-wrap'>                        <img src='/images/footer-col1-FPO2.png' style='margin-top:-10px;' alt='YMU Sales Resource - Mobile' />                        </div>                    </div>                  </div>"
+        html: "<div class='ymu-footer-col first'>                    <div class='ymu-footer-col-title'>Sales Resources Go Mobile!</div>                                 <div class='ymu-footer-col-desc'>                        Access the YMU Sales Resource Center from any device, PC, tablets                         and smart/mobile phones , anytime anywhere Yamaha takes you. Just                         open your device’s browser to: <a href='http://www.YMUsalesresources.mobi' target='_blank' style='color:#00579a'>www.YMUsalesresources.mobi</a>                        <br/>                        <div class='image-wrap'>                        <img src='/images/footer-col1-FPO2.png' style='margin-top:-5px;' alt='YMU Sales Resource - Mobile' />                        </div>                    </div>                  </div>"
       });
       col2 = Ext.create('Ext.Panel', {
         id: 'col2',
@@ -73,7 +73,7 @@
         padding: '5',
         defaults: {
           flex: 2,
-          height: 205,
+          height: 215,
           bodyPadding: 10,
           style: {
             "text-align": 'left'
