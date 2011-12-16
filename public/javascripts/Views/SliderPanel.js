@@ -14,7 +14,7 @@
       }
     },
     showIt: __bind(function() {
-      var addHandler, clearClass, createIcon, dh, icon, iconIncr, initial, legend, legendElements, legendIcons, panelContainer, pp, slideCount, sliderContent, _i, _len, _ref;
+      var addHandler, autoRotate, clearClass, createIcon, dh, icon, iconIncr, initial, legend, legendElements, legendIcons, panelContainer, pp, slideCount, sliderContent, x, _i, _len, _ref;
       legendIcons = [];
       iconIncr = 0;
       createIcon = function(icon) {
@@ -43,6 +43,12 @@
         cn: [legendIcons]
       };
       console.log("Width " + (panelContainer.getWidth()));
+      panelContainer.addListener('mouseover', function() {
+        return console.log("OVER");
+      });
+      panelContainer.addListener('mouseout', function() {
+        return console.log("OUT");
+      });
       dh.append('panel-slider', legend);
       legendElements = Ext.get("legend");
       initial = legendElements.first();
@@ -56,7 +62,6 @@
       };
       addHandler = function(element) {
         if (element !== null) {
-          console.log(element);
           element.addListener('click', function() {
             var clickedPanel, diff, direction, move;
             clearClass(Ext.get("legend").first());
@@ -80,7 +85,25 @@
           return addHandler(element.next());
         }
       };
-      return addHandler(initial);
+      addHandler(initial);
+      x = 0;
+      autoRotate = function() {
+        var direction, distance;
+        clearClass(initial);
+        distance = 730;
+        direction = "left";
+        console.log("Incr " + x);
+        if (x === 3) {
+          distance = panelContainer.getWidth() - 730;
+          direction = "right";
+          x = 0;
+        }
+        console.log("" + direction + " " + distance);
+        panelContainer.move(direction, distance, true);
+        return x++;
+      };
+      console.log('autorotate');
+      return window.slidePanelRotater = setInterval(autoRotate, 3000);
     }, this)
   });
 }).call(this);
