@@ -7,21 +7,16 @@
     html: '<p id="loading">Loading<p>',
     currentPanel: 1,
     afterRender: function(comp, obj) {
-      console.log("Im done rendering beyootch!");
-      console.log(this);
       this.showIt(this);
       return this.callParent(arguments);
     },
     loader: {
       autoLoad: true,
       url: 'slider-content.html',
-      loadMask: true,
-      success: function() {
-        return console.log('Slider Panel Loaded.');
-      }
+      loadMask: true
     },
     showIt: __bind(function(slider) {
-      var addHandler, autoRotate, clearClass, createIcon, dh, i, iconIncr, initial, legend, legendElements, legendIcons, panelContainer, slideCount, x;
+      var addHandler, autoRotate, clearClass, createIcon, dh, i, iconIncr, initial, legend, legendElements, legendIcons, panelContainer, slideCount;
       legendIcons = [];
       iconIncr = 0;
       createIcon = function(icon) {
@@ -90,23 +85,20 @@
         }
       };
       addHandler(initial);
-      x = 0;
       autoRotate = function() {
-        var direction, distance, pp;
-        console.log("Autorotate position: " + x);
+        var direction, distance;
+        slider.currentPanel++;
         clearClass(initial);
         distance = 730;
         direction = "left";
-        pp = x;
-        console.log("Incr " + x);
-        if (x === 3) {
-          distance = panelContainer.getWidth() - slider.width;
+        console.log("CurrentPanel " + slider.currentPanel);
+        if (slider.currentPanel === slideCount + 1) {
+          distance = slider.width * slideCount - slider.width;
           direction = "right";
-          x = 0;
+          slider.currentPanel = 1;
         }
         console.log("" + direction + " " + distance);
-        panelContainer.move(direction, distance, true);
-        return x++;
+        return panelContainer.move(direction, distance, true);
       };
       console.log('autorotate');
       return window.slidePanelTimer = setInterval(autoRotate, 3000);

@@ -6,8 +6,6 @@ Ext.define 'Views.SliderPanel',
     html: '<p id="loading">Loading<p>',
     currentPanel: 1,
     afterRender: (comp,obj) ->
-        console.log "Im done rendering beyootch!"
-        console.log this
         this.showIt(this)
         this.callParent arguments
 
@@ -15,8 +13,6 @@ Ext.define 'Views.SliderPanel',
         autoLoad: true,
         url: 'slider-content.html',
         loadMask: true,
-        success: ->
-            console.log 'Slider Panel Loaded.'
     
     showIt: ( slider )=>
         #Array to hold icons created in config loop
@@ -91,21 +87,20 @@ Ext.define 'Views.SliderPanel',
         addHandler initial
 
         
-        x=0
         autoRotate = ->
-            console.log "Autorotate position: #{x}"
+            slider.currentPanel++
             clearClass initial
             distance = 730
             direction = "left"
-            pp = x
-            console.log "Incr #{x}"
-            if x is 3 
-                distance = panelContainer.getWidth() - slider.width 
+            console.log "CurrentPanel #{slider.currentPanel}"
+            if slider.currentPanel is slideCount+1 
+                distance = slider.width * slideCount - slider.width 
                 direction = "right"
-                x = 0 
+                slider.currentPanel = 1
             console.log "#{direction} #{distance}"
             panelContainer.move direction, distance, true
-            x++
+            
+            
         console.log 'autorotate'
         window.slidePanelTimer = setInterval autoRotate , 3000
 
