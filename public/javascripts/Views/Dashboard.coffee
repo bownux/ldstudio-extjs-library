@@ -97,7 +97,8 @@ authenticatedTabs = Ext.create 'Ext.TabPanel'
     plain: true
     layout: 'fit'
     left: -2
-    flex: 3
+    width: 725
+    height: dashboard_y-80
     defaults:
         autoScroll: true
     items: [
@@ -112,13 +113,23 @@ authenticatedTabs = Ext.create 'Ext.TabPanel'
 #   TODO: Check on construct credentials or cookies
 #   TODO: Figure out if we want the side panel inside/outside this
 #   TODO: Do not display if authentication fails.
-authenticatedContainer = Ext.create 'Containers.HContainer',
+authenticatedContainer = Ext.create 'Containers.VContainer',
 { 
       id: 'authenticatedContainer',
       title: 'Training Dashboard',
+      layout:
+          type: 'vbox'
       height: dashboard_y,
       flex: 3
       items: [
+          {
+              id: 'authenticatedTopBarPanel'
+              xtype: 'panel'
+              buttonAlign: 'right'
+              items: [
+                  {xtype: 'button',text: 'YMU ONLINE', margin: '0 0 5 650'},
+              ]
+          }
           authenticatedTabs
       ],
 }
