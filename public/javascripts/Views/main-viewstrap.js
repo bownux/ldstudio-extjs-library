@@ -95,7 +95,6 @@
       });
       console.log("END");
       mysliderPanel = dashboardContainer.getComponent("publicContainer").getComponent("slider-panel");
-      mysliderPanel.showIt();
       return console.log("END");
     });
   });

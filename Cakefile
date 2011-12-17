@@ -9,7 +9,7 @@ task 'assets:watch', 'Watch source files and build JS & CSS', (options) ->
 
     runCommand './cc.sh'
 	
-    runCommand 'coffee', '-wc', 'public/javascripts/Containers', 'public/javascripts/DataTabs', 'public/javascripts/Players','public/javascripts/tab','public/javascripts/Views'
+    runCommand 'coffee', '-wc','public/', 'public/javascripts/Containers', 'public/javascripts/DataTabs', 'public/javascripts/Players','public/javascripts/tab','public/javascripts/Views'
 	#runCommand 'compass watch public/resources/ public/resources/sass/ymu-ext-theme.scss'
 	
 	#{exec} = require 'child_process'

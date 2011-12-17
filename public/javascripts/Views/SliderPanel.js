@@ -5,6 +5,13 @@
     id: 'slider-panel',
     width: 730,
     html: '<p id="loading">Loading<p>',
+    currentPanel: 1,
+    afterRender: function(comp, obj) {
+      console.log("Im done rendering beyootch!");
+      console.log(this);
+      this.showIt(this);
+      return this.callParent(arguments);
+    },
     loader: {
       autoLoad: true,
       url: 'slider-content.html',
@@ -13,8 +20,8 @@
         return console.log('Slider Panel Loaded.');
       }
     },
-    showIt: __bind(function() {
-      var addHandler, autoRotate, clearClass, createIcon, dh, icon, iconIncr, initial, legend, legendElements, legendIcons, panelContainer, pp, slideCount, sliderContent, x, _i, _len, _ref;
+    showIt: __bind(function(slider) {
+      var addHandler, autoRotate, clearClass, createIcon, dh, i, iconIncr, initial, legend, legendElements, legendIcons, panelContainer, slideCount, x;
       legendIcons = [];
       iconIncr = 0;
       createIcon = function(icon) {
@@ -28,13 +35,12 @@
         return legendIcons.push(icn);
       };
       panelContainer = Ext.get('panel-container');
-      sliderContent = panelContainer.dom;
-      slideCount = sliderContent.childElementCount;
+      slideCount = slider.el.dom.firstChild.children[0].children[0].childElementCount;
       dh = Ext.DomHelper;
-      _ref = sliderContent.children;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        icon = _ref[_i];
-        createIcon(icon);
+      i = 0;
+      while (i < slideCount) {
+        createIcon(i);
+        i++;
       }
       legend = {
         tag: 'div',
@@ -42,20 +48,14 @@
         cls: 'legend',
         cn: [legendIcons]
       };
-      console.log("Width " + (panelContainer.getWidth()));
-      panelContainer.addListener('mouseover', function() {
-        console.log("OVER");
-        clearInterval(window.slidePanelTimer);
-        return console.log(Ext.getCmp('slider-panel'));
-      });
-      panelContainer.addListener('mouseout', function() {
-        return console.log("OUT");
-      });
       dh.append('panel-slider', legend);
       legendElements = Ext.get("legend");
       initial = legendElements.first();
       initial.addCls('legend-active');
-      pp = 1;
+      panelContainer.addListener('mouseover', function() {
+        return clearInterval(window.slidePanelTimer);
+      });
+      panelContainer.addListener('mouseout', function() {});
       clearClass = function(element) {
         element.removeCls('legend-active');
         if (element.next()) {
@@ -64,25 +64,26 @@
       };
       addHandler = function(element) {
         if (element !== null) {
-          element.addListener('click', function() {
+          element.addListener('click', function(evt) {
             var clickedPanel, diff, direction, move, x;
             clearClass(Ext.get("legend").first());
             element.addCls('legend-active');
             clickedPanel = parseInt(element.dom.innerText);
-            if (pp === clickedPanel) {
+            console.log("Current Panel Position in addHandler: " + slider.currentPanel);
+            if (slider.currentPanel === clickedPanel) {
               return;
             }
-            if (clickedPanel > pp) {
-              diff = clickedPanel - pp;
-              move = diff * 730;
+            if (clickedPanel > slider.currentPanel) {
+              diff = clickedPanel - slider.currentPanel;
+              move = diff * slider.width;
               direction = 'left';
             } else {
-              diff = pp - clickedPanel;
-              move = diff * 730;
+              diff = slider.currentPanel - clickedPanel;
+              move = diff * slider.width;
               direction = 'right';
             }
-            pp = clickedPanel;
-            x = pp;
+            slider.currentPanel = clickedPanel;
+            x = slider.currentPanel;
             return panelContainer.move(direction, move, true);
           });
           return addHandler(element.next());
@@ -91,14 +92,15 @@
       addHandler(initial);
       x = 0;
       autoRotate = function() {
-        var direction, distance;
+        var direction, distance, pp;
+        console.log("Autorotate position: " + x);
         clearClass(initial);
         distance = 730;
         direction = "left";
         pp = x;
         console.log("Incr " + x);
         if (x === 3) {
-          distance = panelContainer.getWidth() - 730;
+          distance = panelContainer.getWidth() - slider.width;
           direction = "right";
           x = 0;
         }

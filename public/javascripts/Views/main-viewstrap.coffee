@@ -194,7 +194,6 @@ Ext.onReady ->
         console.log "END"
         #console.log Ext.get "panel-container"
         mysliderPanel =  dashboardContainer.getComponent("publicContainer").getComponent "slider-panel"
-        mysliderPanel.showIt()
         console.log "END"
         #console.log dashboardContainer.items.items[0].items.items[0]
     )

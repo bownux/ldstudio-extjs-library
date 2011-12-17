@@ -4,6 +4,12 @@ Ext.define 'Views.SliderPanel',
     id: 'slider-panel',
     width: 730,
     html: '<p id="loading">Loading<p>',
+    currentPanel: 1,
+    afterRender: (comp,obj) ->
+        console.log "Im done rendering beyootch!"
+        console.log this
+        this.showIt(this)
+        this.callParent arguments
 
     loader: 
         autoLoad: true,
@@ -12,25 +18,27 @@ Ext.define 'Views.SliderPanel',
         success: ->
             console.log 'Slider Panel Loaded.'
     
-    showIt: =>
+    showIt: ( slider )=>
+        #Array to hold icons created in config loop
         legendIcons = []
         iconIncr = 0 
-        
         createIcon = (icon) ->
             console.log iconIncr++
             icn =
                 tag:'div',
                 cls:'legend-icon',
                 html: iconIncr,
+            #add icon to the container
             legendIcons.push icn
-            
+        #@todo delete this dependency    
         panelContainer =  Ext.get 'panel-container'
-        sliderContent = panelContainer.dom
-        slideCount = sliderContent.childElementCount
+        slideCount = slider.el.dom.firstChild.children[0].children[0].childElementCount
         
         dh = Ext.DomHelper
-        createIcon icon for icon in sliderContent.children
-        
+        i = 0
+        while i < slideCount
+            createIcon i
+            i++
         
         legend = 
             tag:'div',
@@ -40,22 +48,18 @@ Ext.define 'Views.SliderPanel',
                 legendIcons
             ]
         
-        console.log "Width #{panelContainer.getWidth()}"
-        panelContainer.addListener 'mouseover', ->
-            console.log "OVER"
-            clearInterval window.slidePanelTimer
-            console.log  Ext.getCmp('slider-panel')
-        panelContainer.addListener 'mouseout', ->
-            console.log "OUT"
+
         #Add legend to the Panel Slider Container
         dh.append 'panel-slider', legend
 
         legendElements = Ext.get("legend")
         initial = legendElements.first();
         initial.addCls 'legend-active'
-
-        pp = 1
         
+        panelContainer.addListener 'mouseover', ->
+            clearInterval window.slidePanelTimer
+        panelContainer.addListener 'mouseout', ->
+
         clearClass = (element) ->
            element.removeCls 'legend-active'
            if element.next()
@@ -64,36 +68,39 @@ Ext.define 'Views.SliderPanel',
         addHandler = (element) ->
             ##If elements are available attache event listeners
             if element != null
-                element.addListener 'click', ->
+                element.addListener 'click', (evt) ->
                     clearClass Ext.get("legend").first() 
                     element.addCls 'legend-active'
                     clickedPanel = parseInt(element.dom.innerText)
-                    if pp is clickedPanel 
+                    console.log "Current Panel Position in addHandler: #{slider.currentPanel}"
+                    if slider.currentPanel is clickedPanel 
                         return
-                    if clickedPanel > pp
-                        diff = clickedPanel - pp
-                        move = diff * 730
+                    if clickedPanel > slider.currentPanel
+                        diff = clickedPanel - slider.currentPanel
+                        move = diff * slider.width
                         direction = 'left'
                     else
-                        diff = pp - clickedPanel
-                        move = diff * 730
+                        diff = slider.currentPanel - clickedPanel
+                        move = diff * slider.width
                         direction = 'right'
-                    pp = clickedPanel
-                    x = pp
+                    slider.currentPanel = clickedPanel
+                    x = slider.currentPanel
                     panelContainer.move direction, move, true
                 addHandler element.next()
         #Begin attaching event listeners
         addHandler initial
-       
+
+        
         x=0
         autoRotate = ->
+            console.log "Autorotate position: #{x}"
             clearClass initial
             distance = 730
             direction = "left"
             pp = x
             console.log "Incr #{x}"
             if x is 3 
-                distance = panelContainer.getWidth() - 730 
+                distance = panelContainer.getWidth() - slider.width 
                 direction = "right"
                 x = 0 
             console.log "#{direction} #{distance}"
