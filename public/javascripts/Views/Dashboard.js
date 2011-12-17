@@ -142,6 +142,7 @@
           {
             xtype: 'button',
             text: 'YMU ONLINE',
+            href: 'https://yamaha-dealers.com/SumTotal/',
             margin: '0 0 5 650'
           }
         ]

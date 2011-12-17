@@ -127,7 +127,7 @@ authenticatedContainer = Ext.create 'Containers.VContainer',
               xtype: 'panel'
               buttonAlign: 'right'
               items: [
-                  {xtype: 'button',text: 'YMU ONLINE', margin: '0 0 5 650'},
+                  {xtype: 'button',text: 'YMU ONLINE', href:'https://yamaha-dealers.com/SumTotal/', margin: '0 0 5 650'},
               ]
           }
           authenticatedTabs
