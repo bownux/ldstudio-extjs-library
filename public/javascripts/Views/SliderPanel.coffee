@@ -68,8 +68,9 @@ Ext.define 'Views.SliderPanel',
                     clearClass Ext.get("legend").first() 
                     element.addCls 'legend-active'
                     clickedPanel = parseInt(element.dom.innerText)
+					clickedPanel ?= parseInt(element.dom.innerHTML)
                     console.log "Current Panel Position in addHandler: #{slider.currentPanel}"
-                    if slider.currentPanel is clickedPanel 
+                    if slider.currentPanel is clickedPanel
                         return
                     if clickedPanel > slider.currentPanel
                         diff = clickedPanel - slider.currentPanel
