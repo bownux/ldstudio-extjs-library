@@ -1,22 +1,17 @@
 (function() {
   var authenticate, authenticatedContainer, authenticatedTabs, dashboard_y, dbSalesGrid, dbSalesStore, loggedIn, loggedOut, loginPanel, notAuthenticatedContainer, renderAction, sliderPanel, tmp_sales_incentive_data;
-
   dashboard_y = 300;
-
   renderAction = function(val) {
     return "<img height=15px align=middle src='images/act_" + val + ".png'>";
   };
-
   sliderPanel = Ext.create('Views.SliderPanel', {
     height: 320,
     flex: 5
   });
-
   loginPanel = Ext.create('Views.LoginPanel', {
     height: 320,
     flex: 2
   });
-
   loggedIn = Ext.create('Ext.Panel', {
     id: 'loggedInPanel',
     title: 'Your Profile',
@@ -24,7 +19,6 @@
     flex: 1,
     html: "<div class='ymu-dashbaord'>            <div class='ymu-dashboard-desc'>                Your Profile            </div>          </div>"
   });
-
   loggedOut = Ext.create('Ext.Panel', {
     id: 'loggedOutPanel',
     title: 'Log In',
@@ -32,15 +26,12 @@
     flex: 1,
     html: "<div class='ymu-dashbaord'>            <div class='ymu-dashboard-desc'>                Log In            </div>          </div>"
   });
-
   notAuthenticatedContainer = Ext.create('Containers.HContainer', {
     id: 'publicContainer',
     flex: 3,
     items: [sliderPanel, loginPanel]
   });
-
   tmp_sales_incentive_data = [['2011 Star Walk-Around Challenge', 'start', '', ''], ['2011 ATV/SXS Walk-Around Challenge', '', 'Completed', '11/17/2011'], ['2011 Motorcycle Walk-Around CHallenge', 'start', 'In Progress', '']];
-
   dbSalesStore = Ext.create('Ext.data.ArrayStore', {
     fields: [
       {
@@ -55,9 +46,7 @@
       }
     ]
   });
-
   dbSalesStore.loadData(tmp_sales_incentive_data);
-
   dbSalesGrid = Ext.create('Ext.grid.GridPanel', {
     id: 'dashboardSalesGrid',
     title: 'SALES INCENTIVES',
@@ -92,7 +81,6 @@
     width: 640,
     frame: true
   });
-
   authenticatedTabs = Ext.create('Ext.TabPanel', {
     activeTab: 0,
     autoWidth: true,
@@ -124,7 +112,6 @@
       }
     ]
   });
-
   authenticatedContainer = Ext.create('Containers.VContainer', {
     id: 'authenticatedContainer',
     title: 'Training Dashboard',
@@ -149,12 +136,10 @@
       }, authenticatedTabs
     ]
   });
-
   authenticate = function() {
     console.log("test");
     return Ext.getCmp("dashboardContainer").logIn();
   };
-
   Ext.define('Views.Dashboard', {
     extend: 'Containers.HContainer',
     id: 'dashboardContainer',
@@ -180,5 +165,4 @@
       return this.doLayout();
     }
   });
-
 }).call(this);

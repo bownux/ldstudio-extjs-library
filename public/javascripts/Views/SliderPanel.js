@@ -1,5 +1,4 @@
 (function() {
-  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   Ext.define('Views.SliderPanel', {
     extend: 'Ext.panel.Panel',
     id: 'slider-panel',
@@ -7,7 +6,7 @@
     html: '<p id="loading">Loading<p>',
     currentPanel: 1,
     afterRender: function(comp, obj) {
-      this.showIt(this);
+      this.startSlider(this);
       return this.callParent(arguments);
     },
     loader: {
@@ -15,7 +14,10 @@
       url: 'slider-content.html',
       loadMask: true
     },
-    showIt: __bind(function(slider) {
+    doSomething: function() {
+      return alert("I've Done something.");
+    },
+    startSlider: function(slider) {
       var addHandler, autoRotate, clearClass, createIcon, dh, i, iconIncr, initial, legend, legendElements, legendIcons, panelContainer, slideCount;
       legendIcons = [];
       iconIncr = 0;
@@ -65,6 +67,7 @@
             element.addCls('legend-active');
             clickedPanel = parseInt(element.dom.innerText);
             console.log("Current Panel Position in addHandler: " + slider.currentPanel);
+            console.log("clickedPanel");
             if (slider.currentPanel === clickedPanel) {
               return;
             }
@@ -101,7 +104,7 @@
         return panelContainer.move(direction, distance, true);
       };
       console.log('autorotate');
-      return window.slidePanelTimer = setInterval(autoRotate, 3000);
-    }, this)
+      return window.slidePanelTimer = setInterval(autoRotate, 5000);
+    }
   });
 }).call(this);
