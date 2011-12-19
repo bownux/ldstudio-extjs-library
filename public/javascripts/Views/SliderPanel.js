@@ -6,7 +6,7 @@
     html: '<p id="loading">Loading<p>',
     currentPanel: 1,
     afterRender: function(comp, obj) {
-      this.startSlider(this);
+      this.showIt(this);
       return this.callParent(arguments);
     },
     loader: {
@@ -14,10 +14,7 @@
       url: 'slider-content.html',
       loadMask: true
     },
-    doSomething: function() {
-      return alert("I've Done something.");
-    },
-    startSlider: function(slider) {
+    showIt: function(slider) {
       var addHandler, autoRotate, clearClass, createIcon, dh, i, iconIncr, initial, legend, legendElements, legendIcons, panelContainer, slideCount;
       legendIcons = [];
       iconIncr = 0;
@@ -33,7 +30,6 @@
       };
       panelContainer = Ext.get('panel-container');
       slideCount = slider.el.dom.firstChild.children[0].children[0].childElementCount;
-      dh = Ext.DomHelper;
       i = 0;
       while (i < slideCount) {
         createIcon(i);
@@ -45,6 +41,7 @@
         cls: 'legend',
         cn: [legendIcons]
       };
+      dh = Ext.DomHelper;
       dh.append('panel-slider', legend);
       legendElements = Ext.get("legend");
       initial = legendElements.first();
@@ -66,8 +63,8 @@
             clearClass(Ext.get("legend").first());
             element.addCls('legend-active');
             clickedPanel = parseInt(element.dom.innerText);
+            clickedPanel || (clickedPanel = parseInt(element.dom.innerHTML));
             console.log("Current Panel Position in addHandler: " + slider.currentPanel);
-            console.log("clickedPanel");
             if (slider.currentPanel === clickedPanel) {
               return;
             }
@@ -104,7 +101,7 @@
         return panelContainer.move(direction, distance, true);
       };
       console.log('autorotate');
-      return window.slidePanelTimer = setInterval(autoRotate, 5000);
+      return window.slidePanelTimer = setInterval(autoRotate, 3000);
     }
   });
 }).call(this);

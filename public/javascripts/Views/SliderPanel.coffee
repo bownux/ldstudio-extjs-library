@@ -14,7 +14,7 @@ Ext.define 'Views.SliderPanel',
         url: 'slider-content.html',
         loadMask: true,
     
-    showIt: ( slider )=>
+    showIt: ( slider )->
         #Array to hold icons created in config loop
         legendIcons = []
         iconIncr = 0 
@@ -30,7 +30,6 @@ Ext.define 'Views.SliderPanel',
         panelContainer =  Ext.get 'panel-container'
         slideCount = slider.el.dom.firstChild.children[0].children[0].childElementCount
         
-        dh = Ext.DomHelper
         i = 0
         while i < slideCount
             createIcon i
@@ -44,7 +43,7 @@ Ext.define 'Views.SliderPanel',
                 legendIcons
             ]
         
-
+        dh = Ext.DomHelper
         #Add legend to the Panel Slider Container
         dh.append 'panel-slider', legend
 
