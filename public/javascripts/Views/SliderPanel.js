@@ -15,7 +15,7 @@
       loadMask: true
     },
     showIt: function(slider) {
-      var addHandler, autoRotate, clearClass, createIcon, dh, i, iconIncr, initial, legend, legendElements, legendIcons, panelContainer, slideCount;
+      var addHandler, clearClass, createIcon, dh, i, iconIncr, initial, legend, legendElements, legendIcons, panelContainer, slideCount;
       legendIcons = [];
       iconIncr = 0;
       createIcon = function(icon) {
@@ -49,7 +49,9 @@
       panelContainer.addListener('mouseover', function() {
         return clearInterval(window.slidePanelTimer);
       });
-      panelContainer.addListener('mouseout', function() {});
+      panelContainer.addListener('mouseout', function() {
+        return window.slidePanelTimer = setInterval(slider.autoRotate, 5000);
+      });
       clearClass = function(element) {
         element.removeCls('legend-active');
         if (element.next()) {
@@ -64,7 +66,6 @@
             element.addCls('legend-active');
             clickedPanel = parseInt(element.dom.innerText);
             clickedPanel || (clickedPanel = parseInt(element.dom.innerHTML));
-            console.log("Current Panel Position in addHandler: " + slider.currentPanel);
             if (slider.currentPanel === clickedPanel) {
               return;
             }
@@ -85,23 +86,34 @@
         }
       };
       addHandler(initial);
-      autoRotate = function() {
+      slider.autoRotate = function() {
         var direction, distance;
         slider.currentPanel++;
         clearClass(initial);
         distance = 730;
         direction = "left";
-        console.log("CurrentPanel " + slider.currentPanel);
         if (slider.currentPanel === slideCount + 1) {
           distance = slider.width * slideCount - slider.width;
           direction = "right";
           slider.currentPanel = 1;
         }
-        console.log("" + direction + " " + distance);
-        return panelContainer.move(direction, distance, true);
+        panelContainer.move(direction, distance, true);
+        clearClass(initial);
+        for (x = 1; x < slider.currentPanel+1; x++){
+                if(x == 1){ 
+                    var cel = initial;
+                }else{
+                    cel = cel.next();
+                }
+                if (x == slider.currentPanel){
+                    cel.addCls('legend-active');
+                }
+                    
+            };
+        return this;
       };
       console.log('autorotate');
-      return window.slidePanelTimer = setInterval(autoRotate, 3000);
+      return window.slidePanelTimer = setInterval(slider.autoRotate, 5000);
     }
   });
 }).call(this);

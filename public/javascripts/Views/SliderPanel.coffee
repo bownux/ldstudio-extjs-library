@@ -54,6 +54,7 @@ Ext.define 'Views.SliderPanel',
         panelContainer.addListener 'mouseover', ->
             clearInterval window.slidePanelTimer
         panelContainer.addListener 'mouseout', ->
+            window.slidePanelTimer = setInterval slider.autoRotate , 5000
 
         clearClass = (element) ->
            element.removeCls 'legend-active'
@@ -68,7 +69,7 @@ Ext.define 'Views.SliderPanel',
                     element.addCls 'legend-active'
                     clickedPanel = parseInt(element.dom.innerText)
                     clickedPanel or= parseInt(element.dom.innerHTML)
-                    console.log "Current Panel Position in addHandler: #{slider.currentPanel}"
+                    #console.log "Current Panel Position in addHandler: #{slider.currentPanel}"
                     if slider.currentPanel is clickedPanel
                         return
                     if clickedPanel > slider.currentPanel
@@ -87,22 +88,36 @@ Ext.define 'Views.SliderPanel',
         addHandler initial
 
         
-        autoRotate = ->
+        slider.autoRotate = ->
             slider.currentPanel++
             clearClass initial
             distance = 730
             direction = "left"
-            console.log "CurrentPanel #{slider.currentPanel}"
+            #console.log "CurrentPanel #{slider.currentPanel}"
             if slider.currentPanel is slideCount+1 
                 distance = slider.width * slideCount - slider.width 
                 direction = "right"
                 slider.currentPanel = 1
-            console.log "#{direction} #{distance}"
+            #console.log "#{direction} #{distance}"
             panelContainer.move direction, distance, true
+            clearClass initial
+            #legendElements[slider.currentPanel].addCls 'legend-active'
+            `for (x = 1; x < slider.currentPanel+1; x++){
+                if(x == 1){ 
+                    var cel = initial;
+                }else{
+                    cel = cel.next();
+                }
+                if (x == slider.currentPanel){
+                    cel.addCls('legend-active');
+                }
+                    
+            }`
+            @
             
             
         console.log 'autorotate'
-        window.slidePanelTimer = setInterval autoRotate , 3000
+        window.slidePanelTimer = setInterval slider.autoRotate , 5000
 
         #begin autorotate
     
