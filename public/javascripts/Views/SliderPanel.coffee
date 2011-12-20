@@ -52,9 +52,9 @@ Ext.define 'Views.SliderPanel',
         initial.addCls 'legend-active'
         
         panelContainer.addListener 'mouseover', ->
-            clearInterval window.slidePanelTimer
+            clearInterval slider.slidePanelTimer
         panelContainer.addListener 'mouseout', ->
-            window.slidePanelTimer = setInterval slider.autoRotate , 5000
+            slider.slidePanelTimer = setInterval slider.autoRotate , 5000
 
         clearClass = (element) ->
            element.removeCls 'legend-active'
@@ -117,7 +117,7 @@ Ext.define 'Views.SliderPanel',
             
             
         console.log 'autorotate'
-        window.slidePanelTimer = setInterval slider.autoRotate , 5000
+        slider.slidePanelTimer = setInterval slider.autoRotate , 5000
 
         #begin autorotate
     

@@ -47,10 +47,10 @@
       initial = legendElements.first();
       initial.addCls('legend-active');
       panelContainer.addListener('mouseover', function() {
-        return clearInterval(window.slidePanelTimer);
+        return clearInterval(slider.slidePanelTimer);
       });
       panelContainer.addListener('mouseout', function() {
-        return window.slidePanelTimer = setInterval(slider.autoRotate, 5000);
+        return slider.slidePanelTimer = setInterval(slider.autoRotate, 5000);
       });
       clearClass = function(element) {
         element.removeCls('legend-active');
@@ -113,7 +113,7 @@
         return this;
       };
       console.log('autorotate');
-      return window.slidePanelTimer = setInterval(slider.autoRotate, 5000);
+      return slider.slidePanelTimer = setInterval(slider.autoRotate, 5000);
     }
   });
 }).call(this);
