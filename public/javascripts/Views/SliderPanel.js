@@ -14,13 +14,15 @@
       url: 'slider-content.html',
       loadMask: true
     },
+    trackEvent: function(evt) {
+      return _gaq.push(['_trackEvent', 'Slider', evt]);
+    },
     showIt: function(slider) {
       var addHandler, clearClass, createIcon, dh, i, iconIncr, initial, legend, legendElements, legendIcons, panelContainer, slideCount;
       legendIcons = [];
       iconIncr = 0;
       createIcon = function(icon) {
         var icn;
-        console.log(iconIncr++);
         icn = {
           tag: 'div',
           cls: 'legend-icon',
@@ -78,6 +80,7 @@
               move = diff * slider.width;
               direction = 'right';
             }
+            slider.trackEvent("Panel " + clickedPanel);
             slider.currentPanel = clickedPanel;
             x = slider.currentPanel;
             return panelContainer.move(direction, move, true);
@@ -112,8 +115,8 @@
             };
         return this;
       };
-      console.log('autorotate');
-      return slider.slidePanelTimer = setInterval(slider.autoRotate, 5000);
+      slider.slidePanelTimer = setInterval(slider.autoRotate, 5000);
+      return slider;
     }
   });
 }).call(this);

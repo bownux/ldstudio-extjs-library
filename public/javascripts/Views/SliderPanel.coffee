@@ -13,13 +13,17 @@ Ext.define 'Views.SliderPanel',
         autoLoad: true,
         url: 'slider-content.html',
         loadMask: true,
-    
+
+    trackEvent: (evt) ->
+        _gaq.push ['_trackEvent', 'Slider', evt]
+
+        
     showIt: ( slider )->
         #Array to hold icons created in config loop
         legendIcons = []
         iconIncr = 0 
         createIcon = (icon) ->
-            console.log iconIncr++
+            #console.log iconIncr++
             icn =
                 tag:'div',
                 cls:'legend-icon',
@@ -80,6 +84,8 @@ Ext.define 'Views.SliderPanel',
                         diff = slider.currentPanel - clickedPanel
                         move = diff * slider.width
                         direction = 'right'
+                    #console.log slider
+                    slider.trackEvent "Panel #{clickedPanel}"
                     slider.currentPanel = clickedPanel
                     x = slider.currentPanel
                     panelContainer.move direction, move, true
@@ -116,8 +122,6 @@ Ext.define 'Views.SliderPanel',
             @
             
             
-        console.log 'autorotate'
+        #console.log 'autorotate'
         slider.slidePanelTimer = setInterval slider.autoRotate , 5000
-
-        #begin autorotate
-    
+        slider
