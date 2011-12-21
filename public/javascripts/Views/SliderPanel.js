@@ -23,6 +23,7 @@
       iconIncr = 0;
       createIcon = function(icon) {
         var icn;
+        iconIncr++;
         icn = {
           tag: 'div',
           cls: 'legend-icon',

@@ -23,7 +23,7 @@ Ext.define 'Views.SliderPanel',
         legendIcons = []
         iconIncr = 0 
         createIcon = (icon) ->
-            #console.log iconIncr++
+            iconIncr++
             icn =
                 tag:'div',
                 cls:'legend-icon',
