@@ -1,9 +1,10 @@
-Ext.define('MyApp.view.ui.MyPanel', {
+Ext.define('YMU.view.ui.Signup', {
     extend: 'Ext.panel.Panel',
 
     height: 847,
     margin: '',
-    width: 687,
+    width: 840,
+    padding: '20 0 0 120',
     title: 'Create Account',
 
     initComponent: function() {
@@ -11,106 +12,115 @@ Ext.define('MyApp.view.ui.MyPanel', {
 
         Ext.applyIf(me, {
             items: [
-                {
-                    xtype: 'textfield',
-                    id: 'dealerNumber',
-                    fieldLabel: 'Dealer Number'
-                },
-                {
-                    xtype: 'label',
-                    text: '(Please enter your six digit dealer code: e.g. 123456)'
-                },
-                {
-                    xtype: 'button',
-                    id: 'validateDealer',
-                    margin: '-50 0 0 0',
-                    text: 'Validate Dealer'
-                },
-                {
-                    xtype: 'textfield',
-                    id: 'userName',
-                    fieldLabel: 'User Name'
-                },
-                {
-                    xtype: 'panel',
-                    margin: '-60 0 0 400 ',
-                    width: 250,
-                    title: 'Login',
+            	{
+            		xtype: 'container',
+            		id:'dealer',
+            		height: 60,
+            		width: 350,
+            		margin: '10 0 10 25',
+                    layout: {
+                    	align: 'stretch',
+                    	type: 'vbox'
+                    },
                     items: [
-                        {
-                            xtype: 'textfield',
-                            fieldLabel: 'User Name'
-                        },
-                        {
-                            xtype: 'textfield',
-                            fieldLabel: 'Password'
-                        }
-                    ],
-                    dockedItems: [
-                        {
-                            xtype: 'container',
-                            height: 30,
-                            layout: {
-                                align: 'stretch',
-                                type: 'hbox'
-                            },
-                            dock: 'bottom',
-                            items: [
-                                {
-                                    xtype: 'button',
-                                    height: 12,
-                                    text: 'Login',
-                                    flex: 1
-                                },
-                                {
-                                    xtype: 'button',
-                                    text: 'Forgot',
-                                    flex: 1
-                                }
-                            ]
-                        }
-                    ]
+                    	{
+                    		xtype: 'container',
+                    		id: 'validate-container',
+                    		height: 30,
+                    		layout: {
+                    			align: 'stretch',
+                    			type: 'hbox'
+                    		},
+                    		items: [
+                    			{
+                    				xtype: 'textfield',
+                    				id: 'dealerNumber',
+                    				fieldLabel: 'Dealer Number',
+                    				width: 245,
+                            		allowBlank: false,
+                            		blankText: 'A Dealer Number is required to sign up.'
+                				},
+                				{
+                   	 				xtype: 'button',
+                    				id: 'validateDealer',
+                    				margin: '-1 0 0 8',
+                    				text: 'Validate Dealer',
+                    				listeners: {
+                    					click: {
+                    						fn: me.enableForm
+                    					}
+                    				} 
+                				}
+                    		]
+                    	},
+                	    {
+                    		xtype: 'label',
+                    		text: '(Please enter your six digit dealer code: e.g. 123456)'
+                		}
+                	]
                 },
                 {
                     xtype: 'container',
                     id: 'part-2',
-                    padding: '25 0 0 25',
+                    padding: '0 0 0 25',
                     items: [
+                    	{
+                    		xtype: 'textfield',
+                    		id: 'userName',
+                    		fieldLabel: 'User Name',
+                    		width: 350,
+                            allowBlank: false,
+                            blankText: 'Please enter a username.',
+                            disabled: false
+                		},
                         {
                             xtype: 'textfield',
                             id: 'password',
                             width: 350,
-                            fieldLabel: 'Password'
+                            fieldLabel: 'Password',
+                            allowBlank: false,
+                            blankText: 'A password is required'
                         },
                         {
                             xtype: 'textfield',
                             id: 'confirm-password',
                             width: 350,
-                            fieldLabel: 'Confirm Password'
+                            fieldLabel: 'Confirm Password',
+                            allowBlank: false,
+                            blankText: 'Please re-enter your password.'
+                            
                         },
                         {
                             xtype: 'textfield',
                             id: 'first-name',
                             width: 350,
-                            fieldLabel: 'First Name'
+                            fieldLabel: 'First Name',
+                            allowBlank: false,
+                            blankText: 'Your first name is required.'
                         },
                         {
                             xtype: 'textfield',
                             id: 'last-name',
                             width: 350,
-                            fieldLabel: 'Last Name'
+                            fieldLabel: 'Last Name',
+                            allowBlank: false,
+                            blankText: 'Your last name is required.'
                         },
                         {
                             xtype: 'textfield',
                             id: 'email',
+                            vtype: 'email',
                             width: 350,
-                            fieldLabel: 'E-mail'
+                            fieldLabel: 'E-mail',
+                            allowBlank: false
                         },
                         {
                             xtype: 'textfield',
                             id: 'email-confirm',
+                            vtype: 'email',
                             width: 350,
-                            fieldLabel: 'Confirm E-Mail'
+                            fieldLabel: 'Confirm E-Mail',
+                            allowBlank: false
                         },
                         {
                             xtype: 'textfield',
@@ -127,7 +137,9 @@ Ext.define('MyApp.view.ui.MyPanel', {
                             xtype: 'textfield',
                             id: 'address-1',
                             width: 350,
-                            fieldLabel: 'Address 1'
+                            fieldLabel: 'Address 1',
+                            allowBlank: false,
+                            blankText: 'Your address is required.'
                         },
                         {
                             xtype: 'textfield',
@@ -139,19 +151,15 @@ Ext.define('MyApp.view.ui.MyPanel', {
                 },
                 {
                     xtype: 'container',
-                    height: 100,
+                    height: 120,
                     id: 'part-3',
-                    layout: {
-                        align: 'stretch',
-                        padding: '10 25 25 25',
-                        type: 'vbox'
-                    },
+                    padding: '0 25px 0 25px',
+                    margin: '25px 0 0 0',
                     items: [
                         {
                             xtype: 'container',
-                            height: 25,
                             layout: {
-                                align: 'stretch',
+                                align: 'left',
                                 type: 'hbox'
                             },
                             flex: 1,
@@ -160,25 +168,27 @@ Ext.define('MyApp.view.ui.MyPanel', {
                                     xtype: 'textfield',
                                     fieldLabel: 'City',
                                     labelPad: 0,
-                                    labelWidth: 70,
-                                    flex: 1
+                                    labelWidth: 30,
+                                    flex: 1,
+                                    padding: '0 0 0 0'
                                 },
                                 {
                                     xtype: 'textfield',
                                     fieldLabel: 'State',
-                                    labelWidth: 70,
-                                    flex: 1
+                                    labelWidth: 40,
+                                    flex: 1,
+                                    padding: '0 0 0 0'
                                 },
                                 {
                                     xtype: 'textfield',
                                     fieldLabel: 'Country',
-                                    labelWidth: 70,
+                                    labelWidth: 45,
                                     flex: 1
                                 },
                                 {
                                     xtype: 'textfield',
                                     fieldLabel: 'Zip Code',
-                                    labelWidth: 70,
+                                    labelWidth: 60,
                                     flex: 1
                                 }
                             ]
@@ -224,16 +234,19 @@ Ext.define('MyApp.view.ui.MyPanel', {
                 
                 {
                     xtype: 'container',
+                    id: 'form-buttons',
                     margin: '0px auto 0px auto',
-                    width: 138,
+                    width: 200,
                     items: [
                         {
                             xtype: 'button',
-                            text: 'Create Account'
+                            text: 'Create Account',
+                            margin: '0 10px 0 0'
                         },
                         {
                             xtype: 'button',
-                            text: 'Cancel'
+                            text: 'Cancel',
+                            margin: '0 0px 0 10px'
                         }
                     ]
                 }
@@ -241,12 +254,15 @@ Ext.define('MyApp.view.ui.MyPanel', {
         });
 
         me.callParent(arguments);
+    },
+    
+    enableForm: function(){
+    	alert("Simulate Dealer Validation");
     }
 });
 
 Ext.onReady(function() {
-    var form = Ext.create('MyApp.view.ui.MyPanel', {
+    var form = Ext.create('YMU.view.ui.Signup', {
         renderTo: Ext.Element.get('sign-up')
     });
-    console.log(form);
 });
