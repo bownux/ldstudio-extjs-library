@@ -6,7 +6,7 @@
     html: '<p id="loading">Loading<p>',
     currentPanel: 1,
     afterRender: function(comp, obj) {
-      this.showIt(this);
+      this.startSlider(this);
       return this.callParent(arguments);
     },
     loader: {
@@ -17,7 +17,7 @@
     trackEvent: function(evt) {
       return _gaq.push(['_trackEvent', 'Slider', evt]);
     },
-    showIt: function(slider) {
+    startSlider: function(slider) {
       var addHandler, clearClass, createIcon, dh, i, iconIncr, initial, legend, legendElements, legendIcons, panelContainer, slideCount;
       legendIcons = [];
       iconIncr = 0;

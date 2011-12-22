@@ -6,7 +6,7 @@ Ext.define 'Views.SliderPanel',
     html: '<p id="loading">Loading<p>',
     currentPanel: 1,
     afterRender: (comp,obj) ->
-        this.showIt(this)
+        this.startSlider(this)
         this.callParent arguments
 
     loader: 
@@ -16,9 +16,8 @@ Ext.define 'Views.SliderPanel',
 
     trackEvent: (evt) ->
         _gaq.push ['_trackEvent', 'Slider', evt]
-
         
-    showIt: ( slider )->
+    startSlider: ( slider )->
         #Array to hold icons created in config loop
         legendIcons = []
         iconIncr = 0 
