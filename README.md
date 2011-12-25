@@ -33,6 +33,13 @@
 * app.coffee/app.js: 
     * Root application and configuration
 
+## Model, View, Controller, (Store) [MVC] Architecture:
+* public/Model/:
+* public/View/:
+* public/Controller/:
+* public/Store/:
+* public/app.js:
+
 ## Client Side:
     - javascripts/
           - Containers: Container Types 
