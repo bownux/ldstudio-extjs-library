@@ -291,8 +291,7 @@ div#home-right img{
   margin: 0 auto !important;
 }
 #create-account-panel{
-    -moz-border-radius: 10px ;
-    border-radius:  10px;
+    @include border-radius(10px);
    .x-panel-header-text-container{
    }
  }

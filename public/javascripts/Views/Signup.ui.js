@@ -14,6 +14,18 @@ Ext.define('YMU.view.ui.Signup', {
             items: [
             	{
             		xtype: 'container',
+            		id:'signup-notice',
+            		height: 80,
+            		width: 540,
+            		margin: '10 50 10 50',
+                    layout: {
+                    	align: 'stretch',
+                    	type: 'vbox'
+                    },
+                    html:'To register in the YMU Learning Management System you will need to complete the form below. Please enter your dealer number and click &ldquo;Validate dealer&quot;. This will place you in the correct product group. Then complete the rest of the form and click &ldquo;create account&quot;. You will receive a  message stating that your account was successfully created and pending approval. Within 24-48hrs you will receive a confirmation email with log on instructions.'
+            	},
+            	{
+            		xtype: 'container',
             		id:'dealer',
             		height: 60,
             		width: 350,
