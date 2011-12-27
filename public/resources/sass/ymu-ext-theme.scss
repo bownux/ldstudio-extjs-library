@@ -42,6 +42,8 @@ $slider-panel-content-left-width: 360px;
 @include extjs-drawcomponent;
 @include extjs-viewport;
 
+@import 'compass';
+
 // This line changes the location of your images when creating UIs to be relative instead of within the ExtJS directory.
 // You MUST set this to true/string value if you are creating new UIs + supporting legacy browsers.
 // This only applies to new UIs. It does not apply to default component images (i.e. when changing $base-color)
@@ -283,4 +285,18 @@ div#home-right img{
 
 #contact-support{
   display:inline;
+}
+
+#contact-support-footer{
+  margin: 0 auto !important;
+}
+#create-account-panel{
+    -moz-border-radius: 10px ;
+    border-radius:  10px;
+   .x-panel-header-text-container{
+   }
+ }
+#signup-graphic {
+    margin: 0 0 0 10px;
+    float: left;
 }

@@ -5,6 +5,7 @@
     width: 730,
     html: '<p id="loading">Loading<p>',
     currentPanel: 1,
+    interval: 5000,
     afterRender: function(comp, obj) {
       this.startSlider(this);
       return this.callParent(arguments);
@@ -53,7 +54,7 @@
         return clearInterval(slider.slidePanelTimer);
       });
       panelContainer.addListener('mouseout', function() {
-        return slider.slidePanelTimer = setInterval(slider.autoRotate, 5000);
+        return slider.slidePanelTimer = setInterval(slider.autoRotate, slider.interval);
       });
       clearClass = function(element) {
         element.removeCls('legend-active');
@@ -94,7 +95,7 @@
         var direction, distance;
         slider.currentPanel++;
         clearClass(initial);
-        distance = 730;
+        distance = slider.width;
         direction = "left";
         if (slider.currentPanel === slideCount + 1) {
           distance = slider.width * slideCount - slider.width;
@@ -116,7 +117,7 @@
             };
         return this;
       };
-      slider.slidePanelTimer = setInterval(slider.autoRotate, 5000);
+      slider.slidePanelTimer = setInterval(slider.autoRotate, slider.interval);
       return slider;
     }
   });

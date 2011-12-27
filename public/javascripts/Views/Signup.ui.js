@@ -1,10 +1,10 @@
 Ext.define('YMU.view.ui.Signup', {
     extend: 'Ext.panel.Panel',
-
+	id:'create-account-panel',
     height: 847,
     margin: '',
-    width: 840,
-    padding: '20 0 0 120',
+    width: 640,
+    padding: '0 0 0 20',
     title: 'Create Account',
 
     initComponent: function() {
@@ -55,6 +55,7 @@ Ext.define('YMU.view.ui.Signup', {
                     	},
                 	    {
                     		xtype: 'label',
+                    		margin: '5px 0 0 0',
                     		text: '(Please enter your six digit dealer code: e.g. 123456)'
                 		}
                 	]
@@ -123,15 +124,20 @@ Ext.define('YMU.view.ui.Signup', {
                             allowBlank: false
                         },
                         {
-                            xtype: 'textfield',
+                            xtype: 'combobox',
                             id: 'job-title',
                             width: 350,
                             fieldLabel: 'Job Title'
                         },
                         {
-                            xtype: 'textfield',
+                            xtype: 'combobox',
                             width: 350,
                             fieldLabel: 'Preferred Language'
+                        },
+                        {
+                            xtype: 'combobox',
+                            width: 350,
+                            fieldLabel: 'Time Zone'
                         },
                         {
                             xtype: 'textfield',
@@ -154,7 +160,7 @@ Ext.define('YMU.view.ui.Signup', {
                     height: 120,
                     id: 'part-3',
                     padding: '0 25px 0 25px',
-                    margin: '25px 0 0 0',
+                    margin: '25px 0 25px 0',
                     items: [
                         {
                             xtype: 'container',
@@ -175,6 +181,7 @@ Ext.define('YMU.view.ui.Signup', {
                                 {
                                     xtype: 'textfield',
                                     fieldLabel: 'State',
+                                    margin: '0 0 0 5px',
                                     labelWidth: 40,
                                     flex: 1,
                                     padding: '0 0 0 0'
@@ -182,12 +189,14 @@ Ext.define('YMU.view.ui.Signup', {
                                 {
                                     xtype: 'textfield',
                                     fieldLabel: 'Country',
+                                    margin: '0 0 0 5px',
                                     labelWidth: 45,
                                     flex: 1
                                 },
                                 {
                                     xtype: 'textfield',
                                     fieldLabel: 'Zip Code',
+                                    margin: '0 0 0 5px',
                                     labelWidth: 60,
                                     flex: 1
                                 }
@@ -195,6 +204,7 @@ Ext.define('YMU.view.ui.Signup', {
                         },
                         {
                             xtype: 'container',
+                            margin: '10px 0 0 0',
                             height: 25,
                             layout: {
                                 align: 'stretch',
@@ -212,20 +222,29 @@ Ext.define('YMU.view.ui.Signup', {
                                 {
                                     xtype: 'textfield',
                                     fieldLabel: 'Mobile',
+                                    margin: '0 0 0 5px',
                                     labelWidth: 70,
                                     flex: 1
                                 },
                                 {
                                     xtype: 'textfield',
                                     fieldLabel: 'Fax',
+                                    margin: '0 0 0 5px',
                                     labelWidth: 70,
                                     flex: 1
                                 }
                             ]
                         },
                         {
-                            xtype: 'textfield',
-                            width: 200,
+                        	
+                            xtype: 'combobox',
+                            margin: '10px 0 0 0',
+                            store: me.shirtSizes,
+                            emptyText: 'Select Shirt Size..',
+                            queryMode: 'local',
+                            displayField: 'size',
+                            valueField: 'abbr',
+                            width: 240,
                             fieldLabel: 'Shirt Size',
                             flex: 1
                         }
@@ -249,6 +268,15 @@ Ext.define('YMU.view.ui.Signup', {
                             margin: '0 0px 0 10px'
                         }
                     ]
+                },
+                
+                {
+                    xtype: 'container',
+                    margin: '0px auto 0px auto',
+                    id: 'contact-support-footer',
+                    padding:'100px 0 0 0',
+                    width: 400,
+                    html : '<div>If you need any help, Contact: <b><a href="#">Yamaha University Support</a></b></div>'
                 }
             ]
         });
@@ -258,7 +286,18 @@ Ext.define('YMU.view.ui.Signup', {
     
     enableForm: function(){
     	alert("Simulate Dealer Validation");
-    }
+    },
+    
+    shirtSizes: Ext.create('Ext.data.Store',{
+    	fields: ['abbr','size'],
+    	data: [
+    		{"abbr":"S", "size":"Small"},
+    		{"abbr":"M", "size":"Meddium"},
+    		{"abbr":"L", "size":"Large"},
+    		{"abbr":"XL", "size":"X-Large"},
+    		{"abbr":"XXL", "size":"XX-Large"},
+    	]
+    })
 });
 
 Ext.onReady(function() {

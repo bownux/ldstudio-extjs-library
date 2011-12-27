@@ -5,6 +5,7 @@ Ext.define 'Views.SliderPanel',
     width: 730,
     html: '<p id="loading">Loading<p>',
     currentPanel: 1,
+    interval: 5000,
     afterRender: (comp,obj) ->
         this.startSlider(this)
         this.callParent arguments
@@ -57,7 +58,7 @@ Ext.define 'Views.SliderPanel',
         panelContainer.addListener 'mouseover', ->
             clearInterval slider.slidePanelTimer
         panelContainer.addListener 'mouseout', ->
-            slider.slidePanelTimer = setInterval slider.autoRotate , 5000
+            slider.slidePanelTimer = setInterval slider.autoRotate , slider.interval
 
         clearClass = (element) ->
            element.removeCls 'legend-active'
@@ -96,7 +97,7 @@ Ext.define 'Views.SliderPanel',
         slider.autoRotate = ->
             slider.currentPanel++
             clearClass initial
-            distance = 730
+            distance = slider.width
             direction = "left"
             #console.log "CurrentPanel #{slider.currentPanel}"
             if slider.currentPanel is slideCount+1 
@@ -122,5 +123,5 @@ Ext.define 'Views.SliderPanel',
             
             
         #console.log 'autorotate'
-        slider.slidePanelTimer = setInterval slider.autoRotate , 5000
+        slider.slidePanelTimer = setInterval slider.autoRotate , slider.interval
         slider
