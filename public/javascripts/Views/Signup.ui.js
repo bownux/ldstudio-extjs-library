@@ -288,7 +288,7 @@ Ext.define('YMU.view.ui.Signup', {
                     id: 'contact-support-footer',
                     padding:'100px 0 0 0',
                     width: 400,
-                    html : '<div>If you need any help, Contact: <b><a href="#">Yamaha University Support</a></b></div>'
+                    html : '<div>If you need any help, Contact: <b><a href="javascript:window.YMU.showContactSupportWindow();">Yamaha University Support</a></b></div>'
                 }
             ]
         });
