@@ -2,20 +2,16 @@
   Ext.define('Views.ContactSupport', {
     extend: 'Ext.window.Window',
     id: 'contact-support',
-    width: 730,
-    height: 600,
     title: 'Yamaha University Support',
-    items: {
-      xtype: 'container',
-      id: 'contact-us',
-      height: 60,
-      width: 350,
-      margin: '10 0 10 25',
-      layout: {
-        align: 'stretch',
-        type: 'vbox'
-      },
-      items: []
-    }
+    html: 'Hello'
+  });
+  window.YMU || (window.YMU = new Object());
+  window.YMU.showContactSupportWindow = function(evt, el, o) {
+    var contactSupport;
+    contactSupport = Ext.create('Views.ContactSupport');
+    return contactSupport.show();
+  };
+  Ext.onReady(function() {
+    return Ext.get('contact-support').addListener('click', window.YMU.showContactSupportWindow);
   });
 }).call(this);
