@@ -14,6 +14,9 @@
         (jitter . . &); nodemon app.js
         * For more Coffeescript information: http://jashkenas.github.com/coffee-script/
 
+* Compile Stylesheets
+        cd public/resources/sass/ ; compass compile
+
 * To simply start:
         node app.js
 
@@ -32,6 +35,13 @@
     * ExtJS client code lives in the Javascripts directory and is arranged by package name
 * app.coffee/app.js: 
     * Root application and configuration
+
+## Model, View, Controller, (Store) [MVC] Architecture:
+* public/javascripts/Model/:
+* public/javascripts/View/:
+* public/javascripts/Controller/:
+* public/javascripts/Store/:
+* public/apps.js:
 
 ## Client Side:
     - javascripts/

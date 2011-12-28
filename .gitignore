@@ -1,6 +1,8 @@
- node_modules/
+node_modules/
 .DS_Store
 public/resources/sass/.sass-cache/*
 public/resources/sass/.sass-cache/
 
 public/.DS_Store
+
+.DS_Store
