@@ -1,8 +1,6 @@
 (function() {
   var App;
-
   Ext.require(['Ext.layout.*', '*']);
-
   Ext.Loader.setConfig({
     enabled: true,
     paths: {
@@ -13,58 +11,33 @@
     },
     Store: 'javascripts/Store'
   });
-
   Ext.Loader.setPath('YMU', 'javascripts');
-
   Ext.Loader.setPath('View', 'javascripts/View');
-
   Ext.Loader.setPath('Model', 'javascripts/Model');
-
   Ext.Loader.setPath('Controller', 'javascripts/Controller');
-
   Ext.Loader.setPath('Store', 'javascripts/Store');
-
   Ext.Loader.setPath('Players', 'javascripts/View/Players');
-
   Ext.Loader.setPath('Containers', 'javascripts/View/Containers');
-
   Ext.Loader.setPath('Forms', 'javascripts/View/Forms');
-
   Ext.Loader.setPath('Sliders', 'javascripts/View/Sliders');
-
   Ext.Loader.setPath('DataTabs', 'javascripts/View/DataTabs');
-
   Ext.Loader.setPath('Windows', 'javascripts/View/Windows');
-
   Ext.require('YMU.Model.YoutubeModel');
-
   Ext.require('YMU.Model.UserModel');
-
   Ext.require('YMU.Store.YoutubeStore');
-
   Ext.require('YMU.View.Containers.VContainer');
-
   Ext.require('YMU.View.Containers.HContainer');
-
   Ext.require('YMU.View.DataTabs.DashboardTabs');
-
   Ext.require('YMU.View.DataTabs.YoutubeVideoTabs');
-
   Ext.require('YMU.View.DataContent.FooterPanel');
-
   Ext.require('YMU.View.Forms.LoginPanel');
-
   Ext.require('YMU.View.Players.YoutubePlayer');
-
   Ext.require('YMU.View.Windows.ContactSupport');
-
   Ext.define('YMU.Lib', {
     singleton: true,
     Application: null
   });
-
   App = (function() {
-
     function App() {
       this.app;
       this.fireEvent = function(evt, opts) {
@@ -74,11 +47,8 @@
         return this.app = a;
       };
     }
-
     return App;
-
   })();
-
   Ext.application({
     name: 'YMU',
     appFolder: 'javascripts',
@@ -102,7 +72,7 @@
       				title: 'Users',
       				html: 'Stuff will go here.'
       			]
-      */
+      		*/
       store = Ext.create('YMU.Store.YoutubeStore');
       store.load();
       return store.on('load', function() {
@@ -147,5 +117,4 @@
       });
     }
   });
-
 }).call(this);
