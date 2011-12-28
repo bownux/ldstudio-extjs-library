@@ -1,0 +1,9 @@
+{
+    'success': true,    
+    'results': [
+        {'id': 1, 'title': 'Sales Resources Go Mobile!', 'description': "Access the YMU Sales Resource Center from any device, PC, tablets and smart/mobile phones , anytime anywhere Yamaha takes you. Just open your device’s browser to: <a href='http://www.YMUsalesresources.mobi' target='_blank' style='color:#00579a'>www.YMUsalesresources.mobi</a><br/><div class='image-wrap'><img src='/images/footer-col1-FPO2.png' style='margin-top:-5px;' alt='YMU Sales Resource - Mobile' /></div>"}, 
+        {'id': 2, 'title': 'R.I.D.E. Program Launched', 'description': "Rider Instruction, Demo and Events program was launched in September of 2011. Visit the RIDE webpage and find out about the RIDE. Take the courses and become the  go-to dealer for all things Motorsports in your community<br/><div class='image-wrap'><img src='/images/footer-col2-FPO2.png' alt='R.I.D.E.' /></div>"}, 
+        {'id': 3, 'title': 'Looking To Get Certified?', 'description': "Learn about all of our different certification programs, like YSA, YPA, and YTA programs by logging in. Take the courses and get the recognition you and your dealer deserve<br/><div class='image-wrap'><img src='/images/footer-col3-FPO2.png' alt='YTA/YSA/YPA' /></div>"},
+        {'id': 4, 'title': 'NEWS & UPDATES', 'description': "Make sure to take the new Walk-Around format Sales Incentives tests beginning 1-2-2011:<br /><ul class='ymu-footer-col4-list' style='float:left;'><li>2012 YFZ-R1</li><li>2012 WR450F</li><li>2012 Raider SCL</li><li>2012 Grizzly 300</li><li>2012 YFZ450</li></ul><div class='image-wrap'><img src='/images/footer-col4-FPO2.png' width='105px' height='78px' style='padding-right: 5px; float:right;' alt='YTA/YSA/YPA' /></div>"},
+    ]
+}

@@ -34,11 +34,11 @@
     * Root application and configuration
 
 ## Model, View, Controller, (Store) [MVC] Architecture:
-* public/Model/:
-* public/View/:
-* public/Controller/:
-* public/Store/:
-* public/app.js:
+* public/javascripts/Model/:
+* public/javascripts/View/:
+* public/javascripts/Controller/:
+* public/javascripts/Store/:
+* public/apps.js:
 
 ## Client Side:
     - javascripts/
