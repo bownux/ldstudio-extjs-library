@@ -1,3 +1,5 @@
+(function() {
+  var App;
 
   Ext.require(['Ext.layout.*', '*']);
 
@@ -56,17 +58,40 @@
 
   Ext.require('YMU.View.Windows.ContactSupport');
 
+  Ext.define('YMU.Lib', {
+    singleton: true,
+    Application: null
+  });
+
+  App = (function() {
+
+    function App() {
+      this.app;
+      this.fireEvent = function(evt, opts) {
+        return this.app.fireEvent(evt, opts);
+      };
+      this.setApp = function(a) {
+        return this.app = a;
+      };
+    }
+
+    return App;
+
+  })();
+
   Ext.application({
     name: 'YMU',
     appFolder: 'javascripts',
     autoCreateViewport: false,
-    views: ['YMU.View.DataContent.FooterPanel'],
-    models: ['YMU.Model.FooterModel'],
-    stores: ['YMU.Store.FooterStore'],
-    controllers: ['YMU.Controller.Footer'],
+    views: ['YMU.View.Windows.ContactSupport', 'YMU.View.DataContent.FooterPanel'],
+    models: ['YMU.Model.ContactSupportModel', 'YMU.Model.FooterModel'],
+    stores: ['YMU.Store.ContactSupportStore', 'YMU.Store.FooterStore'],
+    controllers: ['YMU.Controller.ContactSupport', 'YMU.Controller.Footer'],
     launch: function() {
       var store;
       console.log('YMU Application Launched');
+      YMU.Lib.Application = new App();
+      YMU.Lib.Application.setApp(this);
       /* - Do we really want a Viewport here? Maybe we want to create
       		- and render the element here instead? http://goo.gl/sTbfq, currently
       		- creating items based on MVC Architecture from Sencha ExtJS 4.
@@ -81,7 +106,7 @@
       store = Ext.create('YMU.Store.YoutubeStore');
       store.load();
       return store.on('load', function() {
-        var aggregatedStore, containers, dashboardContainer, footerContainer, mysliderPanel, newsUpdates, player, tabsList, videoContainer;
+        var aggregatedStore, contactSupportContainer, containers, dashboardContainer, footerContainer, mysliderPanel, newsUpdates, player, tabsList, videoContainer;
         aggregatedStore = new Array();
         store.data.each(function(item, index, totalItems) {
           return Ext.each(item.data['feed'].entry, function(rec) {
@@ -109,6 +134,7 @@
           items: [player, tabsList]
         });
         footerContainer = Ext.create('YMU.View.DataContent.FooterPanel');
+        contactSupportContainer = Ext.create('YMU.View.Windows.ContactSupport');
         containers = Ext.create('YMU.View.Containers.VContainer', {
           id: 'mainContainer',
           items: [dashboardContainer, videoContainer, footerContainer],
@@ -118,3 +144,5 @@
       });
     }
   });
+
+}).call(this);

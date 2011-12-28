@@ -37,18 +37,35 @@ Ext.require 'YMU.View.Players.YoutubePlayer'
 Ext.require 'YMU.View.Windows.ContactSupport'
 #Ext.require 'YMU.Controller.Footer'
 
+# YMU Application Accessor Lib
+# TODO: Might want to Move this to it's own file.
+# TODO: Extend to provide other services or global methods.
+Ext.define 'YMU.Lib',  
+    singleton: true, 
+    Application: null, 
+class App
+	constructor: ()->
+		@app
+		this.fireEvent = (evt,opts) ->
+			@app.fireEvent(evt,opts)
+		this.setApp = (a) ->
+			@app = a
+
 # YMU Application Root
 Ext.application 
 	name: 'YMU',
 	appFolder: 'javascripts',
 	autoCreateViewport: false,
-	views: ['YMU.View.DataContent.FooterPanel'],
-	models: ['YMU.Model.FooterModel'],
-	stores: ['YMU.Store.FooterStore'],
-	controllers: ['YMU.Controller.Footer'],
+	views: ['YMU.View.Windows.ContactSupport','YMU.View.DataContent.FooterPanel'],
+	models: ['YMU.Model.ContactSupportModel','YMU.Model.FooterModel'],
+	stores: ['YMU.Store.ContactSupportStore','YMU.Store.FooterStore'],
+	controllers: ['YMU.Controller.ContactSupport','YMU.Controller.Footer'],
 	
 	launch: ->
 		console.log 'YMU Application Launched'
+		# Set Ext Application to YMU Lib and Extend
+		YMU.Lib.Application = new App()
+		YMU.Lib.Application.setApp(this)
 		### - Do we really want a Viewport here? Maybe we want to create
 		- and render the element here instead? http://goo.gl/sTbfq, currently
 		- creating items based on MVC Architecture from Sencha ExtJS 4.
@@ -104,6 +121,10 @@ Ext.application
 			# ~ Footer Container
 			footerContainer = Ext.create 'YMU.View.DataContent.FooterPanel'
 
+			# ~ Modal Containers
+			contactSupportContainer = Ext.create 'YMU.View.Windows.ContactSupport'
+			#contactSupportContainer.show()
+
 			# Main Viewstrap Container
 			containers = Ext.create 'YMU.View.Containers.VContainer',
 			{ 
@@ -118,8 +139,6 @@ Ext.application
 				renderTo: 'view-container' 
 			}
 
-			#console.log Ext.get "panel-container"
 			mysliderPanel =  dashboardContainer.getComponent("publicContainer").getComponent "slider-panel"
-			#console.log dashboardContainer.items.items[0].items.items[0]
 		)
         
