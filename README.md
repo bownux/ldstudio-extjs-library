@@ -14,6 +14,9 @@
         (jitter . . &); nodemon app.js
         * For more Coffeescript information: http://jashkenas.github.com/coffee-script/
 
+* Compile Stylesheets
+        cd public/resources/sass/ ; compass compile
+
 * To simply start:
         node app.js
 

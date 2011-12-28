@@ -134,7 +134,10 @@
           items: [player, tabsList]
         });
         footerContainer = Ext.create('YMU.View.DataContent.FooterPanel');
-        contactSupportContainer = Ext.create('YMU.View.Windows.ContactSupport');
+        contactSupportContainer = Ext.create('YMU.View.Windows.ContactSupport', {
+          componentCls: 'contact-support',
+          bodyCls: 'contact-support-body'
+        });
         containers = Ext.create('YMU.View.Containers.VContainer', {
           id: 'mainContainer',
           items: [dashboardContainer, videoContainer, footerContainer],

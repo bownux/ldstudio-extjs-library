@@ -4,10 +4,12 @@ $include-default: false;
 
 // Insert your custom variables here.
 $base-color: #03529d;
+$panel-base-color: #031BD1;
 $border-color: #0367C5;
 $panel-header-color: white;
 $tab-base-color: white;
 $slider-panel-content-left-width: 360px;
+$frame-border-radius: 10px;
 //$panel-border-radius: 15px;
 
 @import 'ext4/default/all';
@@ -19,28 +21,30 @@ $slider-panel-content-left-width: 360px;
 @include extjs-btn-group;
 @include extjs-datepicker;
 @include extjs-colorpicker;
-@include extjs-menu;
+//@include extjs-menu;
 @include extjs-grid;
 @include extjs-form;
     @include extjs-form-field;
     @include extjs-form-fieldset;
-    @include extjs-form-file;
+    //@include extjs-form-file;
     @include extjs-form-checkboxfield;
     @include extjs-form-checkboxgroup;
     @include extjs-form-triggerfield;
-    @include extjs-form-htmleditor;
+    //@include extjs-form-htmleditor;
 @include extjs-panel;
 @include extjs-qtip;
-@include extjs-slider;
+//@include extjs-slider;
 @include extjs-progress;
-@include extjs-toolbar;
+//@include extjs-toolbar;
 @include extjs-window;
 @include extjs-messagebox;
 @include extjs-tabbar;
 @include extjs-tab;
-@include extjs-tree;
+//@include extjs-tree;
 @include extjs-drawcomponent;
 @include extjs-viewport;
+
+@import 'compass';
 
 // This line changes the location of your images when creating UIs to be relative instead of within the ExtJS directory.
 // You MUST set this to true/string value if you are creating new UIs + supporting legacy browsers.
@@ -281,6 +285,25 @@ div#home-right img{
   margin: 0 auto !important;
 }
 
-#contact-support{
+.contact-support{
   display:inline;
+  text-decoration:underline;
+  color: #00529B;
+  
+  &:hover{
+    cursor:pointer;
+  }
+}
+
+.contact-support-footer{
+  margin: 0 auto !important;
+}
+#create-account-panel{
+    @include border-radius(10px);
+   .x-panel-header-text-container{
+   }
+ }
+#signup-graphic {
+    margin: 0 0 0 10px;
+    float: left;
 }

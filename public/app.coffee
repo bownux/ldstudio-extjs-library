@@ -122,8 +122,13 @@ Ext.application
 			footerContainer = Ext.create 'YMU.View.DataContent.FooterPanel'
 
 			# ~ Modal Containers
-			contactSupportContainer = Ext.create 'YMU.View.Windows.ContactSupport'
-			#contactSupportContainer.show()
+			# TODO: Cls 'contact-support' we might want to consider: "baseCls, 
+			#       componentCls, cls", or others instead.
+			contactSupportContainer = Ext.create 'YMU.View.Windows.ContactSupport', 
+			{
+				componentCls:'contact-support', 
+				bodyCls:'contact-support-body'
+			}
 
 			# Main Viewstrap Container
 			containers = Ext.create 'YMU.View.Containers.VContainer',

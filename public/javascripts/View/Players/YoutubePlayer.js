@@ -12,7 +12,7 @@
     height: 392,
     header: false,
     headerAsText: false,
-    html: '<div><iframe width="660" height="365" src="http://www.youtube.com/embed/1OMlepC6hCU?rel=0" frameborder="0" allowfullscreen></iframe></div>',
+    html: '<div><iframe width="660" height="365" src="http://www.youtube.com/embed/hT8Ce7KJ2n4?rel=0" frameborder="0" allowfullscreen></iframe></div>',
     constructor: function(config) {
       this.initConfig(config);
       return this.callParent(arguments);
