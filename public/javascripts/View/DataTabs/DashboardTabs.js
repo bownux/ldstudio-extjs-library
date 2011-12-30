@@ -160,7 +160,6 @@
     height: dashboard_y,
     items: [authenticatedContainer, loggedIn],
     constructor: function(config) {
-      console.log("dashboard");
       this.initConfig(config);
       this.callParent(arguments);
       this.logOut();
@@ -172,7 +171,6 @@
       return this.doLayout();
     },
     logIn: function() {
-      console.log(this);
       this.removeAll(true);
       this.add(authenticatedContainer);
       this.add(loggedIn);

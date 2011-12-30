@@ -17,8 +17,6 @@
     },
     onLaunch: function() {},
     onContactSupportRequest: function(evt) {
-      console.log("onContactSupportRequest");
-      console.log(this.getContactSupport());
       return this.getContactSupport().show();
     }
   });

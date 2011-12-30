@@ -22,6 +22,6 @@ Ext.define 'YMU.Controller.ContactSupport'
 	
 	#YMU.Lib.Application.fireEvent('contactsupportrequested',this)
 	onContactSupportRequest: (evt)->
-		console.log "onContactSupportRequest"
-		console.log this.getContactSupport()
+		#console.log "onContactSupportRequest"
+		#console.log this.getContactSupport()
 		this.getContactSupport().show()

@@ -28,7 +28,6 @@ Ext.require 'YMU.Store.YoutubeStore'
 #Ext.require 'YMU.Store.FooterStore'
 Ext.require 'YMU.View.Containers.VContainer'
 Ext.require 'YMU.View.Containers.HContainer'
-Ext.require 'YMU.View.DataTabs.DashboardTabs'
 Ext.require 'YMU.View.DataTabs.YoutubeVideoTabs'
 Ext.require 'YMU.View.DataContent.FooterPanel'
 Ext.require 'YMU.View.Forms.LoginPanel'
@@ -36,6 +35,7 @@ Ext.require 'YMU.View.Players.YoutubePlayer'
 #Ext.require 'YMU.View.Sliders.SliderPanel'
 Ext.require 'YMU.View.Windows.ContactSupport'
 #Ext.require 'YMU.Controller.Footer'
+Ext.require 'YMU.View.DataTabs.DashboardTabs'
 
 # YMU Application Accessor Lib
 # TODO: Might want to Move this to it's own file.
@@ -62,7 +62,7 @@ Ext.application
 	controllers: ['YMU.Controller.ContactSupport','YMU.Controller.Footer'],
 	
 	launch: ->
-		console.log 'YMU Application Launched'
+		#console.log 'YMU Application Launched'
 		# Set Ext Application to YMU Lib and Extend
 		YMU.Lib.Application = new App()
 		YMU.Lib.Application.setApp(this)
@@ -115,7 +115,7 @@ Ext.application
 				items: [
 					player,
 					tabsList
-					],
+				],
 			}
 
 			# ~ Footer Container

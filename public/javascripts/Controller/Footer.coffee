@@ -37,4 +37,4 @@ Ext.define 'YMU.Controller.Footer'
 
 	onContentChange: (store)->
 		# TODO: Change Content Dynamically or Poll Server
-		console.log "onContentChange"
+		#console.log "onContentChange"

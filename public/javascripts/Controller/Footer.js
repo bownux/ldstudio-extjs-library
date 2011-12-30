@@ -30,7 +30,5 @@
     onFooterViewRendered: function() {
       return this.getFooterPanel().updateItems(this.getYMUStoreFooterStoreStore().data);
     },
-    onContentChange: function(store) {
-      return console.log("onContentChange");
-    }
+    onContentChange: function(store) {}
   });

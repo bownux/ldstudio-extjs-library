@@ -32,7 +32,7 @@ Ext.define 'YMU.View.Sliders.SliderPanel',
             legendIcons.push icn
         #@todo delete this dependency    
         panelContainer =  Ext.get 'panel-container'
-        slideCount = slider.el.dom.firstChild.children[0].children[0].childElementCount
+        slideCount = 4 #slider.el.dom.firstChild.children[0].children[0].childElementCount
         
         i = 0
         while i < slideCount

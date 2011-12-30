@@ -33,7 +33,7 @@
         return legendIcons.push(icn);
       };
       panelContainer = Ext.get('panel-container');
-      slideCount = slider.el.dom.firstChild.children[0].children[0].childElementCount;
+      slideCount = 4;
       i = 0;
       while (i < slideCount) {
         createIcon(i);

@@ -152,7 +152,7 @@ Ext.define 'YMU.View.DataTabs.DashboardTabs',
           # TODO: Listen to custom events instead of just calling login
           # TODO: Event from button should also pass fields to verify credentials
           # TODO: Login action should persist some information in cookie or such for init
-          console.log("dashboard")
+          #console.log("dashboard")
           this.initConfig(config)
           this.callParent(arguments)
           #this.addEvents('login', 'logout')
@@ -163,7 +163,7 @@ Ext.define 'YMU.View.DataTabs.DashboardTabs',
           this.add(notAuthenticatedContainer)
           this.doLayout()
       logIn: () ->
-          console.log(this)
+          #console.log(this)
           this.removeAll(true)
           this.add(authenticatedContainer)
           this.add(loggedIn)
