@@ -89,6 +89,15 @@ dbSalesGrid = Ext.create 'Ext.grid.GridPanel'
     height: dashboard_y-80,
     width:640,
     frame:true
+#	TMP: Tab Panels
+ypa = Ext.create 'YMU.View.Containers.VContainer',
+{ 
+      id: 'publicContainer',
+      flex: 1
+      items: [
+          {html:''},
+      ],
+}
 #   Dashboard Authenticated Tabs
 authenticatedTabs = Ext.create 'Ext.TabPanel'
     activeTab: 0

@@ -25,7 +25,7 @@
 
   newsTab = Ext.create('Ext.Panel', {
     id: 'news',
-    title: 'NEWS & UPDATES',
+    title: 'Videos',
     html: '<p>NEWS TAB</p>'
   });
 
