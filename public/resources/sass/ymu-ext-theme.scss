@@ -56,6 +56,11 @@ $relative-image-path-for-uis: true; // defaults to "../images/" when true
 $shadow-color: #333;
 $boxheight: 10em;
 
+// Header Panel
+#info {
+	text-align: right;
+}
+
 // Footer Panel
 
 #footerContainer {

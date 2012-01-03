@@ -1,5 +1,5 @@
 (function() {
-  var authenticate, authenticatedContainer, authenticatedTabs, dashboard_y, dbSalesGrid, dbSalesStore, loggedIn, loggedOut, loginPanel, notAuthenticatedContainer, renderAction, sliderPanel, tmp_sales_incentive_data;
+  var authenticate, authenticatedContainer, authenticatedTabs, dashboard_y, dbSalesGrid, dbSalesStore, loggedIn, loggedOut, loginPanel, notAuthenticatedContainer, renderAction, sliderPanel, tmp_sales_incentive_data, ypa;
 
   dashboard_y = 300;
 
@@ -91,6 +91,16 @@
     height: dashboard_y - 80,
     width: 640,
     frame: true
+  });
+
+  ypa = Ext.create('YMU.View.Containers.VContainer', {
+    id: 'publicContainer',
+    flex: 1,
+    items: [
+      {
+        html: ''
+      }
+    ]
   });
 
   authenticatedTabs = Ext.create('Ext.TabPanel', {

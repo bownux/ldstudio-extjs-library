@@ -14,9 +14,10 @@ block scripts
 block content
     div#content
         div#info
-            h1= title
-            h1= name
-            p Welcome to #{name} viewstrap
+            a(onclick="YMU.Lib.Application.fireEvent('contactsupportrequested',this)", href='javascript:void(0);') Contact Support 
+            //h1= title
+            //h1= name
+            //p Welcome to #{name} viewstrap
 
         #view-container
 
