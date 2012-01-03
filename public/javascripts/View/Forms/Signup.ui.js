@@ -307,7 +307,7 @@ Ext.define('YMU.view.ui.Signup', {
     		{"abbr":"M", "size":"Meddium"},
     		{"abbr":"L", "size":"Large"},
     		{"abbr":"XL", "size":"X-Large"},
-    		{"abbr":"XXL", "size":"XX-Large"},
+    		{"abbr":"XXL", "size":"XX-Large"}
     	]
     })
 });
