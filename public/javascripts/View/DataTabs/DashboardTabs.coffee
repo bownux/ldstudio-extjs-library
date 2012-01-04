@@ -89,15 +89,107 @@ dbSalesGrid = Ext.create 'Ext.grid.GridPanel'
     height: dashboard_y-80,
     width:640,
     frame:true
-#	TMP: Tab Panels
+#	TMP: Tab Panels TODO: MVC
+tmp_combo_data = [
+    [
+        'Bronze',
+        ''
+    ]
+    [
+        'Silver',
+        ''
+    ]
+]
+ypaStore = Ext.create 'Ext.data.ArrayStore'
+    fields: [
+        {name: 'tier'}
+        {name: 'destination'}
+    ]
+#   Manually Load Data Store
+ypaStore.loadData(tmp_combo_data)
 ypa = Ext.create 'YMU.View.Containers.VContainer',
 { 
-      id: 'publicContainer',
-      flex: 1
+      id: 'ypa',
+      title:'YPA', 
+      flex: 1,
       items: [
-          {html:''},
+          {
+              xtype: 'panel',
+              id:'ypa-container',
+              height: dashboard_y,
+              layout:
+                  align: 'center',
+                  type: 'fit'
+              items: [
+                  {
+                      xtype:'combo'
+                      displayField: 'name',
+                      width: 300,
+                      margin: '10 50 10 50',
+                      queryMode: 'local',
+                      typeAhead: true,
+                      store: ypaStore,
+                      displayField: 'tier',
+                      blankText: 'Field not selected',
+                      emptyText: 'Select Tier:',
+                  }
+              ]
+          }
       ],
 }
+#	TMP: Tab Panels TODO: MVC
+tmp_combo_yta_data = [
+    [
+        'Bronze',
+        ''
+    ]
+    [
+        'Silver',
+        ''
+    ]
+    [
+        'Gold',
+        ''
+    ]
+]
+ytaStore = Ext.create 'Ext.data.ArrayStore'
+    fields: [
+        {name: 'tier'}
+        {name: 'destination'}
+    ]
+#   Manually Load Data Store
+ytaStore.loadData(tmp_combo_yta_data)
+yta = Ext.create 'YMU.View.Containers.VContainer',
+{ 
+      id: 'yta',
+      title:'YTA', 
+      flex: 1,
+      items: [
+          {
+              xtype: 'panel',
+              id:'yta-container',
+              height: dashboard_y,
+              layout:
+                  align: 'center',
+                  type: 'fit'
+              items: [
+                  {
+                      xtype:'combo'
+                      displayField: 'name',
+                      width: 300,
+                      margin: '10 50 10 50',
+                      queryMode: 'local',
+                      typeAhead: true,
+                      store: ytaStore,
+                      displayField: 'tier',
+                      blankText: 'Field not selected',
+                      emptyText: 'Select Tier:',
+                  }
+              ]
+          }
+      ],
+}
+
 #   Dashboard Authenticated Tabs
 authenticatedTabs = Ext.create 'Ext.TabPanel'
     activeTab: 0
@@ -113,8 +205,8 @@ authenticatedTabs = Ext.create 'Ext.TabPanel'
     items: [
         dbSalesGrid,
         {title:'YSA', html:''},
-        {title:'YPA', html:''},
-        {title:'YTA', html:''},
+        ypa,
+        yta,
         {title:'MY COMPLETIONS', html:''},
         {title:'DEALER REPORT', html:''}
     ]

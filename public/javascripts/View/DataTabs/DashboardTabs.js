@@ -1,5 +1,5 @@
 (function() {
-  var authenticate, authenticatedContainer, authenticatedTabs, dashboard_y, dbSalesGrid, dbSalesStore, loggedIn, loggedOut, loginPanel, notAuthenticatedContainer, renderAction, sliderPanel, tmp_sales_incentive_data, ypa;
+  var authenticate, authenticatedContainer, authenticatedTabs, dashboard_y, dbSalesGrid, dbSalesStore, loggedIn, loggedOut, loginPanel, notAuthenticatedContainer, renderAction, sliderPanel, tmp_combo_data, tmp_combo_yta_data, tmp_sales_incentive_data, ypa, ypaStore, yta, ytaStore;
 
   dashboard_y = 300;
 
@@ -93,12 +93,92 @@
     frame: true
   });
 
+  tmp_combo_data = [['Bronze', ''], ['Silver', '']];
+
+  ypaStore = Ext.create('Ext.data.ArrayStore', {
+    fields: [
+      {
+        name: 'tier'
+      }, {
+        name: 'destination'
+      }
+    ]
+  });
+
+  ypaStore.loadData(tmp_combo_data);
+
   ypa = Ext.create('YMU.View.Containers.VContainer', {
-    id: 'publicContainer',
+    id: 'ypa',
+    title: 'YPA',
     flex: 1,
     items: [
       {
-        html: ''
+        xtype: 'panel',
+        id: 'ypa-container',
+        height: dashboard_y,
+        layout: {
+          align: 'center',
+          type: 'fit'
+        },
+        items: [
+          {
+            xtype: 'combo',
+            displayField: 'name',
+            width: 300,
+            margin: '10 50 10 50',
+            queryMode: 'local',
+            typeAhead: true,
+            store: ypaStore,
+            displayField: 'tier',
+            blankText: 'Field not selected',
+            emptyText: 'Select Tier:'
+          }
+        ]
+      }
+    ]
+  });
+
+  tmp_combo_yta_data = [['Bronze', ''], ['Silver', ''], ['Gold', '']];
+
+  ytaStore = Ext.create('Ext.data.ArrayStore', {
+    fields: [
+      {
+        name: 'tier'
+      }, {
+        name: 'destination'
+      }
+    ]
+  });
+
+  ytaStore.loadData(tmp_combo_yta_data);
+
+  yta = Ext.create('YMU.View.Containers.VContainer', {
+    id: 'yta',
+    title: 'YTA',
+    flex: 1,
+    items: [
+      {
+        xtype: 'panel',
+        id: 'yta-container',
+        height: dashboard_y,
+        layout: {
+          align: 'center',
+          type: 'fit'
+        },
+        items: [
+          {
+            xtype: 'combo',
+            displayField: 'name',
+            width: 300,
+            margin: '10 50 10 50',
+            queryMode: 'local',
+            typeAhead: true,
+            store: ytaStore,
+            displayField: 'tier',
+            blankText: 'Field not selected',
+            emptyText: 'Select Tier:'
+          }
+        ]
       }
     ]
   });
@@ -119,13 +199,7 @@
       dbSalesGrid, {
         title: 'YSA',
         html: ''
-      }, {
-        title: 'YPA',
-        html: ''
-      }, {
-        title: 'YTA',
-        html: ''
-      }, {
+      }, ypa, yta, {
         title: 'MY COMPLETIONS',
         html: ''
       }, {

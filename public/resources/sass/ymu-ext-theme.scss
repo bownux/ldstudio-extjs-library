@@ -289,6 +289,12 @@ div#home-right img{
 #form-buttons{
   margin: 0 auto !important;
 }
+#ypa, #yta{
+    @include border-top-left-radius(0);
+    @include border-bottom-radius($boxheight/6);
+    padding: 5px;
+    background-color: white;
+}
 
 .contact-support{
   display:inline;
