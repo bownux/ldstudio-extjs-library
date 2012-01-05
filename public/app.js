@@ -135,7 +135,8 @@
         footerContainer = Ext.create('YMU.View.DataContent.FooterPanel');
         contactSupportContainer = Ext.create('YMU.View.Windows.ContactSupport', {
           componentCls: 'contact-support',
-          bodyCls: 'contact-support-body'
+          bodyCls: 'contact-support-body',
+          items: Ext.create('YMU.View.Windows.ContactSupport.Form')
         });
         containers = Ext.create('YMU.View.Containers.VContainer', {
           id: 'mainContainer',
