@@ -1,3 +1,33 @@
+(function() {
+  var formPanel;
+
+  formPanel = Ext.create('Ext.form.FormPanel', {
+    itemId: 'formPanel',
+    frame: true,
+    layout: 'anchor',
+    defaultType: 'textfield',
+    defaults: {
+      anchor: '-10',
+      labelWidth: 65
+    },
+    items: [
+      {
+        fieldLabel: 'First Name',
+        name: 'firstName'
+      }, {
+        fieldLabel: 'Last Name',
+        name: 'lastName'
+      }
+    ],
+    buttons: [
+      {
+        text: 'Submit',
+        handler: function() {
+          return Ext.Msg.alert('Hello');
+        }
+      }
+    ]
+  });
 
   Ext.define('YMU.View.Windows.ContactSupport', {
     extend: 'Ext.Window',
@@ -14,10 +44,10 @@
         plain: true,
         headerPosition: 'top',
         layout: 'fit',
-        items: {
-          border: false
-        }
+        items: formPanel
       });
       return me.callParent();
     }
   });
+
+}).call(this);
