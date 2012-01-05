@@ -10,11 +10,7 @@ $panel-header-color: white;
 $tab-base-color: white;
 $slider-panel-content-left-width: 360px;
 $frame-border-radius: 10px;
-$panel-body-background-color: white;
-//$window-background-color:white;
-$panel-frame-background-color:white;
 //$panel-border-radius: 15px;
-$panel-frame-border-style:none;
 
 @import 'ext4/default/all';
 
@@ -321,11 +317,4 @@ div#home-right img{
 #signup-graphic {
     margin: 0 0 0 10px;
     float: left;
-}
-#formPanel{
-   
-    background-color:white; 
-}
-.contact-support-body{
-    background-color:white;
 }
