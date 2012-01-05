@@ -36,11 +36,11 @@
                   {
                     xtype: 'label',
                     margin: 10,
-                    text: 'not registered?'
+                    html: '<a href=\'#\'>not registered?</a>'
                   }, {
                     xtype: 'label',
                     margin: 5,
-                    text: 'forgot password?'
+                    html: '<a href=\'#\'>forgot password?</a>'
                   }
                 ]
               }, {
