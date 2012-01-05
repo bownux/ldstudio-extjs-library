@@ -1,8 +1,7 @@
 (function() {
   var formPanel;
 
-  formPanel = Ext.define('YMU.View.Windows.ContactSupport.Form', {
-    extend: 'Ext.form.FormPanel',
+  formPanel = Ext.create('Ext.form.FormPanel', {
     itemId: 'formPanel',
     frame: true,
     layout: 'anchor',
@@ -45,7 +44,7 @@
         plain: true,
         headerPosition: 'top',
         layout: 'fit',
-        items: []
+        items: formPanel
       });
       return me.callParent();
     }
