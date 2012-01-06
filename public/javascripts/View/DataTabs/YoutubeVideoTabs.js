@@ -3,12 +3,12 @@
 
   Ext.require(['Ext.tab.*', 'Ext.XTemplate.*', '*']);
 
-  window.videoListTpl = new Ext.XTemplate('<div>', '<div class=\'video-item\'>', '<tpl for=".">', '<tpl for="media">', '<div class =\'video-img\'><a onclick="changePlayerVideo(\'{[this.getVideoID(values)]}\')", href="javascript:void(0);"><img src="{thumbnailSmall1}" style="padding-right:2px" /></a></div>', '</tpl>', '<tpl for="title">', '<div class=\'video-title\'>{[this.getValueFromRaw(values)]}</div><div class="x-clear"></div>', '</tpl>', '<tpl for="content">', '<div class=\'video-content\'>{[this.getValueFromRaw(values)]}</div>', '</tpl>', '<br />', '</tpl>', '</div>', '</div>', {
+  window.videoListTpl = new Ext.XTemplate('<div>', '<div class=\'video-item\'>', '<tpl for=".">', '<tpl for="media">', '<div class =\'video-img\'><a onclick="changePlayerVideo(\'{[this.getVideoID(values)]}\',\'{[escape(this.getValueFromRaw(parent.title))]}\',\'{[escape(this.getValueFromRaw(parent.content))]}\')", href="javascript:void(0);"><img src="{thumbnailSmall1}" style="padding-right:2px" /></a></div>', '</tpl>', '<tpl for="title">', '<div class=\'video-title\'>{[this.getValueFromRaw(values)]}</div><div class="x-clear"></div>', '</tpl>', '<tpl for="content">', '<div class=\'video-content\'>{[this.getValueFromRaw(values)]}</div>', '</tpl>', '<br />', '</tpl>', '</div>', '</div>', {
     config: {
       disableFormats: false
     },
     getValueFromRaw: function(value) {
-      return value.$t;
+      return unescape(value.$t);
     },
     getVideoID: function(value) {
       var reID, res, str;
@@ -26,7 +26,26 @@
   newsTab = Ext.create('Ext.Panel', {
     id: 'news',
     title: 'Videos',
-    html: '<p>NEWS TAB</p>'
+    autoScroll: false,
+    defaults: {
+      border: 0
+    },
+    items: [
+      {
+        xtype: 'panel',
+        autoScroll: true,
+        height: 230,
+        html: '<p>Videos</p>'
+      }, {
+        xtype: 'panel',
+        height: 120,
+        html: '<p>Description</p>',
+        padding: '5 0 0 0'
+      }
+    ],
+    applyDescription: function(content) {
+      return this.items.items[1].update(content);
+    }
   });
 
   Ext.define('YMU.View.DataTabs.YoutubeVideoTabs', {
@@ -43,7 +62,7 @@
     },
     items: [newsTab],
     applyNews: function(content) {
-      return newsTab.update(content);
+      return newsTab.items.items[0].update(content);
     }
   });
 

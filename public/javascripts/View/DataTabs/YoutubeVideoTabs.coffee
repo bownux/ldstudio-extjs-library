@@ -5,7 +5,7 @@ window.videoListTpl = new Ext.XTemplate(
         '<div class=\'video-item\'>',
         '<tpl for=".">', 
             '<tpl for="media">', 
-                '<div class =\'video-img\'><a onclick="changePlayerVideo(\'{[this.getVideoID(values)]}\')", href="javascript:void(0);"><img src="{thumbnailSmall1}" style="padding-right:2px" /></a></div>',
+                '<div class =\'video-img\'><a onclick="changePlayerVideo(\'{[this.getVideoID(values)]}\',\'{[escape(this.getValueFromRaw(parent.title))]}\',\'{[escape(this.getValueFromRaw(parent.content))]}\')", href="javascript:void(0);"><img src="{thumbnailSmall1}" style="padding-right:2px" /></a></div>',
             '</tpl>',
             '<tpl for="title">', 
                 '<div class=\'video-title\'>{[this.getValueFromRaw(values)]}</div><div class="x-clear"></div>', 
@@ -20,7 +20,8 @@ window.videoListTpl = new Ext.XTemplate(
         config:
             disableFormats: false
         getValueFromRaw: (value) ->
-            return value.$t
+            #console.log value
+            return unescape(value.$t)
         getVideoID: (value) ->
             str=value.thumbnailSmall1
             reID=/\S+\/vi\/(\S+)\//
@@ -35,7 +36,25 @@ window.videoListTpl = new Ext.XTemplate(
 newsTab = Ext.create 'Ext.Panel'
     id: 'news'
     title: 'Videos'
-    html: '<p>NEWS TAB</p>'
+    autoScroll: false
+    defaults:
+        border: 0
+    items: [
+        {
+            xtype: 'panel'
+            autoScroll: true
+            height: 230
+            html: '<p>Videos</p>'
+        },
+        {
+            xtype: 'panel'
+            height: 120
+            html: '<p>Description</p>'
+            padding: '5 0 0 0'
+        }
+    ]
+    applyDescription: (content) ->
+        this.items.items[1].update(content) #hacky
 
 Ext.define 'YMU.View.DataTabs.YoutubeVideoTabs'
             extend: 'Ext.TabPanel'
@@ -52,4 +71,5 @@ Ext.define 'YMU.View.DataTabs.YoutubeVideoTabs'
                 newsTab,
             ]
             applyNews: (content) ->
-                newsTab.update(content)
+                newsTab.items.items[0].update(content) #hacky
+                
