@@ -32,8 +32,10 @@ Ext.define 'YMU.View.Sliders.SliderPanel',
             legendIcons.push icn
         #@todo delete this dependency    
         panelContainer =  Ext.get 'panel-container'
-        slideCount = 4 #slider.el.dom.firstChild.children[0].children[0].childElementCount
-        
+        if navigator.appName is 'Microsoft Internet Explorer'
+            slideCount = 4 #slider.el.dom.firstChild.children[0].children[0].childElementCount
+        else
+            slideCount = slider.el.dom.firstChild.children[0].children[0].childElementCount
         i = 0
         while i < slideCount
             createIcon i
