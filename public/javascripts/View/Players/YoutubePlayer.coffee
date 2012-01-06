@@ -1,10 +1,11 @@
 # Youtube Player Panel
 # TODO: make video attributes configurable through templates
 # TODO: verify videos played are from ymu author or read id from YoutubeStore
-window.changePlayerVideo = (value,title = 'YMU') ->
-    #console.log 'changing video: ' + value
-    #console.log Ext.getCmp('YoutubePlayer')
-    Ext.getCmp('YoutubePlayer').changeVideo value, title
+window.changePlayerVideo = (value,title = 'YMU',description='YMU Video') ->
+	#console.log 'changing video: ' + value
+	#console.log Ext.getCmp('YoutubePlayer')
+	Ext.getCmp('YoutubePlayer').changeVideo value, unescape(title)
+	Ext.getCmp('news').applyDescription unescape("<div class='video-panel-title'>"+title+"</div>"+"<div class='video-panel-desc'>"+description+"</div>")
 
 Ext.define 'YMU.View.Players.YoutubePlayer',
     extend: 'Ext.panel.Panel',
@@ -18,6 +19,8 @@ Ext.define 'YMU.View.Players.YoutubePlayer',
     constructor: (config) ->
         this.initConfig(config)
         this.callParent(arguments)
+        console.log "TET"
+        changePlayerVideo('hT8Ce7KJ2n4','2011 Raider Walk Around') #hacky
     setTitle: (newTitle) ->
         me = this
         oldTitle = this.title

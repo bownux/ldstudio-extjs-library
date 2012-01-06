@@ -1,7 +1,9 @@
 
-  window.changePlayerVideo = function(value, title) {
+  window.changePlayerVideo = function(value, title, description) {
     if (title == null) title = 'YMU';
-    return Ext.getCmp('YoutubePlayer').changeVideo(value, title);
+    if (description == null) description = 'YMU Video';
+    Ext.getCmp('YoutubePlayer').changeVideo(value, unescape(title));
+    return Ext.getCmp('news').applyDescription(unescape("<div class='video-panel-title'>" + title + "</div>" + "<div class='video-panel-desc'>" + description + "</div>"));
   };
 
   Ext.define('YMU.View.Players.YoutubePlayer', {
@@ -15,7 +17,9 @@
     html: '<div><iframe width="660" height="365" src="http://www.youtube.com/embed/hT8Ce7KJ2n4?rel=0" frameborder="0" allowfullscreen></iframe></div>',
     constructor: function(config) {
       this.initConfig(config);
-      return this.callParent(arguments);
+      this.callParent(arguments);
+      console.log("TET");
+      return changePlayerVideo('hT8Ce7KJ2n4', '2011 Raider Walk Around');
     },
     setTitle: function(newTitle) {
       var me, oldTitle;
