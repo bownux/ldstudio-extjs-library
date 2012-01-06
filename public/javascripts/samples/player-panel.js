@@ -1,3 +1,4 @@
+(function() {
 
   Ext.require(['Ext.panel.*', '*']);
 
@@ -18,3 +19,5 @@
       renderTo: 'player-panel'
     });
   });
+
+}).call(this);

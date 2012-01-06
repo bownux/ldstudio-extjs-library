@@ -1,3 +1,4 @@
+(function() {
 
   Ext.define('YMU.Controller.ContactSupport', {
     extend: 'Ext.app.Controller',
@@ -20,3 +21,5 @@
       return this.getContactSupport().show();
     }
   });
+
+}).call(this);

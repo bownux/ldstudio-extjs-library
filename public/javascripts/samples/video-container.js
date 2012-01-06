@@ -1,3 +1,4 @@
+(function() {
 
   Ext.require(['Ext.layout.*', '*']);
 
@@ -47,3 +48,5 @@
       });
     });
   });
+
+}).call(this);

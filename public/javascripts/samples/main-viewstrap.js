@@ -1,3 +1,4 @@
+(function() {
 
   Ext.require(['Ext.layout.*', '*']);
 
@@ -104,3 +105,5 @@
       return mysliderPanel = dashboardContainer.getComponent("publicContainer").getComponent("slider-panel");
     });
   });
+
+}).call(this);

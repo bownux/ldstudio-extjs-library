@@ -1,3 +1,4 @@
+(function() {
 
   Ext.define('YMU.View.Sliders.SliderPanel', {
     extend: 'Ext.panel.Panel',
@@ -33,7 +34,11 @@
         return legendIcons.push(icn);
       };
       panelContainer = Ext.get('panel-container');
-      slideCount = 4;
+      if (navigator.appName === 'Microsoft Internet Explorer') {
+        slideCount = 4;
+      } else {
+        slideCount = slider.el.dom.firstChild.children[0].children[0].childElementCount;
+      }
       i = 0;
       while (i < slideCount) {
         createIcon(i);
@@ -117,3 +122,5 @@
       return slider;
     }
   });
+
+}).call(this);

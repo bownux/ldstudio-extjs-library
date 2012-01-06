@@ -1,7 +1,8 @@
 (function() {
   var formPanel;
 
-  formPanel = Ext.create('Ext.form.FormPanel', {
+  formPanel = Ext.define('YMU.View.Windows.ContactSupportForm', {
+    extend: 'Ext.form.FormPanel',
     itemId: 'formPanel',
     frame: true,
     layout: 'anchor',
@@ -12,11 +13,18 @@
     },
     items: [
       {
-        fieldLabel: 'First Name',
-        name: 'firstName'
+        fieldLabel: 'Username',
+        name: 'userName'
       }, {
-        fieldLabel: 'Last Name',
-        name: 'lastName'
+        fieldLabel: 'Email',
+        name: 'email'
+      }, {
+        fieldLabel: 'Subject',
+        name: 'subject'
+      }, {
+        xtype: 'textarea',
+        fieldLabel: 'Comment',
+        name: 'comment'
       }
     ],
     buttons: [
@@ -44,7 +52,7 @@
         plain: true,
         headerPosition: 'top',
         layout: 'fit',
-        items: formPanel
+        items: []
       });
       return me.callParent();
     }

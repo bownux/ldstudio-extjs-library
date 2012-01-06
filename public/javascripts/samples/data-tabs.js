@@ -1,3 +1,4 @@
+(function() {
 
   Ext.require(['Ext.tab.*', '*']);
 
@@ -45,3 +46,5 @@
       return tabs2.applyNews(newsUpdates);
     });
   });
+
+}).call(this);

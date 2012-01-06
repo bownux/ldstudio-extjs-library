@@ -136,7 +136,7 @@
         contactSupportContainer = Ext.create('YMU.View.Windows.ContactSupport', {
           componentCls: 'contact-support',
           bodyCls: 'contact-support-body',
-          items: Ext.create('YMU.View.Windows.ContactSupport.Form')
+          items: Ext.create('YMU.View.Windows.ContactSupportForm')
         });
         containers = Ext.create('YMU.View.Containers.VContainer', {
           id: 'mainContainer',

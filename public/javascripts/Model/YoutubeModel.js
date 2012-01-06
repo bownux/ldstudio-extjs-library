@@ -1,3 +1,4 @@
+(function() {
 
   Ext.require(['*']);
 
@@ -5,3 +6,5 @@
     extend: 'Ext.data.Model',
     fields: ['version', 'encoding', 'feed']
   });
+
+}).call(this);

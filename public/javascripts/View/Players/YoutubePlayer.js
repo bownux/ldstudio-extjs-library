@@ -1,3 +1,4 @@
+(function() {
 
   window.changePlayerVideo = function(value, title, description) {
     if (title == null) title = 'YMU';
@@ -46,3 +47,5 @@
       return this.update("<div><iframe width='660' height='365' src='http://www.youtube.com/embed/" + video_id + "?rel=0' frameborder='0' allowfullscreen></iframe></div>");
     }
   });
+
+}).call(this);

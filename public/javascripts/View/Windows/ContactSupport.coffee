@@ -1,5 +1,5 @@
 # YMU Contact Form Container
-formPanel = Ext.define 'YMU.View.Windows.ContactSupport.Form',
+formPanel = Ext.define 'YMU.View.Windows.ContactSupportForm',
 	extend: 'Ext.form.FormPanel',
 	itemId: 'formPanel'
 	frame: true
