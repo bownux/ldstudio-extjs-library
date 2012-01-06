@@ -127,7 +127,8 @@ Ext.application
 			contactSupportContainer = Ext.create 'YMU.View.Windows.ContactSupport', 
 			{
 				componentCls:'contact-support', 
-				bodyCls:'contact-support-body'
+				bodyCls:'contact-support-body',
+				items: Ext.create 'YMU.View.Windows.ContactSupport.Form', 
 			}
 
 			# Main Viewstrap Container

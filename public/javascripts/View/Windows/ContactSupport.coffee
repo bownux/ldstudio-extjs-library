@@ -1,5 +1,6 @@
 # YMU Contact Form Container
-formPanel = Ext.create 'Ext.form.FormPanel',
+formPanel = Ext.define 'YMU.View.Windows.ContactSupport.Form',
+	extend: 'Ext.form.FormPanel',
 	itemId: 'formPanel'
 	frame: true
 	layout: 'anchor'
@@ -9,12 +10,21 @@ formPanel = Ext.create 'Ext.form.FormPanel',
 		labelWidth: 65
 	items:[
 		{
-			fieldLabel: 'First Name'
-			name: 'firstName'
+			fieldLabel: 'Username'
+			name: 'userName'
 		},
 		{
-			fieldLabel: 'Last Name'
-			name: 'lastName'
+			fieldLabel: 'Email'
+			name: 'email'
+		},
+		{
+			fieldLabel:'Subject'
+			name: 'subject'
+		},
+		{
+			xtype: 'textarea'
+			fieldLabel:'Comment'
+			name: 'comment'
 		}
 	]
 	
@@ -40,7 +50,7 @@ Ext.define 'YMU.View.Windows.ContactSupport',
 			plain: true,
 			headerPosition: 'top',
 			layout: 'fit',
-			items: formPanel 
+			items: []
 		)
 		me.callParent()
 		
