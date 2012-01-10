@@ -19,7 +19,6 @@ Ext.define 'YMU.View.Players.YoutubePlayer',
     constructor: (config) ->
         this.initConfig(config)
         this.callParent(arguments)
-        console.log "TET"
         changePlayerVideo('hT8Ce7KJ2n4','2011 Raider Walk Around') #hacky
     setTitle: (newTitle) ->
         me = this

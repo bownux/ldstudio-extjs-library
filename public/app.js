@@ -88,24 +88,43 @@
     stores: ['YMU.Store.ContactSupportStore', 'YMU.Store.FooterStore'],
     controllers: ['YMU.Controller.ContactSupport', 'YMU.Controller.Footer'],
     launch: function() {
-      var store;
+      var contactSupportContainer, dashboardContainer, mysliderPanel, player, store, tabsList, videoContainer;
       YMU.Lib.Application = new App();
       YMU.Lib.Application.setApp(this);
       /* - Do we really want a Viewport here? Maybe we want to create
-      		- and render the element here instead? http://goo.gl/sTbfq, currently
-      		- creating items based on MVC Architecture from Sencha ExtJS 4.
-      		Ext.create 'Ext.container.Viewport',
-      			layout: 'fit' ,
-      			items: [
-      				xtype: 'panel',
-      				title: 'Users',
-      				html: 'Stuff will go here.'
-      			]
+      - and render the element here instead? http://goo.gl/sTbfq, currently
+      - creating items based on MVC Architecture from Sencha ExtJS 4.
+      Ext.create 'Ext.container.Viewport',
+          layout: 'fit' ,
+          items: [
+              xtype: 'panel',
+              title: 'Users',
+              html: 'Stuff will go here.'
+          ]
       */
+      player = Ext.create('YMU.View.Players.YoutubePlayer', {
+        flex: 0
+      });
+      dashboardContainer = Ext.create('YMU.View.DataTabs.DashboardTabs', {
+        padding: '5 5 5 5'
+      });
+      tabsList = Ext.create('YMU.View.DataTabs.YoutubeVideoTabs', {
+        height: 392
+      });
+      videoContainer = Ext.create('YMU.View.Containers.HContainer', {
+        id: 'videoContainer',
+        padding: '5 5 5 5',
+        items: [player, tabsList]
+      });
+      contactSupportContainer = Ext.create('YMU.View.Windows.ContactSupport', {
+        componentCls: 'contact-support',
+        bodyCls: 'contact-support-body',
+        items: Ext.create('YMU.View.Windows.ContactSupportForm')
+      });
       store = Ext.create('YMU.Store.YoutubeStore');
       store.load();
-      return store.on('load', function() {
-        var aggregatedStore, contactSupportContainer, containers, dashboardContainer, footerContainer, mysliderPanel, newsUpdates, player, tabsList, videoContainer;
+      store.on('load', function() {
+        var aggregatedStore, containers, footerContainer, newsUpdates;
         aggregatedStore = new Array();
         store.data.each(function(item, index, totalItems) {
           return Ext.each(item.data['feed'].entry, function(rec) {
@@ -117,34 +136,15 @@
           });
         });
         newsUpdates = videoListTpl.applyTemplate(aggregatedStore);
-        tabsList = Ext.create('YMU.View.DataTabs.YoutubeVideoTabs', {
-          height: 392
-        });
         tabsList.applyNews(newsUpdates);
-        player = Ext.create('YMU.View.Players.YoutubePlayer', {
-          flex: 0
-        });
-        dashboardContainer = Ext.create('YMU.View.DataTabs.DashboardTabs', {
-          padding: '5 5 5 5'
-        });
-        videoContainer = Ext.create('YMU.View.Containers.HContainer', {
-          id: 'videoContainer',
-          padding: '5 5 5 5',
-          items: [player, tabsList]
-        });
         footerContainer = Ext.create('YMU.View.DataContent.FooterPanel');
-        contactSupportContainer = Ext.create('YMU.View.Windows.ContactSupport', {
-          componentCls: 'contact-support',
-          bodyCls: 'contact-support-body',
-          items: Ext.create('YMU.View.Windows.ContactSupportForm')
-        });
-        containers = Ext.create('YMU.View.Containers.VContainer', {
+        return containers = Ext.create('YMU.View.Containers.VContainer', {
           id: 'mainContainer',
           items: [dashboardContainer, videoContainer, footerContainer],
           renderTo: 'view-container'
         });
-        return mysliderPanel = dashboardContainer.getComponent("publicContainer").getComponent("slider-panel");
       });
+      return mysliderPanel = dashboardContainer.getComponent("publicContainer").getComponent("slider-panel");
     }
   });
 

@@ -1,4 +1,3 @@
-(function() {
 
   Ext.define('YMU.View.DataContent.FooterPanel', {
     extend: 'Ext.panel.Panel',
@@ -54,5 +53,3 @@
       return this.doLayout();
     }
   });
-
-}).call(this);

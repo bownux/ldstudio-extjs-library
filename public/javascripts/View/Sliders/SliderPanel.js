@@ -1,4 +1,3 @@
-(function() {
 
   Ext.define('YMU.View.Sliders.SliderPanel', {
     extend: 'Ext.panel.Panel',
@@ -122,5 +121,3 @@
       return slider;
     }
   });
-
-}).call(this);

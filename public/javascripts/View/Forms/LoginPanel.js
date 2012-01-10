@@ -1,4 +1,3 @@
-(function() {
 
   Ext.define('YMU.View.Forms.LoginPanel', {
     extend: 'Ext.panel.Panel',
@@ -57,5 +56,3 @@
       return me.callParent(arguments);
     }
   });
-
-}).call(this);

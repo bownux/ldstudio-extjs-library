@@ -1,4 +1,3 @@
-(function() {
 
   Ext.define('YMU.Model.FooterModel', {
     extend: 'Ext.data.Model',
@@ -12,5 +11,3 @@
       }
     }
   });
-
-}).call(this);

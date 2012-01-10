@@ -1,4 +1,3 @@
-(function() {
 
   Ext.define('YMU.View.Containers.HContainer', {
     extend: 'Ext.panel.Panel',
@@ -19,5 +18,3 @@
       pack: 'start'
     }
   });
-
-}).call(this);

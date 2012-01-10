@@ -1,4 +1,3 @@
-(function() {
 
   Ext.define('YMU.Controller.Footer', {
     extend: 'Ext.app.Controller',
@@ -33,5 +32,3 @@
     },
     onContentChange: function(store) {}
   });
-
-}).call(this);

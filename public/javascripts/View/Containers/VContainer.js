@@ -1,4 +1,3 @@
-(function() {
 
   Ext.define('YMU.View.Containers.VContainer', {
     extend: 'Ext.panel.Panel',
@@ -14,5 +13,3 @@
       align: 'stretch'
     }
   });
-
-}).call(this);

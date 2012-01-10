@@ -1,4 +1,3 @@
-(function() {
 
   Ext.require('YMU.Model.ContactSupportModel');
 
@@ -7,5 +6,3 @@
     requires: ['YMU.Model.ContactSupportModel'],
     model: 'YMU.Model.ContactSupportModel'
   });
-
-}).call(this);

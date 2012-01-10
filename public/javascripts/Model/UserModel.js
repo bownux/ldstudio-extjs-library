@@ -1,4 +1,3 @@
-(function() {
 
   Ext.require(['*']);
 
@@ -6,5 +5,3 @@
     extend: 'Ext.data.Model',
     fields: ['username', 'password']
   });
-
-}).call(this);

@@ -53,98 +53,99 @@ class App
 
 # YMU Application Root
 Ext.application 
-	name: 'YMU',
-	appFolder: 'javascripts',
-	autoCreateViewport: false,
-	views: ['YMU.View.Windows.ContactSupport','YMU.View.DataContent.FooterPanel'],
-	models: ['YMU.Model.ContactSupportModel','YMU.Model.FooterModel'],
-	stores: ['YMU.Store.ContactSupportStore','YMU.Store.FooterStore'],
-	controllers: ['YMU.Controller.ContactSupport','YMU.Controller.Footer'],
+    name: 'YMU',
+    appFolder: 'javascripts',
+    autoCreateViewport: false,
+    views: ['YMU.View.Windows.ContactSupport','YMU.View.DataContent.FooterPanel'],
+    models: ['YMU.Model.ContactSupportModel','YMU.Model.FooterModel'],
+    stores: ['YMU.Store.ContactSupportStore','YMU.Store.FooterStore'],
+    controllers: ['YMU.Controller.ContactSupport','YMU.Controller.Footer'],
 	
-	launch: ->
-		#console.log 'YMU Application Launched'
-		# Set Ext Application to YMU Lib and Extend
-		YMU.Lib.Application = new App()
-		YMU.Lib.Application.setApp(this)
-		### - Do we really want a Viewport here? Maybe we want to create
-		- and render the element here instead? http://goo.gl/sTbfq, currently
-		- creating items based on MVC Architecture from Sencha ExtJS 4.
-		Ext.create 'Ext.container.Viewport',
-			layout: 'fit' ,
-			items: [
-				xtype: 'panel',
-				title: 'Users',
-				html: 'Stuff will go here.'
-			]
-		###
-        # Data Store wait on Load
-		store = Ext.create 'YMU.Store.YoutubeStore'
-		store.load()
-		store.on('load', ->
-			aggregatedStore = new Array()
-			store.data.each(
-				(item, index, totalItems) ->
-					#console.log item.data['feed'].entry[1].media$group.media$thumbnail[1].url
-					Ext.each(item.data['feed'].entry, (rec) ->
-						#console.log 'rec: ' + rec.media$group.media$thumbnail[1].url
-						aggregatedStore.push Ext.apply(rec,media:{thumbnailSmall1:rec.media$group.media$thumbnail[1].url})
-					)
-				)
-			newsUpdates = videoListTpl.applyTemplate(aggregatedStore)
-			tabsList = Ext.create 'YMU.View.DataTabs.YoutubeVideoTabs', {height:392}
-			tabsList.applyNews(newsUpdates)
-			# Player
-			player = Ext.create 'YMU.View.Players.YoutubePlayer', {flex:0}
+    launch: ->
+        #console.log 'YMU Application Launched'
+        # Set Ext Application to YMU Lib and Extend
+        YMU.Lib.Application = new App()
+        YMU.Lib.Application.setApp(this)
+        ### - Do we really want a Viewport here? Maybe we want to create
+        - and render the element here instead? http://goo.gl/sTbfq, currently
+        - creating items based on MVC Architecture from Sencha ExtJS 4.
+        Ext.create 'Ext.container.Viewport',
+            layout: 'fit' ,
+            items: [
+                xtype: 'panel',
+                title: 'Users',
+                html: 'Stuff will go here.'
+            ]
+        ###
+        # Player
+        player = Ext.create 'YMU.View.Players.YoutubePlayer', {flex:0}
 
-			#
-			# Container Elements
-			#
-			# TODO: Move containers to separate files.
+        #
+        # Container Elements
+        #
+        # TODO: Move containers to separate files.
 
-			# ~ Dashboard Container
-			dashboardContainer = Ext.create 'YMU.View.DataTabs.DashboardTabs',
-			{
-				padding:'5 5 5 5'
-			}
+        # ~ Dashboard Container
+        dashboardContainer = Ext.create 'YMU.View.DataTabs.DashboardTabs',
+        {
+            padding:'5 5 5 5'
+        }
         
-			# ~ Video Container
-			videoContainer = Ext.create 'YMU.View.Containers.HContainer',
-			{ 
-				id: 'videoContainer',
-				padding:'5 5 5 5',
-				items: [
-					player,
-					tabsList
-				],
-			}
+        # ~ Video Container
+        tabsList = Ext.create 'YMU.View.DataTabs.YoutubeVideoTabs', {height:392}
+        videoContainer = Ext.create 'YMU.View.Containers.HContainer',
+        { 
+            id: 'videoContainer',
+            padding:'5 5 5 5',
+            items: [
+                player,
+                tabsList
+            ],
+        }
+        # ~ Modal Containers
+        # TODO: Cls 'contact-support' we might want to consider: "baseCls, 
+        #       componentCls, cls", or others instead.
+        contactSupportContainer = Ext.create 'YMU.View.Windows.ContactSupport', 
+        {
+            componentCls:'contact-support', 
+            bodyCls:'contact-support-body',
+            items: Ext.create 'YMU.View.Windows.ContactSupportForm', 
+        }
+        # Data Store wait on Load
+        store = Ext.create 'YMU.Store.YoutubeStore'
+        store.load()
+        store.on('load', ->
+            aggregatedStore = new Array()
+            store.data.each(
+                (item, index, totalItems) ->
+                    #console.log item.data['feed'].entry[1].media$group.media$thumbnail[1].url
+                    Ext.each(item.data['feed'].entry, (rec) ->
+                        #console.log 'rec: ' + rec.media$group.media$thumbnail[1].url
+                        aggregatedStore.push Ext.apply(rec,media:{thumbnailSmall1:rec.media$group.media$thumbnail[1].url})
+                    )
+                )
+            newsUpdates = videoListTpl.applyTemplate(aggregatedStore)
+            
+            tabsList.applyNews(newsUpdates)
+            # ~ Footer Container
+            footerContainer = Ext.create 'YMU.View.DataContent.FooterPanel'
+            # Main Viewstrap Container #TODO: Move out of Load Scope
+            containers = Ext.create 'YMU.View.Containers.VContainer',
+            { 
+                id: 'mainContainer',
+                #defaults:
+                #	padding:'5 5 5 5'
+                items: [
+                    dashboardContainer,
+                    videoContainer,
+                    footerContainer
+                ],
+                renderTo: 'view-container' 
+            }
+            
+        )
+        
+        
 
-			# ~ Footer Container
-			footerContainer = Ext.create 'YMU.View.DataContent.FooterPanel'
-
-			# ~ Modal Containers
-			# TODO: Cls 'contact-support' we might want to consider: "baseCls, 
-			#       componentCls, cls", or others instead.
-			contactSupportContainer = Ext.create 'YMU.View.Windows.ContactSupport', 
-			{
-				componentCls:'contact-support', 
-				bodyCls:'contact-support-body',
-				items: Ext.create 'YMU.View.Windows.ContactSupportForm', 
-			}
-
-			# Main Viewstrap Container
-			containers = Ext.create 'YMU.View.Containers.VContainer',
-			{ 
-				id: 'mainContainer',
-				#defaults:
-				#	padding:'5 5 5 5'
-				items: [
-					dashboardContainer,
-					videoContainer,
-					footerContainer
-				],
-				renderTo: 'view-container' 
-			}
-
-			mysliderPanel =  dashboardContainer.getComponent("publicContainer").getComponent "slider-panel"
-		)
+        mysliderPanel =  dashboardContainer.getComponent("publicContainer").getComponent "slider-panel"
         

@@ -1,4 +1,3 @@
-(function() {
 
   Ext.require('YMU.Model.YoutubeModel');
 
@@ -18,5 +17,3 @@
       }
     }
   });
-
-}).call(this);
