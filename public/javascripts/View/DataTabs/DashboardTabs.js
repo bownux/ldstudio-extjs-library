@@ -7,7 +7,8 @@ Ext.define('YMU.View.DataTabs.DashboardTabs', {
     layout: 'fit',
     items: [{html: 'LOADING...'}],
     afterRender: function (){
-		this.fetchUserInformation();
+		///this.fetchUserInformation()
+                this.userInfoCallback('','') 
     },
     constructor: function(config) {
     	this.initConfig(config);
@@ -424,7 +425,8 @@ Ext.define('YMU.View.DataTabs.DashboardTabs', {
     },
     userInfoCallback : function(response, params) {
     	this.getEl().unmask();
-    	var user = Ext.decode(response.responseText);
+    	//var user = Ext.decode(response.responseText);
+        var user = '';
 		if (user.profile) {
 			this.showDashboardCardForUser(user);
 		} else {

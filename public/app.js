@@ -144,7 +144,6 @@
           renderTo: 'view-container'
         });
       });
-      return mysliderPanel = dashboardContainer.getComponent("publicContainer").getComponent("slider-panel");
     }
   });
 
