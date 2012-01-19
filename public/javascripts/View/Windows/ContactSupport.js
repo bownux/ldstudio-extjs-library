@@ -52,6 +52,7 @@
         plain: true,
         headerPosition: 'top',
         layout: 'fit',
+        closeAction: 'hide',
         items: []
       });
       return me.callParent();

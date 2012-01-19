@@ -109,6 +109,7 @@ Ext.application
         {
             componentCls:'contact-support', 
             bodyCls:'contact-support-body',
+			closeAction: 'hide',
             items: Ext.create 'YMU.View.Windows.ContactSupportForm', 
         }
         # Data Store wait on Load

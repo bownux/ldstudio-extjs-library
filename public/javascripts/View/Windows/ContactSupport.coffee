@@ -50,6 +50,7 @@ Ext.define 'YMU.View.Windows.ContactSupport',
 			plain: true,
 			headerPosition: 'top',
 			layout: 'fit',
+			closeAction: 'hide',
 			items: []
 		)
 		me.callParent()

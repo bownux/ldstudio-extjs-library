@@ -119,6 +119,7 @@
       contactSupportContainer = Ext.create('YMU.View.Windows.ContactSupport', {
         componentCls: 'contact-support',
         bodyCls: 'contact-support-body',
+        closeAction: 'hide',
         items: Ext.create('YMU.View.Windows.ContactSupportForm')
       });
       store = Ext.create('YMU.Store.YoutubeStore');

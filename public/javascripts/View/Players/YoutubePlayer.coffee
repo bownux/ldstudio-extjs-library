@@ -15,7 +15,7 @@ Ext.define 'YMU.View.Players.YoutubePlayer',
     height: 392,
     header:false,
     headerAsText : false,
-    html: '<div><iframe width="660" height="365" src="http://www.youtube.com/embed/hT8Ce7KJ2n4?rel=0" frameborder="0" allowfullscreen></iframe></div>',
+    html: '<div><iframe width="660" height="365" src="http://www.youtube.com/embed/hT8Ce7KJ2n4?rel=0&wmode=Opaque" frameborder="0" allowfullscreen></iframe></div>',
     constructor: (config) ->
         this.initConfig(config)
         this.callParent(arguments)
@@ -38,5 +38,5 @@ Ext.define 'YMU.View.Players.YoutubePlayer',
             return "YMU Video: " + title
     changeVideo: (video_id, video_title) ->
         this.setTitle(video_title)
-        this.update("<div><iframe width='660' height='365' src='http://www.youtube.com/embed/" + video_id + "?rel=0' frameborder='0' allowfullscreen></iframe></div>")
+        this.update("<div><iframe width='660' height='365' src='http://www.youtube.com/embed/" + video_id + "?rel=0&wmode=Opaque' frameborder='0' allowfullscreen></iframe></div>")
 
