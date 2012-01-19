@@ -1,25 +1,34 @@
+(function() {
 
   Ext.define('YMU.View.Sliders.SliderPanel', {
     extend: 'Ext.panel.Panel',
-    id: 'slider-panel',
+    id: 'slider-panelaaaa',
     width: 730,
     html: '<p id="loading">Loading<p>',
     currentPanel: 1,
     interval: 5000,
     afterRender: function(comp, obj) {
-      this.startSlider(this);
+      //;
       return this.callParent(arguments);
     },
     loader: {
       autoLoad: true,
+      listeners: {
+    	  load: function(){
+    			  this.getTarget().initializeSlider();
+    	  }
+      },
       url: 'slider-content.html',
       loadMask: true
     },
-    trackEvent: function(evt) {
-      return _gaq.push(['_trackEvent', 'Slider', evt]);
+    startSliding: function(){
+    	this.slidePanelTimer = setInterval(this.autoRotate, this.interval);
     },
-    startSlider: function(slider) {
-      var addHandler, clearClass, createIcon, dh, i, iconIncr, initial, legend, legendElements, legendIcons, panelContainer, slideCount;
+    stopSliding: function(){
+    	clearInterval(this.slidePanelTimer);
+    },
+    initializeSlider: function() {
+      var slider=this,addHandler, clearClass, createIcon, dh, i, iconIncr, initial, legend, legendElements, legendIcons, panelContainer, slideCount;
       legendIcons = [];
       iconIncr = 0;
       createIcon = function(icon) {
@@ -82,7 +91,6 @@
               move = diff * slider.width;
               direction = 'right';
             }
-            slider.trackEvent("Panel " + clickedPanel);
             slider.currentPanel = clickedPanel;
             x = slider.currentPanel;
             return panelContainer.move(direction, move, true);
@@ -121,3 +129,5 @@
       return slider;
     }
   });
+
+}).call(this);

@@ -1,6 +1,7 @@
+(function() {
 
   Ext.define('YMU.View.Forms.LoginPanel', {
-    extend: 'Ext.panel.Panel',
+    extend: 'Ext.form.Panel',
     id: 'login-panel',
     height: 320,
     width: 280,
@@ -23,12 +24,27 @@
               {
                 xtype: 'textfield',
                 fieldLabel: 'Username',
+                name: 'username',
                 anchor: '100%',
-                border: 'none'
+                border: 'none',
+				listeners : {
+					specialkey : {
+						fn : this.handleEnter,
+						scope : this
+					}
+				}
               }, {
                 xtype: 'textfield',
                 fieldLabel: 'Password',
-                anchor: '100%'
+                inputType: 'password',
+                name: 'password',
+                anchor: '100%',
+				listeners : {
+					specialkey : {
+						fn : this.handleEnter,
+						scope : this
+					}
+				}
               }, {
                 xtype: 'container',
                 anchor: '100%',
@@ -53,6 +69,14 @@
           }
         ]
       });
-      return me.callParent(arguments);
-    }
+      me.callParent(arguments);
+    },
+	handleEnter : function(field, e) {
+		if (e.getKey() == e.ENTER) {
+			e.stopEvent();
+			this.getComponent("formFields").getComponent("loginButton").fireEvent("click");
+		}
+	}
   });
+
+}).call(this);
