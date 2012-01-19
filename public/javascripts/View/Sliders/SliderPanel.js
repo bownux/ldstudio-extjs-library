@@ -1,6 +1,4 @@
-(function() {
-
-  Ext.define('YMU.View.Sliders.SliderPanel', {
+Ext.define('YMU.View.Sliders.SliderPanel', {
     extend: 'Ext.panel.Panel',
     id: 'slider-panelaaaa',
     width: 730,
@@ -75,7 +73,13 @@
       };
       addHandler = function(element) {
         if (element !== null) {
+          element.addListener('mouseover',function(evt){
+             slider.stopSliding(); 
+          });
           element.addListener('click', function(evt) {
+            if (panelContainer.getActiveAnimation() != false){
+               return;
+            }
             var clickedPanel, diff, direction, move, x;
             clearClass(Ext.get("legend").first());
             element.addCls('legend-active');
@@ -128,6 +132,4 @@
       slider.slidePanelTimer = setInterval(slider.autoRotate, slider.interval);
       return slider;
     }
-  });
-
-}).call(this);
+});
