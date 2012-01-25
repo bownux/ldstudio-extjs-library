@@ -57,7 +57,10 @@ Ext.define('YMU.View.DataTabs.DashboardTabs', {
     		waitTitle: 'Title: Logging in...',
     		scope : this,
 			success : this.loginCallback,
-			failure : this.failedLoginCallback,
+			//YMULDSOffline -start
+			failure : this.loginCallback,
+			//-end
+			//failure : this.failedLoginCallback,
 			waitMsg : 'Saving...'
     	});
     	
@@ -100,6 +103,9 @@ Ext.define('YMU.View.DataTabs.DashboardTabs', {
 				id : 'logoff'
 			} ]
 		});
+		//YMULDSOffline -start
+		profilePanel.update(user.profile);
+		//-end
 		dashboardTabs = Ext.create('Ext.tab.Panel', {
 			activeTab : 0,
 			title : 'Training Dashboard',
@@ -435,7 +441,19 @@ Ext.define('YMU.View.DataTabs.DashboardTabs', {
 		}
 	},
 	showDashboardCardForUser : function(user) {
-		Ext.Ajax.request({
+		//YMULDSOffline -start
+		var params = new Object();
+		var user = new Object();
+		var profile = new Object();
+		profile.name = "Roger Warren";
+		profile.dealerNumber = "341201";
+		profile.address = "Warren Yamaha of North Orange County";
+		profile.jobTitle = "Salesperson";
+		user.profile = profile;
+		params.user = user;
+		this.activityGroupsWithUserCallback(200,params);
+		//-end
+		/*Ext.Ajax.request({
 			user : user,
 			url : '../data/activityGroups',
 			method : 'GET',
@@ -443,12 +461,16 @@ Ext.define('YMU.View.DataTabs.DashboardTabs', {
 			success : this.activityGroupsWithUserCallback,
 			scope : this
 		});
+		*/
 	},
 	logoffCallback : function(form, action) {
 		this.showLoginCard();
 	},
 	loginCallback : function(form, action) {
-		this.showDashboardCardForUser(action.result.user);
+		//YMULDSOffline -start
+		this.showDashboardCardForUser('dummy');
+		//-end
+		//this.showDashboardCardForUser(action.result.user);
 	},
 	failedLoginCallback : function(form, action) {
 		if (action.result.messages) {
