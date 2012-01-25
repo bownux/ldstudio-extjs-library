@@ -33,6 +33,7 @@
     items: [
       {
         xtype: 'panel',
+        id: 'videoList',
         autoScroll: true,
         height: 230,
         html: '<p>Videos</p>'
@@ -51,6 +52,7 @@
 
   Ext.define('YMU.View.DataTabs.YoutubeVideoTabs', {
     extend: 'Ext.TabPanel',
+    id:'videoTab',
     activeTab: 0,
     autoWidth: true,
     autoHeight: true,
