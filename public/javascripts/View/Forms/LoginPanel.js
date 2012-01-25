@@ -13,7 +13,12 @@
         items: [
           {
             xtype: 'label',
-            text: 'Login'
+            text: 'LOG IN',
+            style: {
+                fontSize: '1.2em',
+                fontWeight: 'bolder',
+                textDecoration: 'underline'
+            }
           }, {
             id: 'formFields',
             xtype: 'fieldset',

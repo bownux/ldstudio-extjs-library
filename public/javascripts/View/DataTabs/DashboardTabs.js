@@ -2,6 +2,7 @@ var dashboard_y = 300;
 
 Ext.define('YMU.View.DataTabs.DashboardTabs', {
     extend: 'YMU.View.Containers.HContainer',
+    //ui: 'dashboard',
     id: 'dashboardContainer',
     height: dashboard_y,
     layout: 'fit',
@@ -65,13 +66,13 @@ Ext.define('YMU.View.DataTabs.DashboardTabs', {
     	this.removeAll(true);
 		//lazy creation of a new Login card
     	this.sliderPanel = Ext.create('YMU.View.Sliders.SliderPanel', {
-		    height: 320,
+		    height: 290,
 		    flex: 5
 		  });
 
     	var loginPanel = Ext.create('YMU.View.Forms.LoginPanel', {
     			id: 'loginPanel',
-    		    height: 320,
+    		    height: 290,
     		    flex: 2
     		  });
         loginPanel.getComponent("formFields").getComponent("loginButton").on('click', this.logIn, this);

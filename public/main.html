@@ -6,9 +6,10 @@
 <!--[if IE 9]>    <html class="no-js ie9 oldie" lang="en"> <![endif]-->
 <head>
     <title>YMU ExtJS View main</title>
-    <link rel="stylesheet" href="/resources/css/ymu-ext-theme.css">
-    <link rel="stylesheet" href="/stylesheets/style.css">
-    <script type="text/javascript" src="/ext/ext-all-debug.js"></script>
+    <link rel="stylesheet" href="resources/css/ymu-ext-theme.css">
+   <!-- <link rel="stylesheet" href="ext/resources/css/ext-all-gray.css"> -->
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <script type="text/javascript" src="ext/ext-all-debug.js"></script>
     <script src="app.js"></script></head><body><div id="header">
     <a href="http://www.yamaha-motor-university.com">
         <img src="images/Yamaha-Motor-University-logo.jpg"></a>
@@ -18,11 +19,12 @@
     </div>
     <div id="content">
         <div id="info">
-            <a onclick="YMU.Lib.Application.fireEvent('contactsupportrequested',this)" href="javascript:void(0);">Contact Support </a>
+            <a onclick="YMU.Lib.Application.fireEvent('contactsupportrequested',this)" href="javascript:void(0);">Contact Support </a>&nbsp; | &nbsp;
+            <a href="#" target="_blank">YMU Sales Resource</a>
         </div>
+        <div style="clear:both;"></div>
             <div id="view-container"></div>
         </div>
-        <p class="lower-nav"></p>
         <div id="footer">
             <div class="footer">
                 <a href="http://yamaha-motor-university.com">Yamaha Motor University Homepage</a>&emsp;|&emsp;

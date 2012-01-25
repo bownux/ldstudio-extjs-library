@@ -37,6 +37,7 @@
         height: 230,
         html: '<p>Videos</p>'
       }, {
+        id:'videoDescription',
         xtype: 'panel',
         height: 120,
         html: '<p>Description</p>',

@@ -1,0 +1,11 @@
+Ext.onReady(function() {
+   Ext.require(['*']);
+   Ext.manifest = {
+      widgets: [
+         {
+   		    xtype: 'widget.panel',
+            ui   : 'dashboard'
+         }
+      ]
+   };
+});

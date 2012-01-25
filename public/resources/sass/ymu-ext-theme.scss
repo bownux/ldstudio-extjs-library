@@ -3,19 +3,51 @@
 $include-default: false;
 
 // Insert your custom variables here.
-$base-color: #03529d;
-$panel-base-color: #031BD1;
-$border-color: #0367C5;
-$panel-header-color: white;
-$tab-base-color: white;
+$base-color: silver;
+$panel-base-color: #CCC;
+$border-color: #CCC;
+
+//panel
+$panel-header-background-gradient: color-stops(#F0F0F0, #D7D7D7);
+$panel-border-color: #D0D0D0;
+$panel-header-color: #3A3636;
+
+//tabs
+$tab-base-color: #eaeaea;
+$tab-color-active: #333333;
+
+$tab-background-gradient: color-stops(#dcdcdc, #eaeaea);
+$tab-background-gradient-over: 'tab-over' !default;
+$tab-background-gradient-active: color-stops(#ffffff, #eaeaea);
+$tab-background-gradient-disabled: 'tab-disabled' !default;
+
+//buttons
+$button-default-base-color: #f8f8f8;
+$button-default-base-color-over: #f3f3f3;
+$button-default-base-color-focus: $button-default-base-color-over;
+$button-default-base-color-pressed: #d6d6d6;
+$button-default-base-color-disabled: adjust-color($base-color, $hue: 0deg, $saturation: -55.556%, $lightness: 12.745%) !default; //F7F7F7
+
+$button-default-border-color: #bbbbbb;
+$button-default-border-color-over: #9d9d9d;
+$button-default-border-color-focus: $button-default-border-color-over;
+$button-default-border-color-pressed: $button-default-border-color-over;
+$button-default-border-color-disabled: adjust-color($button-default-base-color-disabled, $hue: 0deg, $saturation: 0%, $lightness: -8.627%) !default;
+
+$button-default-background-gradient: 'matte';
+$button-default-background-gradient-over: 'matte';
+$button-default-background-gradient-focus: 'matte';
+$button-default-background-gradient-pressed: 'matte-reverse';
+$button-default-background-gradient-disabled: 'matte';
+
+$button-default-background-gradient-color-stops: null;
+$button-default-background-gradient-color-stops-over: null;
+$button-default-background-gradient-color-stops-focus: null;
+$button-default-background-gradient-color-stops-pressed: null;
+$button-default-background-gradient-color-stops-disabled: null;
+
 $slider-panel-content-left-width: 360px;
 $frame-border-radius: 10px;
-$panel-body-background-color: white;
-//$window-background-color:white;
-$panel-frame-background-color:white;
-//$panel-border-radius: 15px;
-$panel-frame-border-style:none;
-
 @import 'ext4/default/all';
 
 // You may remove any of the following modules that you
@@ -25,26 +57,26 @@ $panel-frame-border-style:none;
 @include extjs-btn-group;
 @include extjs-datepicker;
 @include extjs-colorpicker;
-//@include extjs-menu;
+@include extjs-menu;
 @include extjs-grid;
 @include extjs-form;
     @include extjs-form-field;
     @include extjs-form-fieldset;
-    //@include extjs-form-file;
+    @include extjs-form-file;
     @include extjs-form-checkboxfield;
     @include extjs-form-checkboxgroup;
     @include extjs-form-triggerfield;
-    //@include extjs-form-htmleditor;
+    @include extjs-form-htmleditor;
 @include extjs-panel;
 @include extjs-qtip;
-//@include extjs-slider;
+@include extjs-slider;
 @include extjs-progress;
-//@include extjs-toolbar;
+@include extjs-toolbar;
 @include extjs-window;
 @include extjs-messagebox;
 @include extjs-tabbar;
 @include extjs-tab;
-//@include extjs-tree;
+@include extjs-tree;
 @include extjs-drawcomponent;
 @include extjs-viewport;
 
@@ -64,31 +96,35 @@ $boxheight: 10em;
 #info {
 	text-align: right;
 }
+#header{
+    height:106px;
+    img{
+	 float:left;
+    }
+}
 
 // Footer Panel
-
-#footerContainer {
-//    @include border-radius($boxheight/6);
-//    background-color:orange;
-}
 #footerContainer{
     border:none;
-}
-#footerContainer-body{
-//    margin-top: 10px;
 }
 #footerContainer div{
     padding-top:0px;
     border:none;
 }
-#footerContainer .x-panel-body-default {
-    background-color: transparent;
+#footerContainer .x-panel-body-default{
+    background-color:transparent;
 }
 #footerContainer-body {
+    background-color:transparent;
     @include border-radius($boxheight/6);
     @include background-image(linear-gradient(20% 10% , #CCC 0%, rgba(0, 0, 0, 0.1) 100%));
     @include single-box-shadow($shadow-color,0px,0px,5px,1px);
 }
+.oldie #footerContainer-body {
+    background-image: url(../../images/bkg-gradient.png);
+    background-repeat: repeat-y;
+}
+
 #footerContainer div{
     padding-top:0px;
     border:none;
@@ -128,9 +164,27 @@ $boxheight: 10em;
 .video-panel-title{
     font-weight: bold;
 }
-
+#news .x-panel-body-default{
+    border:none !important;
+    border-style: none !important;
+}
 
 // Dashboard Panel
+@include extjs-panel-ui(
+    'dashboard',
+ 
+    $ui-header-font-size: 12px,
+    $ui-header-font-weight: bold,
+    $ui-header-color: #0D2A59,
+    $ui-header-background-color: #fff,
+    $ui-header-background-gradient: gloss ,
+ 
+    $ui-border-color: #fff,
+    $ui-border-radius: 30px,
+    $ui-body-background-color: silver,
+    $ui-body-font-size: 14px
+);
+
 
 #dashboardContainer .x-panel-body-default {
     background-color: transparent;
@@ -164,14 +218,15 @@ $boxheight: 10em;
     border-radius-bottomright: 20px;
     float:left;
 }
-#login-panel{
-    float:right;
-}
 #panel-slider{
     height:380px;
     width: 730px;
     position:relative;
     overflow: hidden;
+}
+.oldie #panel-slider{
+    background-image:url(../../images/bkg-gradient.png);
+    background-repeat:repeat-y;
 }
 #panel-container{
     height:380px;
@@ -223,12 +278,12 @@ $boxheight: 10em;
     vertical-align:middle;
     float:left;
     cursor: pointer;
-    -moz-border-radius: 5px ;
-    border-radius:  5px;
-    margin-left:5px;
-    border: 20px outset blue ;
+    -moz-border-radius: 2px ;
+    border-radius:  2px;
+    margin-left:4px;
+    border: 1px outset gray ;
     font-weight:bold;
-    padding-top:3px;
+    padding-top:2px;
 }
 
 .legend-icon:hover{
@@ -245,7 +300,7 @@ $boxheight: 10em;
 	position:absolute;
 	top: 0px;
 	left:360px;
-        background-image: url(../images/transparent.png);
+        background-image: url(../../images/transparent.png);
         background-repeat:repeat;
 	background-color: transparent;
 	
@@ -264,16 +319,46 @@ div#home-right img{
 }
 
 
-#login-panel{
-    -moz-box-shadow: 0 0 5px 5px #888;
-    -webkit-box-shadow: 0 0 5px 5px#888;
+#loginPanel{
+    float:right;
+}
+#loginPanel{
+    //-moz-box-shadow: 0 0 5px 5px #888;
+    //-webkit-box-shadow: 0 0 5px 5px#888;
+    padding:10px 0 0 10px;
     -moz-border-radius-bottomleft:20px;
     -webkit-border-bottom-left-radius:20px;
     border-radius-bottomleft: 20px;
     -moz-border-radius-bottomright:20px;
     -webkit-border-bottom-right-radius:20px;
     border-radius-bottomright: 20px; 
+    fieldset{
+        padding-top: 10px;
+        border:none;
+    }
 }
+.oldie #loginPanel{
+    background-image:url(../../images/bkg-gradient.png);
+    background-repeat:repeat-y;
+    background-position:right top;
+}
+.ie7 #loginPanel{
+    left: 720px !important;
+    height:278px !important;
+}
+#loginButton{
+  //  background-color:orange !important;
+}
+#loginButton:hover{
+    background-color:silver !important;
+    @include background-gradient(#CCC, $type: glossy-button, $direction: top); 
+}
+
+.ie7 #loginButton:hover{
+    @include background-gradient(#CCC, $type: glossy-button, $direction: top); 
+    //@include background-image(linear-gradient(20% 10% , #CCC 0%, rgba(0, 0, 0, 0.1) 100%));
+}
+
 #dashboardContainer .x-tab-bar-top .x-tab-bar-body-default-plain{
     left: -2px;
     padding: 0px;

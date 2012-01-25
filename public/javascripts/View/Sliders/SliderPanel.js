@@ -1,6 +1,6 @@
 Ext.define('YMU.View.Sliders.SliderPanel', {
     extend: 'Ext.panel.Panel',
-    id: 'slider-panelaaaa',
+    id: 'slider-panel',
     width: 730,
     html: '<p id="loading">Loading<p>',
     currentPanel: 1,
@@ -25,6 +25,13 @@ Ext.define('YMU.View.Sliders.SliderPanel', {
     stopSliding: function(){
     	clearInterval(this.slidePanelTimer);
     },
+    destroy: function(){
+        alert("destroyed");
+        this.stopSliding();
+        console.log(this.slidePanelTimer);
+        delete(this.slidePanelTimer);
+        return true;
+    },
     initializeSlider: function() {
       var slider=this,addHandler, clearClass, createIcon, dh, i, iconIncr, initial, legend, legendElements, legendIcons, panelContainer, slideCount;
       legendIcons = [];
@@ -43,7 +50,7 @@ Ext.define('YMU.View.Sliders.SliderPanel', {
       if (navigator.appName === 'Microsoft Internet Explorer') {
         slideCount = 4;
       } else {
-        slideCount = slider.el.dom.firstChild.children[0].children[0].childElementCount;
+        slideCount = 4;//slider.el.dom.firstChild.children[0].children[0].childElementCount;
       }
       i = 0;
       while (i < slideCount) {

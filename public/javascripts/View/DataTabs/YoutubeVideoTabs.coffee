@@ -11,7 +11,7 @@ window.videoListTpl = new Ext.XTemplate(
                 '<div class=\'video-title\'>{[this.getValueFromRaw(values)]}</div><div class="x-clear"></div>', 
             '</tpl>',
             '<tpl for="content">',
-                '<div class=\'video-content\'>{[this.getValueFromRaw(values)]}</div>'
+                '<!-- <div class=\'video-content\'>{[this.getValueFromRaw(values)]}</div> -->'
             '</tpl>',
             '<br />',
         '</tpl>',
