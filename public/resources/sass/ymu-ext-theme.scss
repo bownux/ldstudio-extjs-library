@@ -210,9 +210,9 @@ $boxheight: 10em;
 
 //Slider Panel
 #slider-panel{
-    -moz-box-shadow: 0 0 5px 5px #888;
-    -webkit-box-shadow: 0 0 5px 5px#888;
-    box-shadow: 0 0 5px 5px #888;
+    -moz-box-shadow: 5px 0 5px 0px #888;
+    -webkit-box-shadow: 5px 0 5px 0px #888;
+    box-shadow: 5px 0 5px 0px #888;
     -moz-border-radius-bottomleft:20px; 
     -webkit-border-bottom-left-radius:20px;
     border-radius-bottomleft: 20px;
@@ -306,12 +306,19 @@ $boxheight: 10em;
         background-image: url(../../images/transparent.png);
         background-repeat:repeat;
 	background-color: transparent;
-	
+	p{
+		float: left;
+		margin-left: 33px;
+		background-repeat: no-repeat;
+	    -moz-border-radius-bottomright:20px;
+	    -webkit-border-bottom-right-radius:20px;
+	    border-radius-bottomright: 20px; 
+	}
 }
 
 div#home-right img{
 
-    margin:10px 30px;
+    //margin:10px 30px;
 
 }
 

@@ -3,45 +3,28 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
+.x-tab-bar {
+  position: absolute;
+}
 a {
-  color: #00529b;
+  color: #00b7ff;
 }
 ul {
   padding: 10px;
 }
-
-#content {
- background-color: #fff;
-  width: 1024px;
-  margin: 0 auto;
-  position:relative;
-}
-
-#info {
-  margin-left:75px;
+div#info {
   padding: 5px;
-  text-align:left !important;
-  padding: 0px 0px 20px 20px;
-  position:absolute;
-  top:-30px;
-  left:30px;
 }
-
-div#info a {
-    color:#00529b;
-}
-
 #header {
   padding-top: 0px;
   margin-bottom: -2px;
   margin: 0px auto -2px auto;
   width: 1024px;
 }
-
 #footer {
   color: #666;
   font-family: Arial, Helvetica, sans-serif;
-  padding: 10px 0;
+  adding: 10px 0;
   height: 60px;
   width: 1024px;
   margin-right: auto;
@@ -54,14 +37,21 @@ div#info a {
   color: #666;
   padding-top: 10px;
 }
-
 #footer a {
   color: #00529b;
 }
 #footer a:link {
   color: #00529b;
 }
-
+#content {
+  margin-top: -2px;
+  background-color: #fff;
+  width: 1024px;
+  margin: 0 auto;
+}
+#info {
+  padding: 20px 0px 20px 20px;
+}
 .lower-nav {
   padding: 10px 0px 10px 20px;
   background-color: #fff;

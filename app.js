@@ -26,9 +26,11 @@
     }));
     app.use(require('stylus').middleware({
       src: __dirname + '/public'
+      //src: '/Users/lramos/Dropbox/YMU/repo/ldstudio-extjs-library/public'
     }));
     app.use(app.router);
     return app.use(express.static(__dirname + '/public'));
+    //return app.use(express.static('/Users/lramos/Dropbox/YMU/repo/ldstudio-extjs-library/public'));
   });
 
   app.configure('development', function() {
