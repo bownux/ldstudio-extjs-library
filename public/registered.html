@@ -10,10 +10,7 @@
    <!-- <link rel="stylesheet" href="ext/resources/css/ext-all-gray.css"> -->
     <link rel="stylesheet" href="stylesheets/style.css">
     <script type="text/javascript" src="ext/ext-all-debug.js"></script>
-    <script src="app.js"></script>
-</head>
-<body>
-	<div id="header">
+    <script src="app-pages.js"></script></head><body><div id="header">
     <a href="http://www.yamaha-motor-university.com">
         <img src="images/Yamaha-Motor-University-logo.jpg"></a>
         <a href="http://www.yamaha-motor-university.com">
@@ -26,7 +23,25 @@
             <a href="#" target="_blank">YMU Sales Resource</a>
         </div>
         <div style="clear:both;"></div>
-            <div id="view-container"></div>
+            <div id="registered-container">
+            <em class="heading">Status</em>
+            <h1>Account Pending Approval</h1><br>
+            <p>A confirmation email with log on instructions will be emailed to you within 48 hours.</p>
+            	<div id="contact-us" >
+            		<h1>&nbsp;</h1>
+            		<h1>Contact Us</h1>
+            		<h2>Questions, Comments, Concerns?<h2>
+        			Call our YMU Support Team 7:00AM - 4:30PM PST(M-F)<br>
+                	<b>Toll Free: (800) 854-4876 - Option 2</b>
+                	<br/>
+                	<br/>
+                    <a onclick="YMU.Lib.Application.fireEvent('contactsupportrequested',this)" href="javascript:void(0);">Send us a Message</a>
+
+                </div>
+                <br/>
+                <br/>
+                <br/>
+            </div>
         </div>
         <div id="footer">
             <div class="footer">

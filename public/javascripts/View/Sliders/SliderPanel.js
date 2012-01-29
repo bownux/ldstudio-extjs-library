@@ -26,9 +26,7 @@ Ext.define('YMU.View.Sliders.SliderPanel', {
     	clearInterval(this.slidePanelTimer);
     },
     destroy: function(){
-        alert("destroyed");
         this.stopSliding();
-        console.log(this.slidePanelTimer);
         delete(this.slidePanelTimer);
         return true;
     },

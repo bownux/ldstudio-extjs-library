@@ -10,7 +10,8 @@
    <!-- <link rel="stylesheet" href="ext/resources/css/ext-all-gray.css"> -->
     <link rel="stylesheet" href="stylesheets/style.css">
     <script type="text/javascript" src="ext/ext-all-debug.js"></script>
-    <script src="app.js"></script>
+    <script type="text/javascript" src="javascripts/View/Forms/Signup.ui.js"></script>
+    <script src="app-pages.js"></script>
 </head>
 <body>
 	<div id="header">
@@ -21,13 +22,17 @@
         </a>
     </div>
     <div id="content">
+        
         <div id="info">
             <a onclick="YMU.Lib.Application.fireEvent('contactsupportrequested',this)" href="javascript:void(0);">Contact Support </a>&nbsp; | &nbsp;
             <a href="#" target="_blank">YMU Sales Resource</a>
         </div>
-        <div style="clear:both;"></div>
-            <div id="view-container"></div>
-        </div>
+        <div id="signup-form-wrapper">
+        	<img src='images/signup-page.png' alt"Sign Up" style="float:left;padding-left:30px;" />
+        	<div id="sign-up" style="display:inline;margin-left:30px;"></div>
+		</div>
+        <br><br>
+    </div>
         <div id="footer">
             <div class="footer">
                 <a href="http://yamaha-motor-university.com">Yamaha Motor University Homepage</a>&emsp;|&emsp;

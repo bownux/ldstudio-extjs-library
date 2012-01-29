@@ -46,6 +46,8 @@ $button-default-background-gradient-color-stops-focus: null;
 $button-default-background-gradient-color-stops-pressed: null;
 $button-default-background-gradient-color-stops-disabled: null;
 
+$window-header-color:#000000;
+
 $slider-panel-content-left-width: 360px;
 $frame-border-radius: 10px;
 @import 'ext4/default/all';
@@ -169,7 +171,7 @@ $boxheight: 10em;
  //   border-style: none !important;
 }
 #videoTab-body{
-     top: 0 !important;   
+     top: 20px !important;   
 }
 
 // Dashboard Panel
@@ -401,12 +403,15 @@ div#home-right img{
 
 .contact-support{
   display:inline;
-  text-decoration:underline;
+  //text-decoration:underline;
   color: #00529B;
   
   &:hover{
     cursor:pointer;
   }
+}
+.contact-support-body{
+    background-color:#cccccc !important;
 }
 
 .contact-support-footer{
@@ -415,8 +420,24 @@ div#home-right img{
 #create-account-panel{
     @include border-radius(10px);
    .x-panel-header-text-container{
+       font-weight:bolder;
    }
  }
+
+#contact-info-body{
+    text-align:center;
+    text-decoration:none;
+    margin: 0 auto;
+    background-color:#cccccc !important;
+    border-color:#cccccc !important;
+    h1{
+        text-decoration:none;
+    }
+    .x-form-item-label-left{
+        color:#5A5A5A !important;
+        text-decoration:none;
+    }
+}
 #signup-graphic {
     margin: 0 0 0 10px;
     float: left;
@@ -427,4 +448,16 @@ div#home-right img{
 }
 .contact-support-body{
     background-color:white;
+}
+#registered-container{
+    text-align:center;
+    .heading{
+        font-size:14px;
+    }
+    h1{
+        font-size:20px;
+    }
+    #contact-us{
+        line-height:20px;
+    }
 }
